@@ -55,7 +55,6 @@ header h1 {
 }
 
 .presupuesto button:hover {
-    width: 25%;
     color: purple;
     background-color: yellow;
     border: 2px solid purple;
@@ -79,10 +78,12 @@ header h1 {
 }
 
 footer {
+    color: yellow;
     padding: 50px 20px;
-    background-color: gray;
+    background-color: rgb(86, 17, 86);
     text-align: center;
 }
+
 
 @media (max-width: 600px) {
     header {
