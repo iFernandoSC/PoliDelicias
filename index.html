@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <title>Polidelicias</title>
 </head>
@@ -13,12 +14,20 @@
 
     <section class="presupuesto">
         <span>¿Tienes algún presupuesto en mente?</span>
-        <input type="number" placeholder="Presupuesto">
-        <button>RECOMENDAR</button>
+        <input type="number" id="inputPres" list="presupuestos" placeholder="Presupuesto">
+        <button onclick="recomendar()">RECOMENDAR</button>
     </section>
 
+    <datalist id="presupuestos">
+        <option value="25">
+        <option value="50">
+        <option value="75">
+        <option value="100">
+        <option value="150">
+    </datalist>
+
     <main class="articulos">
-        <article class="articulo"></article>
+        <a href="pagvendedor.html"><article class="articulo"></article></a>
         <article class="articulo"></article>
         <article class="articulo"></article>
         <article class="articulo"></article>
