@@ -1,3 +1,16 @@
+/*--evergreen: #132a13ff;
+--hunter-green: #31572cff;
+--fern: #4f772dff;
+--palm-leaf: #90a955ff;
+--lime-cream: #ecf39eff;*/
+
+/*--dark-wine: #6f1d1bff;
+--camel: #bb9457ff;
+--dark-coffee: #432818ff;
+--chocolate-brown: #99582aff;
+--light-apricot: #ffe6a7ff;*/
+
+
 * {
     box-sizing: border-box;
 }
@@ -24,6 +37,17 @@ header {
     background-color: rgb(86, 17, 86);
     padding: 30px 20px;
     text-align: center;
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+    margin: 0;
+    float: right;
+}
+
+header a:hover {
+    text-decoration:underline
 }
 
 header h1 {
@@ -84,6 +108,38 @@ footer {
     text-align: center;
 }
 
+
+.user {
+    color: yellow;
+    text-align: center;
+    margin: 30px;
+    padding: 0;
+}
+
+.user input {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.user p {
+    margin-bottom: 5px;
+}
+
+.user button {
+    color: yellow;
+    background-color: purple;
+    border: 2px solid yellow;
+    border-radius: 5cap;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+.user button:hover {
+    color: purple;
+    background-color: yellow;
+    border: 2px solid purple;
+}
 
 @media (max-width: 600px) {
     header {
