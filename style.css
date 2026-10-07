@@ -16,25 +16,26 @@
 }
 
 body {
+    text-align: center;
     margin: 0;
     font-family: arial;
-    background-color: purple;
+    background-color: rgb(230, 210, 173);
 }
 
 span {
-    color: yellow;
+    color: black;
 }
 
 input {
-    color: yellow;
-    background-color: purple;
-    border: 2px solid yellow;
+    color: black;
+    background-color: white;
     border-radius: 5cap;
+    border: 0;
 }
 
 header {
-    color: yellow;
-    background-color: rgb(86, 17, 86);
+    color: white;
+    background-color: rgb(148, 117, 117);
     padding: 30px 20px;
     text-align: center;
 }
@@ -43,16 +44,35 @@ header a {
     text-decoration: none;
     color: white;
     margin: 0;
-    float: right;
 }
 
 header a:hover {
-    text-decoration:underline
+    text-decoration: underline;
 }
 
 header h1 {
+    width: 100%;
     margin: 0;
     font-size: clamp(40px, 7vw, 80px);
+}
+
+h3 {
+    margin-top: 0;
+    text-align: center;
+}
+
+select {
+    text-align: center;
+    border-radius: 1cap;
+    margin-bottom: 0;
+}
+
+select:hover {
+    cursor: pointer;
+    text-align: center;
+}
+option:hover {
+    background-color: rgb(148, 117, 117);
 }
 
 .presupuesto {
@@ -64,24 +84,33 @@ header h1 {
     flex-wrap: wrap;
 }
 
+.presupuesto p {
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 1cap;
+    margin: 0;
+    color: white;
+    background-color: red;
+}
+
 .presupuesto input {
     padding: 8px;
     width: 190px;
 }
 
 .presupuesto button {
-    color: yellow;
-    background-color: purple;
-    border: 2px solid yellow;
+    color: black;
+    background-color: white;
+    border: 0px solid black;
     border-radius: 5cap;
     padding: 8px 15px;
     cursor: pointer;
+    transition: linear .1s;
 }
 
 .presupuesto button:hover {
-    color: purple;
-    background-color: yellow;
-    border: 2px solid purple;
+    color: white;
+    background-color: rgb(148, 117, 117);
 }
 
 .articulos {
@@ -94,7 +123,8 @@ header h1 {
 }
 
 .articulo {
-    border-radius: 1cap;
+    color: black;
+    border-radius: .5cap;
     background-color: white;
     padding: 30px;
     text-align: center;
@@ -102,15 +132,15 @@ header h1 {
 }
 
 footer {
-    color: yellow;
+    color: white;
     padding: 50px 20px;
-    background-color: rgb(86, 17, 86);
+    background-color: rgb(148, 117, 117);
     text-align: center;
 }
 
 
 .user {
-    color: yellow;
+    color: black;
     text-align: center;
     margin: 30px;
     padding: 0;
@@ -127,21 +157,21 @@ footer {
 }
 
 .user button {
-    color: yellow;
-    background-color: purple;
-    border: 2px solid yellow;
+    color: black;
+    background-color: white;
+    border: 0px solid black;
     border-radius: 5cap;
     padding: 8px 15px;
     cursor: pointer;
+    transition: linear .1s;
 }
 
 .user button:hover {
-    color: purple;
-    background-color: yellow;
-    border: 2px solid purple;
+    color: white;
+    background-color: rgb(148, 117, 117);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 335px) {
     header {
         padding: 25px 15px;
     }
