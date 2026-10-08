@@ -6,6 +6,8 @@ function regresar() {
     window.location.href = "index.html";
 }
 
+volver.addEventListener("click", regresar);
+
 function recomendar(){
     let presupuesto = Number(document.getElementById("inputPres").value);
     let alert = document.getElementById("alert");
@@ -31,6 +33,3 @@ inputFoto.addEventListener("change",
         }
     }
 )
-
-
-volver.addEventListener("click", regresar);
