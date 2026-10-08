@@ -26,6 +26,16 @@ body {
     background-color: rgba(255, 166, 0, 0.138);
 }
 
+#botonVolver {
+    float: left;
+    border-radius: 1cap;
+    margin: 5px 5px 0 0;
+    font-size: 30px;
+    padding: 0 8px 0 8px;
+    border: 0;
+    background-color: #e8e8e8;
+}
+
 .actual {
     background-color: orange;
     color: white;
