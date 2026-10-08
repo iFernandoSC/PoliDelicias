@@ -33,9 +33,13 @@ input {
     border: 0;
 }
 
+header span {
+    color: orange;
+}
+
 header {
     box-shadow: 30px black;
-    color: white;
+    color: black;
     background-color: white;
     padding: 30px 20px;
     text-align: center;
