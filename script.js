@@ -3,7 +3,7 @@ const perfil = document.getElementById("perfil");
 const volver = document.getElementById("botonVolver");
 
 function regresar() {
-    window.location.href = "../index.html";
+    window.location.href = "index.html";
 }
 
 function recomendar(){
