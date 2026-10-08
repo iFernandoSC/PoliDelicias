@@ -7,7 +7,7 @@ function recomendar(){
     let alert = document.getElementById("alert");
 
     if (presupuesto <= 0  || isNaN(presupuesto)) {
-        alert.textContent = "Ingresa un presupuesto valido";
+        alert.textContent = "¡Ingresa un presupuesto valido!";
         return;
     } else if (presupuesto <= 50) {
         window.location.href = "productos50.html";
