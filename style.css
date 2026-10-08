@@ -26,6 +26,11 @@ body {
     background-color: rgba(255, 166, 0, 0.138);
 }
 
+.actual {
+    background-color: orange;
+    color: white;
+}
+
 span {
     color: black;
 }
@@ -55,9 +60,34 @@ span {
     color: orange;
 }
 
+.menu {
+    box-shadow: 0 0 10px #0000005a;
+    border-radius: 2cap;
+    text-align: center;
+    position: fixed;
+    bottom: 10px;
+    left: 2.5%;
+    width: 95%;
+    height: 60px;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    text-decoration: none;
+    align-items: center;
+    z-index: 1000;
+}
+
+.menu a {
+    border-radius: 2cap;
+    padding: 15px;
+    color: black;
+}
+
 header {
-    box-shadow: 0 0 8px rgb(209, 209, 209);
-    box-shadow: 30px black;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 0 10px #0000005a;
     color: black;
     background-color: white;
     padding: 20px 20px;
@@ -117,6 +147,7 @@ label {
 }
 
 .presupuesto p {
+    width: 70%;
     box-shadow: 0 0 10px orange; 
     padding-left: 3px;
     padding-right: 3px;
@@ -164,6 +195,7 @@ label {
 }
 
 .articulo {
+    
     color: black;
     border-radius: .5cap;
     background-color: white;
