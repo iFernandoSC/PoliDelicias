@@ -1,3 +1,7 @@
+const inputFoto = document.getElementById("foto");
+const perfil = document.getElementById("perfil");
+
+
 function recomendar(){
     let presupuesto = Number(document.getElementById("inputPres").value);
     let alert = document.getElementById("alert");
@@ -14,3 +18,12 @@ function recomendar(){
     }
 }
 
+inputFoto.addEventListener("change",
+    function() {
+        const archivo = inputFoto.files[0];
+
+        if (archivo) {
+            perfil.src = URL.createObjectURL(archivo);
+        }
+    }
+)

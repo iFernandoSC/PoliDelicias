@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <a href="user.html">Iniciar sesion</a>
+        <a href="user.html"><img id="perfil" src="perfil-default.png" alt="Foto de perfil"></a>
         <h1>PoliDelicias</h1>
         <select id="opciones">
             <option>Buscar</option>
@@ -23,7 +23,7 @@
 
     <section class="presupuesto">
         
-        <span>¿Tienes algún presupuesto en mente?</span>
+        <label for="inputPres">¿Tienes algún presupuesto en mente?</label>
         <input type="number" id="inputPres" list="presupuestos" placeholder="Ingresa un monto">
         <button onclick="recomendar()">recomendar</button>
         <p id="alert"></p>

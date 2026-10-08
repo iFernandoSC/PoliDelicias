@@ -62,17 +62,25 @@ h3 {
 }
 
 select {
+    border: 0;
     text-align: center;
     border-radius: 1cap;
     margin-bottom: 0;
 }
 
 select:hover {
+    transition: ease .2s;
+    transform: scale(1.05);
     cursor: pointer;
     text-align: center;
 }
+
 option:hover {
     background-color: rgb(148, 117, 117);
+}
+
+label {
+    cursor: pointer;
 }
 
 .presupuesto {
@@ -108,7 +116,9 @@ option:hover {
     transition: linear .1s;
 }
 
-.presupuesto button:hover {
+.presupuesto button:hover {    
+    transition: ease .2s;
+    transform: scale(1.05);
     color: white;
     background-color: rgb(148, 117, 117);
 }
@@ -131,6 +141,11 @@ option:hover {
     cursor: pointer;
 }
 
+.articulo:hover {    
+    transition: ease .2s;
+    transform: scale(1.05);
+}
+
 footer {
     color: white;
     padding: 50px 20px;
@@ -138,6 +153,12 @@ footer {
     text-align: center;
 }
 
+#perfil {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
 
 .user {
     color: black;
@@ -166,7 +187,9 @@ footer {
     transition: linear .1s;
 }
 
-.user button:hover {
+.user button:hover {    
+    transition: ease .2s;
+    transform: scale(1.05);
     color: white;
     background-color: rgb(148, 117, 117);
 }
