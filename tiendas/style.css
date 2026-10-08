@@ -1,0 +1,230 @@
+/*--evergreen: #132a13ff;
+--hunter-green: #31572cff;
+--fern: #4f772dff;
+--palm-leaf: #90a955ff;
+--lime-cream: #ecf39eff;*/
+
+/*--dark-wine: #6f1d1bff;
+--camel: #bb9457ff;
+--dark-coffee: #432818ff;
+--chocolate-brown: #99582aff;
+--light-apricot: #ffe6a7ff;*/
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+    margin: 0;
+    font-family: arial;
+    background-color: rgb(230, 210, 173);
+}
+
+span {
+    color: black;
+}
+
+input {
+    color: black;
+    background-color: white;
+    border-radius: 5cap;
+    border: 0;
+}
+
+header {
+    color: white;
+    background-color: rgb(148, 117, 117);
+    padding: 30px 20px;
+    text-align: center;
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+    margin: 0;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+header h1 {
+    width: 100%;
+    margin: 0;
+    font-size: clamp(40px, 7vw, 80px);
+}
+
+h3 {
+    margin-top: 0;
+    text-align: center;
+}
+
+select {
+    border: 0;
+    text-align: center;
+    border-radius: 1cap;
+    margin-bottom: 0;
+}
+
+select:hover {
+    transition: ease .2s;
+    transform: scale(1.05);
+    cursor: pointer;
+    text-align: center;
+}
+
+option:hover {
+    background-color: rgb(148, 117, 117);
+}
+
+label {
+    cursor: pointer;
+}
+
+.presupuesto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 25px 20px;
+    flex-wrap: wrap;
+}
+
+.presupuesto p {
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 1cap;
+    margin: 0;
+    color: white;
+    background-color: red;
+}
+
+.presupuesto input {
+    padding: 8px;
+    width: 190px;
+}
+
+.presupuesto button {
+    color: black;
+    background-color: white;
+    border: 0px solid black;
+    border-radius: 5cap;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: linear .1s;
+}
+
+.presupuesto button:hover {    
+    transition: ease .2s;
+    transform: scale(1.05);
+    color: white;
+    background-color: rgb(148, 117, 117);
+}
+
+.articulos {
+    width: 90%;
+    max-width: 1100px;
+    margin: 10px auto 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 30px;
+}
+
+.articulo {
+    color: black;
+    border-radius: .5cap;
+    background-color: white;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.articulo:hover {    
+    transition: ease .2s;
+    transform: scale(1.05);
+}
+
+footer {
+    color: white;
+    padding: 50px 20px;
+    background-color: rgb(148, 117, 117);
+    text-align: center;
+}
+
+#perfil {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user {
+    color: black;
+    text-align: center;
+    margin: 30px;
+    padding: 0;
+}
+
+.user input {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.user p {
+    margin-bottom: 5px;
+}
+
+.user button {
+    color: black;
+    background-color: white;
+    border: 0px solid black;
+    border-radius: 5cap;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: linear .1s;
+}
+
+.user button:hover {    
+    transition: ease .2s;
+    transform: scale(1.05);
+    color: white;
+    background-color: rgb(148, 117, 117);
+}
+
+@media (max-width: 335px) {
+    header {
+        padding: 25px 15px;
+    }
+
+    header h1 {
+        font-size: 45px;
+    }
+
+    .presupuesto {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .presupuesto input {
+        width: 80%;
+        max-width: 250px;
+    }
+
+    .presupuesto button {
+        width: 120px;
+    }
+
+    .articulos {
+        width: 80%;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .articulo {
+        height: 45px;
+    }
+}
