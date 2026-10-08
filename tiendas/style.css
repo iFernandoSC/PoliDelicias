@@ -30,6 +30,16 @@ span {
     color: black;
 }
 
+#botonVolver {
+    float: left;
+    border-radius: 1cap;
+    margin: 5px 5px 0 0;
+    font-size: 30px;
+    padding: 0 8px 0 8px;
+    border: 0;
+    background-color: #e8e8e8;
+}
+
 input {
     color: black;
     background-color: white;
@@ -74,7 +84,7 @@ header a:hover {
 }
 
 header h1 {
-    width: 70%;
+    width: 90%;
     margin: 0;
     text-align: left;
     font-size: clamp(40px, 7vw, 80px);
