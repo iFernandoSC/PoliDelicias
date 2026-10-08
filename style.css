@@ -19,7 +19,7 @@ body {
     text-align: center;
     margin: 0;
     font-family: arial;
-    background-color: rgb(224, 213, 193);
+    background-color: rgb(255, 245, 227);
 }
 
 span {
@@ -34,7 +34,7 @@ input {
 }
 
 header {
-    box-shadow: 20px black;
+    box-shadow: 30px black;
     color: white;
     background-color: white;
     padding: 30px 20px;
@@ -77,7 +77,7 @@ select:hover {
 }
 
 option:hover {
-    background-color: rgb(148, 117, 117);
+    background-color: rgb(255, 245, 227);
 }
 
 label {
@@ -121,7 +121,7 @@ label {
     transition: ease .2s;
     transform: scale(1.05);
     color: white;
-    background-color: rgb(148, 117, 117);
+    background-color: rgb(255, 245, 227);
 }
 
 .articulos {
@@ -150,7 +150,7 @@ label {
 footer {
     color: white;
     padding: 50px 20px;
-    background-color: rgb(148, 117, 117);
+    background-color: rgb(255, 245, 227);
     text-align: center;
 }
 
@@ -192,7 +192,7 @@ footer {
     transition: ease .2s;
     transform: scale(1.05);
     color: white;
-    background-color: rgb(148, 117, 117);
+    background-color: rgb(255, 245, 227);
 }
 
 @media (max-width: 335px) {
