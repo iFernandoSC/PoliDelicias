@@ -19,7 +19,7 @@ body {
     text-align: center;
     margin: 0;
     font-family: arial;
-    background-color: rgb(230, 210, 173);
+    background-color: rgb(224, 213, 193);
 }
 
 span {
@@ -34,8 +34,9 @@ input {
 }
 
 header {
+    box-shadow: 20px black;
     color: white;
-    background-color: rgb(148, 117, 117);
+    background-color: white;
     padding: 30px 20px;
     text-align: center;
 }
