@@ -9,11 +9,11 @@ function recomendar(){
         alert.textContent = "¡Ingresa un presupuesto valido!";
         return;
     } else if (presupuesto <= 50) {
-        window.location.href = "productos50.html";
+        window.location.href = "tiendas/productos50.html";
     } else if (presupuesto <= 100) {
-        window.location.href = "productos100.html";
+        window.location.href = "tiendas/productos100.html";
     } else {
-        window.location.href = "productos200.html";
+        window.location.href = "tiendas/productos200.html";
     }
 }
 
