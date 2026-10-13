@@ -27,6 +27,7 @@ body {
 }
 
 #botonVolver {
+    cursor: pointer;
     float: left;
     border-radius: 1cap;
     margin: 5px 5px 0 0;
@@ -92,6 +93,12 @@ span {
     border-radius: 2cap;
     padding: 15px;
     color: black;
+}
+
+.menu a:hover {
+    background-color: orange;
+    transition: ease-out .2s;
+    transform: scale(1.05);
 }
 
 header {
