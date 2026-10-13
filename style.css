@@ -26,18 +26,13 @@ body {
     background-color: rgba(255, 166, 0, 0.138);
 }
 
-span {
-    color: black;
+.actual {
+    background-color: orange;
+    color: white;
 }
 
-#botonVolver {
-    float: left;
-    border-radius: 1cap;
-    margin: 5px 5px 0 0;
-    font-size: 30px;
-    padding: 0 8px 0 8px;
-    border: 0;
-    background-color: #e8e8e8;
+span {
+    color: black;
 }
 
 input {
@@ -65,9 +60,34 @@ span {
     color: orange;
 }
 
+.menu {
+    box-shadow: 0 0 10px #0000005a;
+    border-radius: 2cap;
+    text-align: center;
+    position: fixed;
+    bottom: 10px;
+    left: 2.5%;
+    width: 95%;
+    height: 60px;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    text-decoration: none;
+    align-items: center;
+    z-index: 1000;
+}
+
+.menu a {
+    border-radius: 2cap;
+    padding: 15px;
+    color: black;
+}
+
 header {
-    box-shadow: 0 0 8px rgb(209, 209, 209);
-    box-shadow: 30px black;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 0 10px #0000005a;
     color: black;
     background-color: white;
     padding: 20px 20px;
@@ -84,7 +104,7 @@ header a:hover {
 }
 
 header h1 {
-    width: 90%;
+    width: 70%;
     margin: 0;
     text-align: left;
     font-size: clamp(40px, 7vw, 80px);
@@ -127,6 +147,7 @@ label {
 }
 
 .presupuesto p {
+    width: 70%;
     box-shadow: 0 0 10px orange; 
     padding-left: 3px;
     padding-right: 3px;
@@ -174,6 +195,7 @@ label {
 }
 
 .articulo {
+    
     color: black;
     border-radius: .5cap;
     background-color: white;

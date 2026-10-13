@@ -1,12 +1,6 @@
 const inputFoto = document.getElementById("foto");
 const perfil = document.getElementById("perfil");
-const volver = document.getElementById("botonVolver");
 
-function regresar() {
-    window.location.href = "index.html";
-}
-
-volver.addEventListener("click", regresar);
 
 function recomendar(){
     let presupuesto = Number(document.getElementById("inputPres").value);
