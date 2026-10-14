@@ -168,13 +168,12 @@ label {
 }
 
 .presupuesto p {
-    box-shadow: 0 0 10px red; 
+    border: 2px solid red;
     padding-left: 3px;
     padding-right: 3px;
-    border-radius: 1cap;
     margin: 0;
     color: white;
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.247);
 }
 
 .presupuesto h3, .presupuesto h4 {
