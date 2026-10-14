@@ -7,11 +7,8 @@ function recomendar(){
     const inputPres = document.getElementById("inputPres");
     
     if (presupuesto <= 0  || isNaN(presupuesto)) {
-        alert.textContent = "¡Ingresa un presupuesto valido!";
-        inputPres.style.border = "2px solid red";
-        inputPres.style.boxShadow = "0 0 10px red";
-        inputPres.style.transform = "scale(1.1)";
-        inputPres.style.transition = "ease .2s";
+        alert.textContent = " ¡ Ingresa un presupuesto valido.";
+        alert.style.border = "2px solid red";
         inputPres.focus();
         return;
     } else if (presupuesto <= 50) {
