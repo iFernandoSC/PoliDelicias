@@ -31,7 +31,7 @@ body {
     cursor: pointer;
     float: left;
     border-radius: 1cap;
-    margin: 5px 5px 0 0;
+    margin: 0px 5px 0 0;
     font-size: clamp(30px, 5vw, 80px);
     padding: 0 8px 0 8px;
     border: 0;
