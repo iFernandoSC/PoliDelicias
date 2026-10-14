@@ -31,7 +31,7 @@ body {
     float: left;
     border-radius: 1cap;
     margin: 5px 5px 0 0;
-    font-size: 30px;
+    font-size: clamp(40px, 7vw, 80px);
     padding: 0 8px 0 8px;
     border: 0;
     background-color: #e8e8e8;
