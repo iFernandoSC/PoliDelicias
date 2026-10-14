@@ -6,11 +6,6 @@ function recomendar(){
     let alert = document.getElementById("alert");
     const inputPres = document.getElementById("inputPres");
     
-    alert.textContent = "";
-    inputPres.style.border = "2px solid orange";
-    inputPres.style.boxShadow = "0 0 10px orange";
-    inputPres.style.transform = "scale(1.0);
-    
     if (presupuesto <= 0  || isNaN(presupuesto)) {
         alert.textContent = "¡Ingresa un presupuesto valido!";
         inputPres.style.border = "2px solid red";
@@ -20,10 +15,22 @@ function recomendar(){
         inputPres.focus();
         return;
     } else if (presupuesto <= 50) {
+        alert.textContent = "";
+        inputPres.style.border = "2px solid orange";
+        inputPres.style.boxShadow = "0 0 10px orange";
+        inputPres.style.transform = "scale(1.0);
         window.location.href = "tiendas/productos50.html";
     } else if (presupuesto <= 100) {
+        alert.textContent = "";
+        inputPres.style.border = "2px solid orange";
+        inputPres.style.boxShadow = "0 0 10px orange";
+        inputPres.style.transform = "scale(1.0);
         window.location.href = "tiendas/productos100.html";
     } else {
+        alert.textContent = "";
+        inputPres.style.border = "2px solid orange";
+        inputPres.style.boxShadow = "0 0 10px orange";
+        inputPres.style.transform = "scale(1.0);
         window.location.href = "tiendas/productos200.html";
     }
 }
