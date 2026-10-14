@@ -23,20 +23,24 @@ body {
     text-align: center;
     margin: 0;
     font-family: arial;
-    background-color: rgba(255, 166, 0, 0.138);
+    background-color: rgba(255, 166, 0, 0.131);
 }
 
 #botonVolver {
+    box-shadow: 0 0 10px rgb(172, 171, 171);
     cursor: pointer;
     float: left;
     border-radius: 1cap;
     margin: 5px 5px 0 0;
-    font-size: clamp(40px, 7vw, 80px);
+    font-size: clamp(40px, 5vw, 80px);
     padding: 0 8px 0 8px;
     border: 0;
     background-color: #e8e8e8;
 }
 
+#botonVolver:active {
+    transform: scale(0.9);
+}
 
 .actual {
     background-color: orange;
@@ -62,10 +66,12 @@ header pre {
     font-family: arial;
     color: black;
     float: right;
+    font-size: clamp(20px, 2vw, 40px);
 }
 
 header pre:hover {
-    text-decoration: underline;
+    transition: .2s ease-in;
+    color: orange;
 }
 
 span {
@@ -96,6 +102,7 @@ span {
 }
 
 .menu a:hover {
+    color: white;
     background-color: orange;
     transition: ease-out .2s;
     transform: scale(1.05);
@@ -156,26 +163,30 @@ label {
 }
 
 .presupuesto {
+    box-shadow: 0 0 10px rgb(172, 171, 171);
+    margin: 20px;
+    border-radius: 1cap;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
-    padding: 25px 20px;
+    padding: 15px 10px;
     flex-wrap: wrap;
+    background-color: white;
 }
 
 .presupuesto p {
-    width: 70%;
-    box-shadow: 0 0 10px orange; 
+    box-shadow: 0 0 10px red; 
     padding-left: 3px;
     padding-right: 3px;
     border-radius: 1cap;
     margin: 0;
     color: white;
-    background-color: orange;
+    background-color: red;
 }
 
 .presupuesto input {
+    border: 2px solid orange;
     padding: 8px;
     width: 190px;
 }
@@ -185,10 +196,15 @@ label {
     transition: ease .2s;
 }
 
+.presupuesto input:focus {
+    box-shadow: 0 0 10px orange;
+}
+
 .presupuesto button {
-    color: orange;
-    background-color: white;
-    border: 0px solid black;
+    box-shadow: 0 0 10px orange; 
+    color: white;
+    background-color: orange;
+    border: orange;
     border-radius: 5cap;
     padding: 8px 15px;
     cursor: pointer;
@@ -196,16 +212,16 @@ label {
 }
 
 .presupuesto button:hover {
-    box-shadow: 0 0 10px orange; 
     transition: ease .2s;
     transform: scale(1.05);
-    color: white;
-    background-color: orange;
+}
+
+.presupuesto button:active {
+    transform: scale(0.8);
 }
 
 .articulos {
-    width: 90%;
-    max-width: 1100px;
+    width: 95%;
     margin: 10px auto 50px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -304,7 +320,7 @@ footer {
 
     .articulos {
         width: 80%;
-        grid-template-columns: 1fr;
+        grid-template-columns: 0fr;
         gap: 15px;
         margin-top: 10px;
     }
