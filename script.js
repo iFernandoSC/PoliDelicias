@@ -1,5 +1,6 @@
 const inputFoto = document.getElementById("foto");
 const perfil = document.getElementById("perfil");
+const presupuesto = document.getElementById("presupuesto");
 
 function recomendar(){
     let presupuesto = Number(document.getElementById("inputPres").value);
@@ -41,3 +42,7 @@ botonVolver.addEventListener("click", () => {
         window.location.href = "index.html";
     }
 });
+
+presupuesto.addEventListener("click", function() {
+    inputPres.focus();
+}
