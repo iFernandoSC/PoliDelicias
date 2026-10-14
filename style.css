@@ -125,7 +125,7 @@ header h1 {
     width: 70%;
     margin: 0;
     text-align: left;
-    font-size: clamp(40px, 7vw, 80px);
+    font-size: clamp(40px, 5vw, 80px);
 }
 
 h3 {
