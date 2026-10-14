@@ -101,13 +101,6 @@ span {
     color: black;
 }
 
-.menu a:hover {
-    color: white;
-    background-color: orange;
-    transition: ease-out .2s;
-    transform: scale(1.05);
-}
-
 header {
     position: sticky;
     top: 0;

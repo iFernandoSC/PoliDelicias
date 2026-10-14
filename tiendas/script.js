@@ -1,7 +1,9 @@
 const volver = document.getElementById("botonVolver");
 
-function regresar() {
-    window.location.href = "../index.html";
-}
-
-volver.addEventListener("click", regresar);
+botonVolver.addEventListener("click", () => {
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        window.location.href = "../index.html";
+    }
+});
