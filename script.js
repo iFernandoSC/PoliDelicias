@@ -43,6 +43,8 @@ botonVolver.addEventListener("click", () => {
     }
 });
 
-presupuesto.addEventListener("click", function() {
+function presu() {
     inputPres.focus();
 }
+
+presupuesto.addEventListener("click", presu);
