@@ -168,10 +168,10 @@ label {
 }
 
 .presupuesto p {
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
     margin: 0;
-    color: rgb(68, 67, 67);
+    color: black;
     background-color: rgba(255, 0, 0, 0.247);
 }
 
