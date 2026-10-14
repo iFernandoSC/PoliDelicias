@@ -168,13 +168,11 @@ label {
 }
 
 .presupuesto p {
-    box-shadow: 0 0 10px red; 
-    padding-left: 3px;
-    padding-right: 3px;
-    border-radius: 1cap;
+    padding: 0;
     margin: 0;
-    color: white;
-    background-color: red;
+    border-radius: 5px;
+    color: black;
+    background-color: rgba(255, 0, 0, 0.247);
 }
 
 .presupuesto h3, .presupuesto h4 {
@@ -290,13 +288,33 @@ footer {
     background-color: orange;
 }
 
-@media (max-width: 335px) {
-    header {
-        padding: 25px 15px;
+
+@media (min-width: 800px) {
+    .articulos {
+        width: 95%;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 15px;
+        margin-top: 10px;
     }
+    .presupuesto {
+        margin-left: 15%;
+        width: 70%;
+    }
+}
+
+@media (min-width: 1100px) {
+    .articulos {
+        width: 95%;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 15px;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 500px) {
 
     header h1 {
-        font-size: 45px;
+        font-size: 35px;
     }
 
     .presupuesto {
@@ -305,7 +323,7 @@ footer {
     }
 
     .presupuesto input {
-        width: 80%;
+        width: 60%;
         max-width: 250px;
     }
 
@@ -315,7 +333,7 @@ footer {
 
     .articulos {
         width: 80%;
-        grid-template-columns: 0fr;
+        grid-template-columns: 1fr;
         gap: 15px;
         margin-top: 10px;
     }
