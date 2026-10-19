@@ -24,7 +24,8 @@ body {
     background-color: rgb(244, 180, 26);
 }
 .imgcorea{
-    heigh: 20px;
+   float: right;
+    width: 50px;
 }
 #botonVolver {
     box-shadow: 0 0 10px rgb(172, 171, 171);
