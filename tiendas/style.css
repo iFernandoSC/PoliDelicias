@@ -32,7 +32,7 @@ body {
     float: left;
     border-radius: 1cap;
     margin: 0px 5px 0 0;
-    font-size: clamp(30px, 5vw, 80px);
+    font-size: 30px;
     padding: 0 8px 0 8px;
     border: 0;
     background-color: white;
@@ -302,8 +302,8 @@ footer {
     }
 
     #botonVolver {
-        width: 5%;
-        height: 5%;
+        width: 40px;
+        height: 40px;
     }
 }
 
@@ -316,8 +316,9 @@ footer {
     }
 
     #botonVolver {
-        width: 5%;
-        height: 5%;
+        width: 50px;
+        height: 50px;
+        font-size: 30px;
     }
 }
 
@@ -328,8 +329,9 @@ footer {
     }
 
     #botonVolver {
-        width: 5%;
-        height: 5%;
+        width: 10%;
+        height: 10%;
+        font-size: 30px;
     }
 
     .presupuesto {
