@@ -300,6 +300,11 @@ footer {
         margin-left: 15%;
         width: 70%;
     }
+
+    #botonVolver {
+        width: 70%;
+        height: 70%;
+    }
 }
 
 @media (min-width: 1100px) {
@@ -309,12 +314,22 @@ footer {
         gap: 15px;
         margin-top: 10px;
     }
+
+    #botonVolver {
+        width: 70%;
+        height: 70%;
+    }
 }
 
 @media (max-width: 500px) {
 
     header h1 {
         font-size: 35px;
+    }
+
+    #botonVolver {
+        width: 70%;
+        height: 70%;
     }
 
     .presupuesto {
