@@ -1,24 +1,9 @@
-/*--evergreen: #132a13ff;
---hunter-green: #31572cff;
---fern: #4f772dff;
---palm-leaf: #90a955ff;
---lime-cream: #ecf39eff;*/
-
-/*--dark-wine: #6f1d1bff;
---camel: #bb9457ff;
---dark-coffee: #432818ff;
---chocolate-brown: #99582aff;
---light-apricot: #ffe6a7ff;*/
-
-
 * {
     box-sizing: border-box;
 }
-
 a {
     text-decoration: none;
 }
-
 body {
     text-align: center;
     margin: 0;
@@ -42,6 +27,7 @@ body {
     float: right;
     margin: 0%;
     width: 30%;
+    heigh: 20%;
 }
 #botonVolver {
     box-shadow: 0 0 10px rgb(172, 171, 171);
