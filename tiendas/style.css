@@ -26,6 +26,23 @@ body {
     background-color: white;
 }
 
+--body de pagina comida china
+,.comidachina{
+    background-color: rgb(235, 205, 109);
+    font-family: 'Shojumaru', serif !important; 
+    font-size: 25px;            
+}
+.headerchina{
+    background-color: rgb(236, 51, 51);
+}
+#navchina{
+    background-color: rgb(244, 180, 26);
+}
+.imgcorea{
+    float: right;
+    margin: 0%;
+    width: 30%;
+}
 #botonVolver {
     box-shadow: 0 0 10px rgb(172, 171, 171);
     cursor: pointer;
