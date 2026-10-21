@@ -41,7 +41,18 @@ body {
     border: 0;
     background-color: white;
 }
-
+.comidachina{
+    background-color: #ec870b;
+}
+.headerchina{
+    background-color: #d11616;
+}
+#navchina{
+    background-color: #e2962b;
+}
+.imgcorea{
+    float: right;
+}
 /* Estilos del boton volver al darle click */
 #botonVolver:active {
     transform: scale(0.9);
