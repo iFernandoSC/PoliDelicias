@@ -1,9 +1,27 @@
+/*--evergreen: #132a13ff;
+--hunter-green: #31572cff;
+--fern: #4f772dff;
+--palm-leaf: #90a955ff;
+--lime-cream: #ecf39eff;*/
+
+/*--dark-wine: #6f1d1bff;
+--camel: #bb9457ff;
+--dark-coffee: #432818ff;
+--chocolate-brown: #99582aff;
+--light-apricot: #ffe6a7ff;*/
+
+
+/* El valor border-box en el box-sizing hace que el padding y el border pasen a formar parte del cálculo del ancho de la caja y no lo suman posteriormente */
 * {
     box-sizing: border-box;
 }
+
+/* Quita la decoración a los links */
 a {
     text-decoration: none;
 }
+
+/* Cambios al cuerpo de la página */
 body {
     text-align: center;
     margin: 0;
@@ -11,47 +29,36 @@ body {
     background-color: white;
 }
 
---body de pagina comida china
-,.comidachina{
-    background-color: rgb(235, 205, 109);
-    font-family: 'Shojumaru', serif !important; 
-    font-size: 25px;            
-}
-.headerchina{
-    background-color: rgb(236, 51, 51);
-}
-#navchina{
-    background-color: rgb(244, 180, 26);
-}
-.imgcorea{
-   float: right;
-    width: 50px;
-}
+/* Estilos del boton volver */
 #botonVolver {
     box-shadow: 0 0 10px rgb(172, 171, 171);
     cursor: pointer;
     float: left;
     border-radius: 1cap;
     margin: 0px 5px 0 0;
-    font-size: 30px;
+    font-size: clamp(30px, 5vw, 80px);
     padding: 0 8px 0 8px;
     border: 0;
     background-color: white;
 }
 
+/* Estilos del boton volver al darle click */
 #botonVolver:active {
     transform: scale(0.9);
 }
 
+/* Resalta la sección seleccionada */
 .actual {
     background-color: orange;
     color: white;
 }
 
+/* Hace el texto seleccionado negro */
 span {
     color: black;
 }
 
+/* Estilos del campo de texto */
 input {
     color: black;
     background-color: white;
@@ -59,10 +66,12 @@ input {
     border: 0;
 }
 
+/* Estilos de la imágen de perfil */
 header img {
     color: black;
 }
 
+/* Estilos del link al perfil */
 header pre {
     font-family: arial;
     color: black;
@@ -70,15 +79,18 @@ header pre {
     font-size: clamp(20px, 2vw, 40px);
 }
 
+/* Estilos del link al perfil al pasar el mouse por encima */
 header pre:hover {
     transition: .2s ease-in;
     color: orange;
 }
 
+/* Resalta en naranja una parte del titulo */
 span {
     color: orange;
 }
 
+/* Estilos del menú principal */
 .menu {
     box-shadow: 0 0 10px #0000005a;
     text-align: center;
@@ -95,12 +107,14 @@ span {
     z-index: 1000;
 }
 
+/* Estilos de los links del menú principal */
 .menu a {
     border-radius: 1cap;
     padding: 15px;
     color: black;
 }
 
+/* Estilos de la cabecera principal */
 header {
     position: sticky;
     top: 0;
@@ -111,28 +125,33 @@ header {
     padding: 15px 15px;
 }
 
+/* Estilos de los links de la cabecera principal */
 header a {
     text-decoration: none;
     color: white;
     margin: 0;
 }
 
+/* Estilos de los links de la cabecera principal al pasar el mouse por encima */
 header a:hover {
     text-decoration: underline;
 }
 
+/* Estilos de los titulos de la cabecera principal */
 header h1 {
-    width: 100%;
+    width: 70%;
     margin: 0;
     text-align: left;
     font-size: clamp(25px, 4vw, 40px);
 }
 
+/* Estilos de los subtitulos h3 */
 h3 {
     margin-top: 0;
     text-align: center;
 }
 
+/* Estilos de la selección de opciones */
 select {
     border: 0;
     text-align: center;
@@ -140,6 +159,7 @@ select {
     margin-bottom: 0;
 }
 
+/* Estilos de la selección de opciones al pasar el mouse por encima */
 select:hover {
     transition: ease .2s;
     transform: scale(1.05);
@@ -147,14 +167,17 @@ select:hover {
     text-align: center;
 }
 
+/* Estilos de la selección de opciones al pasar el mouse por encima */
 option:hover {
     background-color: rgb(255, 245, 227);
 }
 
+/* Estilos de las etiquetas */
 label {
     cursor: pointer;
 }
 
+/* Estilos de la selección de ingresar presupuesto */
 .presupuesto {
     box-shadow: 0 0 10px rgb(172, 171, 171);
     margin: 20px;
@@ -168,6 +191,7 @@ label {
     background-color: white;
 }
 
+/* Estilos de los parrafos de la selección de ingresar presupuesto */
 .presupuesto p {
     padding: 0;
     margin: 0;
@@ -176,25 +200,30 @@ label {
     background-color: rgba(255, 0, 0, 0.247);
 }
 
+/* Estilos de los titulos h3 y h4 de la selección de ingresar presupuesto */
 .presupuesto h3, .presupuesto h4 {
     margin: 0;
 }
 
+/* Estilos de los campos de texto de la selección de ingresar presupuesto */
 .presupuesto input {
     border: 2px solid orange;
     padding: 8px;
     width: 190px;
 }
 
+/* Estilos de los campos de texto de la selección de ingresar presupuesto al pasar el mouse por encima */
 .presupuesto input:hover {
     box-shadow: 0 0 10px orange; 
     transition: ease .2s;
 }
 
+/* Estilos de los campos de texto de la selección de ingresar presupuesto al darles click */
 .presupuesto input:focus {
     box-shadow: 0 0 10px orange;
 }
 
+/* Estilos de los botones de la selección de ingresar presupuesto */
 .presupuesto button {
     box-shadow: 0 0 10px orange; 
     color: white;
@@ -206,15 +235,18 @@ label {
     transition: linear .1s;
 }
 
+/* Estilos de los botones de la selección de ingresar presupuesto al pasar el mouse por encima */
 .presupuesto button:hover {
     transition: ease .2s;
     transform: scale(1.05);
 }
 
+/* Estilos de los botones de la selección de ingresar presupuesto al dar click */
 .presupuesto button:active {
     transform: scale(0.8);
 }
 
+/* Sección donde están los recuadros de las tiendas */
 .articulos {
     width: 95%;
     margin: 10px auto 50px;
@@ -223,6 +255,7 @@ label {
     gap: 18px 30px;
 }
 
+/* Estilos de los recuadros de las tiendas */
 .articulo {
     color: black;
     border-radius: .5cap;
@@ -232,6 +265,7 @@ label {
     cursor: pointer;
 }
 
+/* Estilos de los recuadros de las tiendas al pasar el mouse por encima */
 .articulo:hover {
     text-decoration: none;
     color: white;
@@ -240,6 +274,7 @@ label {
     transform: scale(1.05);
 }
 
+/* Estilos de la parte más baja de la página */
 footer {
     margin: 0;
     color: black;
@@ -248,6 +283,7 @@ footer {
     text-align: center;
 }
 
+/* Estilos de el texto link del perfil */
 #perfil {
     float: right;
     width: 100px;
@@ -255,6 +291,7 @@ footer {
     object-fit: cover;
 }
 
+/* Estilos de los textos de la ventana user */
 .user {
     color: black;
     text-align: center;
@@ -262,16 +299,19 @@ footer {
     padding: 0;
 }
 
+/* Estilos de los campos de texto de la ventana user */
 .user input {
     padding: 10px;
     margin-bottom: 10px;
     width: 50%;
 }
 
+/* Estilos de los parrafos de la ventana user */
 .user p {
     margin-bottom: 5px;
 }
 
+/* Estilos de los botones de la ventana user */
 .user button {
     color: black;
     background-color: white;
@@ -282,6 +322,7 @@ footer {
     transition: linear .1s;
 }
 
+/* Estilos de los botones de la ventana user al pasar el mouse por encima */
 .user button:hover {    
     transition: ease .2s;
     transform: scale(1.05);
@@ -289,7 +330,8 @@ footer {
     background-color: orange;
 }
 
-
+/* Modificación de los elementos HTML dependiendo del tamaño de la ventana */
+/* Cuando la ventana mide al menos 800 pixeles*/
 @media (min-width: 800px) {
     .articulos {
         width: 95%;
@@ -303,11 +345,12 @@ footer {
     }
 
     #botonVolver {
-        width: 40px;
-        height: 40px;
+        width: 5%;
+        height: 5%;
     }
 }
 
+/* Cuando la ventana mide al menos 1100 pixeles */
 @media (min-width: 1100px) {
     .articulos {
         width: 95%;
@@ -317,12 +360,12 @@ footer {
     }
 
     #botonVolver {
-        width: 50px;
-        height: 50px;
-        font-size: 30px;
+        width: 5%;
+        height: 5%;
     }
 }
 
+/* Cuando la ventana mide maximo 500 pixeles */
 @media (max-width: 500px) {
 
     header h1 {
@@ -330,9 +373,8 @@ footer {
     }
 
     #botonVolver {
-        width: 10%;
-        height: 10%;
-        font-size: 30px;
+        width: 5%;
+        height: 5%;
     }
 
     .presupuesto {
