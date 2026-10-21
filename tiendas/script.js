@@ -1,3 +1,5 @@
+
+// Script para el boton de volver:
 const volver = document.getElementById("botonVolver");
 
 botonVolver.addEventListener("click", () => {
