@@ -45,7 +45,28 @@ body {
    float: right;
     width: 50px;
 }
-
+.cooperativacanchas{
+    background-color: #f4f1ec;
+}
+.headercanchas{
+    background-color: #e85815d4;
+}
+#navchina{
+    background-color: #004fa4;
+}
+.articuloc:hover {
+    color: black;
+    border-radius: .5cap;
+    background-color: #f1f1f1;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    background-color: rgba(18, 102, 197, 0.457);
+    transition: ease-out .2s;
+    transform: scale(1.05);
+}
 /* Estilos del boton volver */
 #botonVolver {
     box-shadow: 0 0 10px rgb(172, 171, 171);
