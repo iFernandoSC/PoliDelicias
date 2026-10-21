@@ -283,7 +283,7 @@ footer {
     text-align: center;
 }
 
-
+/* Estilos de el texto link del perfil */
 #perfil {
     float: right;
     width: 100px;
@@ -291,6 +291,7 @@ footer {
     object-fit: cover;
 }
 
+/* Estilos de los textos de la ventana user */
 .user {
     color: black;
     text-align: center;
@@ -298,16 +299,19 @@ footer {
     padding: 0;
 }
 
+/* Estilos de los campos de texto de la ventana user */
 .user input {
     padding: 10px;
     margin-bottom: 10px;
     width: 50%;
 }
 
+/* Estilos de los parrafos de la ventana user */
 .user p {
     margin-bottom: 5px;
 }
 
+/* Estilos de los botones de la ventana user */
 .user button {
     color: black;
     background-color: white;
@@ -318,6 +322,7 @@ footer {
     transition: linear .1s;
 }
 
+/* Estilos de los botones de la ventana user al pasar el mouse por encima */
 .user button:hover {    
     transition: ease .2s;
     transform: scale(1.05);
@@ -325,7 +330,8 @@ footer {
     background-color: orange;
 }
 
-
+/* Modificación de los elementos HTML dependiendo del tamaño de la ventana */
+/* Cuando la ventana mide al menos 800 pixeles*/
 @media (min-width: 800px) {
     .articulos {
         width: 95%;
@@ -344,6 +350,7 @@ footer {
     }
 }
 
+/* Cuando la ventana mide al menos 1100 pixeles */
 @media (min-width: 1100px) {
     .articulos {
         width: 95%;
@@ -358,6 +365,7 @@ footer {
     }
 }
 
+/* Cuando la ventana mide maximo 500 pixeles */
 @media (max-width: 500px) {
 
     header h1 {
