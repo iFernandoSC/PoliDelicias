@@ -70,7 +70,7 @@ body {
 }
 /* Estilos de la tienda cooperativa modulo a */
 .cooperativaa{
-    background-image: url("imagen/fondoc.jpg");
+    background-image: url("img/fondoc.jpg");
     background-size: cover;          /* Hace que la imagen cubra todo el área */
     background-position: center;     /* Centra la imagen */
     background-repeat: no-repeat;    /* Evita que se repita como mosaico */
