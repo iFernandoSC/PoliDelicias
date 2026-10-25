@@ -45,13 +45,14 @@ body {
    float: right;
     width: 50px;
 }
+/* Estilos de la tienda cooperativa canchas */
 .cooperativacanchas{
     background-color: #f4f1ec;
 }
 .headercanchas{
     background-color: #e85815d4;
 }
-#navchina{
+#navcanchas{
     background-color: #004fa4;
 }
 .articuloc:hover {
@@ -66,6 +67,29 @@ body {
     background-color: rgba(18, 102, 197, 0.457);
     transition: ease-out .2s;
     transform: scale(1.05);
+}
+/* Estilos de la tienda cooperativa modulo a */
+.cooperativaa{
+    background-image: url("fondoc.jpg");
+    background-color: #000000;
+    font-family: 'Times New Roman', Times, serif;          
+}
+.headercooperativaa{
+    color: #f1f1f1;
+    background-color: #fbfaf800;
+}
+
+#navcooperativaa{
+    background-color: #e3c5c5;
+    color: #e9e3e3;
+}
+.articuloca {
+    color: black;
+    border-radius: .5cap;
+    background-color: #f1f1f194;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
 }
 /* Estilos del boton volver */
 #botonVolver {
