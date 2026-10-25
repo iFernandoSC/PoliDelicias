@@ -70,7 +70,7 @@ body {
 }
 /* Estilos de la tienda cooperativa modulo a */
 .cooperativaa{
-    background-image: url("fondoc.jpg");
+    background-image: url("../img/fondoc.jpg");
     background-color: #000000;
     font-family: 'Times New Roman', Times, serif;          
 }
