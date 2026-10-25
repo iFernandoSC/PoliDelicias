@@ -102,6 +102,23 @@ body {
     transition: ease-out .2s;
     transform: scale(1.05);
      }
+.gorditas{
+    background-image: url("img/gorditas.jpg");
+    background-size: 100%;          /* Hace que la imagen cubra todo el área */
+     background-position: center;     /* Centra la imagen */
+    background-repeat: no-repeat;    /* Evita que se repita como mosaico */
+    min-height: 100vh; /* Ocupará al menos el 100% de la altura de la pantalla */
+  width: 100%;       /* Ocupará todo el ancho */
+    font-family: 'Times New Roman', Times, serif;          
+}
+.headergorditas{
+    color: #472904;
+    background-color: #c87b44;
+}
+
+#navgorditas{
+    background-color: #e3b15a;
+}
 /* Estilos del boton volver */
 #botonVolver {
     box-shadow: 0 0 10px rgb(172, 171, 171);
