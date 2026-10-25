@@ -91,6 +91,14 @@ body {
     text-align: center;
     cursor: pointer;
 }
+
+.articuloca:hover {
+    text-decoration: none;
+    color: rgb(165, 112, 73);
+    background-color: rgba(255, 166, 0, 0);
+    transition: ease-out .2s;
+    transform: scale(1.05);
+     }
 /* Estilos del boton volver */
 #botonVolver {
     box-shadow: 0 0 10px rgb(172, 171, 171);
