@@ -350,17 +350,16 @@ label {
 .articulo {
     color: black;
     border-radius: .5cap;
-    background-color: #f1f1f1;
+    background-color: #f1f1f194;
     padding: 30px;
     text-align: center;
     cursor: pointer;
 }
 
-/* Estilos de los recuadros de las tiendas al pasar el mouse por encima */
 .articulo:hover {
     text-decoration: none;
-    color: white;
-    background-color: orange;
+    color: rgb(165, 112, 73);
+    background-color: rgba(255, 166, 0, 0);
     transition: ease-out .2s;
     transform: scale(1.05);
 }
