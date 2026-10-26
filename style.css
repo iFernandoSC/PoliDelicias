@@ -55,6 +55,38 @@ body {
 #navcanchas{
     background-color: #004fa4;
 }
+
+.rollitos{
+    background-image: url("rollitos.jpg");
+    background-size: 100%;          /* Hace que la imagen cubra todo el área */
+     background-position: center;     /* Centra la imagen */
+    background-repeat: no-repeat;    /* Evita que se repita como mosaico */
+    min-height: 100vh; /* Ocupará al menos el 100% de la altura de la pantalla */
+    width: 100%;       /* Ocupará todo el ancho */
+    font-family: 'Times New Roman', Times, serif;          
+}
+.headerrollitos{
+    color: #92d233;
+    background-color: #0000005a;
+}
+#navrollo{
+    background-color: #b8b7b780;
+}
+.headertortas{
+    background-color: #0000005a;
+}
+.tortas{
+    background-image: url("banderilla.jpg");
+    background-size: 100%;          /* Hace que la imagen cubra todo el área */
+    background-position: center;     /* Centra la imagen */
+    background-repeat: no-repeat;    /* Evita que se repita como mosaico */
+    min-height: 100vh; /* Ocupará al menos el 100% de la altura de la pantalla */
+    width: 100%;       /* Ocupará todo el ancho */
+    font-family: 'Times New Roman', Times, serif;  
+}
+#navtortas{
+    background-color: #0000005a;
+}
 .articuloc:hover {
     color: black;
     border-radius: .5cap;
