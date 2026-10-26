@@ -57,7 +57,7 @@ body {
 }
 
 .rollitos{
-    background-image: url("rollitos.jpg");
+    background-image: url("img/rollitos.jpg");
     background-size: 100%;          /* Hace que la imagen cubra todo el área */
      background-position: center;     /* Centra la imagen */
     background-repeat: no-repeat;    /* Evita que se repita como mosaico */
@@ -76,7 +76,7 @@ body {
     background-color: #0000005a;
 }
 .tortas{
-    background-image: url("banderilla.jpg");
+    background-image: url("img/banderilla.jpg");
     background-size: 100%;          /* Hace que la imagen cubra todo el área */
     background-position: center;     /* Centra la imagen */
     background-repeat: no-repeat;    /* Evita que se repita como mosaico */
