@@ -1,1 +1,0 @@
-CREATE DATABASE mi_primera_bd;
