@@ -29,6 +29,17 @@ body {
     background-color: white;
 }
 
+.inicio{ 
+  background-image: url(img/imgpoli.jpg); 
+  position: sticky; 
+  top: 0; 
+  background-size: cover; /*es mejor que '100%' para cubrir todo sin estirar la imagen */
+  background-position: top center; /*  Fuerza a la imagen a alinearse hasta arriba */
+  background-repeat: no-repeat; 
+  min-height: 100vh;
+  width: 100%; 
+  font-family: 'Times New Roman', Times, serif;    
+}
 /* Estilos de la tienda comida china */
 .comidachina{
     background-color: rgb(235, 205, 109);
