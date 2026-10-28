@@ -160,7 +160,7 @@ body {
 .articuloca {
     color: black;
     border-radius: .5cap;
-    background-color: #f1f1f194;
+    background-color: #181818a3;
     padding: 30px;
     text-align: center;
     cursor: pointer;
@@ -259,15 +259,16 @@ span {
 
 /* Estilos del menú principal */
 .menu {
+    border: 0px solid orange;
     box-shadow: 0 0 10px #0000005a;
     border-radius: 3cap;
     text-align: center;
     position: fixed;
-    bottom: 5px;
+    bottom: 15px;
     left: 3%;
     width: 94%;
     height: 60px;
-    background-color: #f1f1f194;
+    background-color: #181818b8;
     display: flex;
     justify-content: space-around;
     text-decoration: none;
@@ -279,7 +280,7 @@ span {
 .menu a {
     border-radius: 3cap;
     padding: 15px;
-    color: black;
+    color: white;
 }
 
 .menu a:hover {
@@ -298,9 +299,9 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 0 5px rgb(172, 171, 171);
-    color: black;
-    background-color: #f1f1f1d1;
+    box-shadow: 0 0 5px black;
+    color: white;
+    background-color: #181818b8;
     padding: 15px 15px;
 }
 
@@ -326,6 +327,7 @@ header h1 {
     width: 70%;
     margin: 0;
     text-align: left;
+    color: white;
     font-size: clamp(25px, 4vw, 40px);
 }
 
@@ -371,7 +373,7 @@ label {
     gap: 15px;
     padding: 15px 10px;
     flex-wrap: wrap;
-    background-color: #f1f1f194;
+    background-color: #181818a3
 }
 
 /* Estilos de los parrafos de la selección de ingresar presupuesto */
@@ -390,7 +392,7 @@ label {
 
 /* Estilos de los campos de texto de la selección de ingresar presupuesto */
 .presupuesto input {
-    background-color: #f1f1f194;
+    background-color: #181818a3;
     border: 2px solid orange;
     padding: 8px;
     width: 190px;
@@ -446,10 +448,10 @@ label {
 
 /* Estilos de los recuadros de las tiendas */
 .articulo {
-    color: black;
+    color: white;
     border-radius: .5cap;
     height: 200px;
-    background-color: #f1f1f194;
+    background-color: #181818a3;
     padding: 0px;
     text-align: center;
     cursor: pointer;
@@ -465,15 +467,17 @@ label {
 
 .articulo:hover {
     text-decoration: none;
-    background-color: #f1f1f1cc;
-    transition: ease-out .2s;
-    transform: scale(1.05);
+    border-right: 2px solid orange;
+    border-bottom: 2px solid orange;
+    background-color: #181818a3;
+    transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) .2s;
+    transform: scale(.95);
 }
 
 /* Estilos de la parte más baja de la página */
 footer {
     margin: 0;
-    color: black;
+    color: white;
     padding: 20px 20px;
     background-color: rgba(255, 166, 0, 0);
     text-align: center;
