@@ -30,10 +30,25 @@ body {
     background-color: white;
 }
 
+.hero {
+    margin: 0;
+      height: 100vh; 
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                       url('https://picsum.photos'); 
+      background-attachment: fixed;
+      background-size: cover;       
+      background-position: center;  
+      background-repeat: no-repeat; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;                 
+      font-family: sans-serif;
+    }
+
 .inicio{ 
-  background-image: url(img/imgpoli.jpg); 
-  position: sticky; 
-  top: 0; 
+  background-image: url(img/imgpoli.jpg);
+  background-attachment: fixed;
   background-size: cover; /*es mejor que '100%' para cubrir todo sin estirar la imagen */
   background-position: top center; /*  Fuerza a la imagen a alinearse hasta arriba */
   background-repeat: no-repeat; 
@@ -43,7 +58,7 @@ body {
 }
 .lugares{ 
   background-image: url(img/arboles.png); 
-  position: sticky; 
+  background-attachment: fixed;
   top: 0; 
   background-size: cover; /*es mejor que '100%' para cubrir todo sin estirar la imagen */
   background-position: top center; /*  Fuerza a la imagen a alinearse hasta arriba */
@@ -342,7 +357,6 @@ label {
 
 /* Estilos de la selección de ingresar presupuesto */
 .presupuesto {
-    box-shadow: 0 0 10px rgb(172, 171, 171);
     margin: 20px;
     border-radius: 1cap;
     display: flex;
@@ -426,20 +440,28 @@ label {
 
 /* Estilos de los recuadros de las tiendas */
 .articulo {
-    box-shadow: 0 0 10px rgb(172, 171, 171);
     color: black;
     border-radius: .5cap;
+    height: 200px;
     background-color: #f1f1f194;
-    padding: 30px;
+    padding: 0px;
     text-align: center;
     cursor: pointer;
+}
+
+.articulo img {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: .5cap;
 }
 
 .articulo:hover {
     text-decoration: none;
     background-color: #f1f1f1cc;
     transition: ease-out .2s;
-    transform: scale(.95);
+    transform: scale(1.05);
 }
 
 /* Estilos de la parte más baja de la página */
@@ -547,7 +569,4 @@ footer {
         margin-top: 10px;
     }
 
-    .articulo {
-        height: 45px;
-    }
 }
