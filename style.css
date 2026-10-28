@@ -57,7 +57,7 @@ body {
   font-family: 'Times New Roman', Times, serif;    
 }
 .lugares{ 
-  background-image: url(img/arboles.png); 
+  background-image: url(img/imgpoli2.jpg); 
   background-attachment: fixed;
   top: 0; 
   background-size: cover; /*es mejor que '100%' para cubrir todo sin estirar la imagen */
