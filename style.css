@@ -294,13 +294,19 @@ span {
 
 /* Estilos de la cabecera principal */
 header {
+    transition: transform .3s ease;
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: 0 0 5px rgb(172, 171, 171);
     color: black;
-    background-color: white;
+    background-color: #f1f1f1d1;
     padding: 15px 15px;
+}
+
+/* Estilos de la cabecera principal al ocultarse */
+header.oculto {
+    transform: translateY(-120%);
 }
 
 /* Estilos de los links de la cabecera principal */
