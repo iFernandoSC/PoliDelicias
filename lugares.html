@@ -8,7 +8,7 @@
     <title>Lugares</title>
 </head>
 <body class="lugares">
-    <header class="headerlugares">
+    <header class="headerlugares" id="header">
         <h1>Poli<span>Lugares</span></h1>
     </header>
 
@@ -47,6 +47,25 @@
     </main>
     </div>
 
+
+    <!-- Script para ocultar la cabecera al hacer scroll hacia abajo -->
+        <script>
+            let ultimaPosicion = 0;
+
+            const header = document.getElementById("header");
+
+            window.addEventListener("scroll", () => {
+            const posicionActual = window.scrollY;
+
+            if (posicionActual > ultimaPosicion && posicionActual > 100) {
+                header.classList.add("oculto");
+            } else {
+                header.classList.remove("oculto");
+            }
+
+            ultimaPosicion = posicionActual;
+        });
+        </script>
         
 
 </body>
