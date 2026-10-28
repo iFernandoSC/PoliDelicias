@@ -8,7 +8,7 @@
     <title>Polidelicias</title>
 </head>
 <body class="inicio">
-    <header>
+    <header id="header">
         <h1>Poli<span>Delicias</span></h1>
     </header>
 <div class="hero">
@@ -61,6 +61,26 @@
             <a href="index.html" class="actual">Inicio</a>
             <a href="lugares.html">Lugares</a>
         </section>
+
+        <!-- Script para ocultar la cabecera al hacer scroll hacia abajo -->
+        <script>
+            let ultimaPosicion = 0;
+
+            const header = document.getElementById("header");
+
+            window.addEventListener("scroll", () => {
+            const posicionActual = window.scrollY;
+
+            if (posicionActual > ultimaPosicion && posicionActual > 100) {
+                header.classList.add("oculto");
+            } else {
+                header.classList.remove("oculto");
+            }
+
+            ultimaPosicion = posicionActual;
+        });
+        </script>
+
 </body>
 </html>
 
