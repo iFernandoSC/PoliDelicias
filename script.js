@@ -97,3 +97,57 @@ function comidachina() {
 
 // Ejecutamos la función
 comidachina();
+
+
+function cooperativaa() {
+    const idLugar = 1; 
+    fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error en la petición: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Datos recibidos de Cooperativa a:", data);
+            const contenedorcooa = document.getElementById("MenuCooperativa1");
+            if (!contenedorcooa) return;       
+            
+            contenedorcooa.innerHTML = ''; 
+            
+            if (!data.bebidas || data.bebidas.length === 0) {
+                contenedorcooa.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
+                return;
+            }  
+            data.bebidas.forEach(platillo => {
+                const tarjeta = document.createElement('div');
+                tarjeta.classList.add('tarjeta-platillo');
+                tarjeta.innerHTML = `
+                    <h3>${platillo.nombre}</h3>
+                    <p>${platillo.descripcion || 'Sin descripción'}</p>
+                    <span>$${platillo.precio}</span>
+                `;
+                contenedorcooa.appendChild(tarjeta);
+            });
+             if (!data.complementos || data.complementos.length === 0) {
+                contenedorcooa.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
+                return;
+            }  
+            data.complementos.forEach(platillo => {
+                const tarjeta = document.createElement('div');
+                tarjeta.classList.add('tarjeta-platillo');
+                tarjeta.innerHTML = `
+                    <h3>${platillo.nombre}</h3>
+                    <p>${platillo.descripcion || 'Sin descripción'}</p>
+                    <span>$${platillo.precio}</span>
+                `;
+                contenedorcoch.appendChild(tarjeta);
+            });
+        })
+        .catch(error => {
+            console.error('Error al obtener el menú de cooperativaa:', error);
+        });
+}
+// Ejecutamos la función
+cooperativaa();
+
