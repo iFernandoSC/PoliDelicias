@@ -1,6 +1,9 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const db = require('./db'); // O como tengas tu conexión
+
+app.use(cors());
 
 // 1. ¡MUY IMPORTANTE! Esto permite que Express sirva tus HTML, CSS e imágenes
 app.use(express.static(__dirname));
