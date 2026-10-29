@@ -43,7 +43,7 @@ function presu() {
 function comidachina() {
     const idLugar = 5; // 1 // fijo asignado a este restaurante
     // Pide al servidor únicamente la información de este id_lugar
-    fetch(`/api/info-id/${idLugar}`)
+    fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error en la petición: ${response.status}`);
