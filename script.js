@@ -40,9 +40,12 @@ botonVolver.addEventListener("click", () => {
 function presu() {
     inputPres.focus();
 }
+presupuesto.addEventListener("click", presu);
+
+
 function comidachina() {
-    const idLugar = 5; // 1 // fijo asignado a este restaurante
-    // Pide al servidor únicamente la información de este id_lugar
+    const idLugar = 5; // ID fijo asignado a este restaurante
+    // Pide al servidor la información de este id_lugar usando tu backend de Render
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
             if (!response.ok) {
@@ -54,13 +57,16 @@ function comidachina() {
             console.log("Datos recibidos de Comida China:", data);
             // Obtenemos el contenedor del HTML
             const contenedorcoch = document.getElementById("OfertaComidaChina1");
-            if (!contenedorcoch) return; // Evita errores si el elemento no existe en la página          
+            if (!contenedorcoch) return; // Evita errores si el elemento no existe en la página       
+            
             contenedorcoch.innerHTML = ''; // Limpiamos el contenedor antes de renderizar
+            
             // Validamos si no hay platillos disponibles
             if (!data.comida || data.comida.length === 0) {
                 contenedorcoch.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
                 return;
             }
+            
             // Recorremos la lista de platillos que filtró la base de datos
             data.comida.forEach(platillo => {
                 const tarjeta = document.createElement('div');
@@ -71,13 +77,12 @@ function comidachina() {
                     <span>$${platillo.precio}</span>
                 `;
                 contenedorcoch.appendChild(tarjeta);
-            }); // <-- Aquí se cierra correctamente el forEach
+            });
         })
         .catch(error => {
             console.error('Error al obtener el menú de comida china:', error);
         });
 }
+
 // Ejecutamos la función para que cargue los platillos al abrir la vista
 comidachina();
-
-presupuesto.addEventListener("click", presu);
