@@ -1,51 +1,65 @@
 const inputFoto = document.getElementById("foto");
 const perfil = document.getElementById("perfil");
 const presupuesto = document.getElementById("presupuesto");
+
 function recomendar(){
-    let presupuesto = Number(document.getElementById("inputPres").value);
+    let inputPres = document.getElementById("inputPres");
     let alert = document.getElementById("alert");
-    const inputPres = document.getElementById("inputPres");
+    if (!inputPres) return;
     
-    if (presupuesto <= 0  || isNaN(presupuesto)) {
+    let presupuestoVal = Number(inputPres.value);
+    
+    if (presupuestoVal <= 0 || isNaN(presupuestoVal)) {
         alert.textContent = "Ingresa un presupuesto valido.";
         alert.style.border = "2px solid red";
         alert.style.padding = "10px";
         inputPres.focus();
         return;
-    } else if (presupuesto <= 50) {
+    } else if (presupuestoVal <= 50) {
         window.location.href = "tiendas/productos50.html";
-    } else if (presupuesto <= 100) {
+    } else if (presupuestoVal <= 100) {
         window.location.href = "tiendas/productos100.html";
     } else {
         window.location.href = "tiendas/productos200.html";
     }
 }
-inputFoto.addEventListener("change",
-    function() {
-        const archivo = inputFoto.files[0];
 
-        if (archivo) {
+// Protegemos el evento de la foto para que solo corra si el elemento existe
+if (inputFoto) {
+    inputFoto.addEventListener("change", function() {
+        const archivo = inputFoto.files[0];
+        if (archivo && perfil) {
             perfil.src = URL.createObjectURL(archivo);
         }
-    }
-)
-const volver = document.getElementById("botonVolver");
-botonVolver.addEventListener("click", () => {
-    if (window.history.length > 1) {
-        window.history.back();
-    } else {
-        window.location.href = "index.html";
-    }
-});
-function presu() {
-    inputPres.focus();
+    });
 }
-presupuesto.addEventListener("click", presu);
+
+// Protegemos el botón volver
+const volver = document.getElementById("botonVolver");
+if (volver) {
+    volver.addEventListener("click", () => {
+        if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            window.location.href = "index.html";
+        }
+    });
+}
+
+// Protegemos el evento de presupuesto
+function presu() {
+    let inputPres = document.getElementById("inputPres");
+    if (inputPres) inputPres.focus();
+}
+
+if (presupuesto) {
+    presupuesto.addEventListener("click", presu);
+}
 
 
+// Función de Comida China conectada a Render y Alwaysdata
 function comidachina() {
-    const idLugar = 5; // ID fijo asignado a este restaurante
-    // Pide al servidor la información de este id_lugar usando tu backend de Render
+    const idLugar = 5; 
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
             if (!response.ok) {
@@ -55,19 +69,16 @@ function comidachina() {
         })
         .then(data => {
             console.log("Datos recibidos de Comida China:", data);
-            // Obtenemos el contenedor del HTML
             const contenedorcoch = document.getElementById("OfertaComidaChina1");
-            if (!contenedorcoch) return; // Evita errores si el elemento no existe en la página       
+            if (!contenedorcoch) return;       
             
-            contenedorcoch.innerHTML = ''; // Limpiamos el contenedor antes de renderizar
+            contenedorcoch.innerHTML = ''; 
             
-            // Validamos si no hay platillos disponibles
             if (!data.comida || data.comida.length === 0) {
                 contenedorcoch.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
                 return;
             }
             
-            // Recorremos la lista de platillos que filtró la base de datos
             data.comida.forEach(platillo => {
                 const tarjeta = document.createElement('div');
                 tarjeta.classList.add('tarjeta-platillo');
@@ -84,5 +95,5 @@ function comidachina() {
         });
 }
 
-// Ejecutamos la función para que cargue los platillos al abrir la vista
+// Ejecutamos la función
 comidachina();
