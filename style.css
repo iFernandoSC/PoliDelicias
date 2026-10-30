@@ -177,6 +177,9 @@ body {
     color: #e9e3e3;
 }
 .articuloca {
+    display: flex;
+    gap: 15px;
+    width: max-content;
     width: 100%;
     color: black;
     border-radius: .5cap;
