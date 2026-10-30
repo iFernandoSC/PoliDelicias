@@ -19,6 +19,16 @@ a {
     border-radius: .5cap;
 }
 
+.slider {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.slider::-webkkit-scrollbar {
+    display: none;
+}
+
 /* Cambios al cuerpo de la página */
 body {
     text-align: center;
