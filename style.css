@@ -11,8 +11,9 @@ a {
 }
 
 .tarjeta-platillo {
-    width: 50%;
+    width: 150px;
     padding: 20px;
+    
 }
 
 /* Cambios al cuerpo de la página */
@@ -157,6 +158,9 @@ body {
     color: #e9e3e3;
 }
 .articuloca {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
     width: 100%;
     color: black;
     border-radius: .5cap;
@@ -165,14 +169,6 @@ body {
     text-align: center;
     cursor: pointer;
 }
-
-.articuloca:hover {
-    text-decoration: none;
-    color: rgb(165, 112, 73);
-    background-color: rgba(222, 147, 7, 0);
-    transition: ease-out .2s;
-    transform: scale(1.05);
-     }
 .gorditas{
     background-image: url("img/gorditas.jpg");
     background-size: 100%;          /* Hace que la imagen cubra todo el área */
