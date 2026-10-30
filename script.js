@@ -171,45 +171,67 @@ function banderilla() {
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos de Tortassuchi:", data);
+            console.log("Datos recibidos de Tortas y Sushi:", data);
             const contenedorts = document.getElementById("MenuTortaSushi1");
             if (!contenedorts) return;       
             
             contenedorts.innerHTML = ''; 
             
-            if (!data.bebidas || data.bebidas.length === 0) {
-                contenedorts.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
+            // Validar si todo está vacío
+            if ((!data.comida || data.comida.length === 0) && 
+                (!data.bebidas || data.bebidas.length === 0) && 
+                (!data.complementos || data.complementos.length === 0)) {
+                contenedorts.innerHTML = '<p>No hay productos disponibles para este lugar.</p>';
                 return;
-            }  
-            data.bebidas.forEach(platillo => {
-                const tarjeta = document.createElement('div');
-                tarjeta.classList.add('tarjeta-platillo');
-                tarjeta.innerHTML = `
-                    <h3>${platillo.nombre}</h3>
-                    <p>${platillo.descripcion || 'Sin descripción'}</p>
-                    <span>$${platillo.precio}</span>
-                `;
-                contenedorts.appendChild(tarjeta);
-            });
-             if (!data.complementos || data.complementos.length === 0) {
-                contenedorts.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
-                return;
-            }  
-            data.complementos.forEach(platillo => {
-                const tarjeta = document.createElement('div');
-                tarjeta.classList.add('tarjeta-platillo');
-                tarjeta.innerHTML = `
-                    <h3>${platillo.nombre}</h3>
-                    <p>${platillo.descripcion || 'Sin descripción'}</p>
-                    <span>$${platillo.precio}</span>
-                `;
-                contenedorts.appendChild(tarjeta);
-            });
+            }
+            
+            // 1. Comida
+            if (data.comida && data.comida.length > 0) {
+                data.comida.forEach(platillo => {
+                    const tarjeta = document.createElement('div');
+                    tarjeta.classList.add('tarjeta-platillo');
+                    tarjeta.innerHTML = `
+                        <h3>${platillo.nombre}</h3>
+                        <p>${platillo.descripcion || 'Sin descripción'}</p>
+                        <span>$${platillo.precio}</span>
+                    `;
+                    contenedorts.appendChild(tarjeta);
+                });
+            }
+
+            // 2. Bebidas
+            if (data.bebidas && data.bebidas.length > 0) {
+                data.bebidas.forEach(bebida => {
+                    const tarjeta = document.createElement('div');
+                    tarjeta.classList.add('tarjeta-platillo');
+                    tarjeta.innerHTML = `
+                        <h3>${bebida.nombre}</h3>
+                        <p>${bebida.descripcion || 'Sin descripción'}</p>
+                        <span>$${bebida.precio}</span>
+                    `;
+                    contenedorts.appendChild(tarjeta);
+                });
+            }
+            
+            // 3. Complementos
+            if (data.complementos && data.complementos.length > 0) {
+                data.complementos.forEach(complemento => {
+                    const tarjeta = document.createElement('div');
+                    tarjeta.classList.add('tarjeta-platillo');
+                    tarjeta.innerHTML = `
+                        <h3>${complemento.nombre}</h3>
+                        <p>${complemento.descripcion || 'Sin descripción'}</p>
+                        <span>$${complemento.precio}</span>
+                    `;
+                    contenedorts.appendChild(tarjeta);
+                });
+            }
         })
         .catch(error => {
             console.error('Error al obtener el menú de Tortas y Sushi:', error);
         });
 }
+
 function GDnata() {
     const idLugar = 3; 
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
@@ -220,40 +242,57 @@ function GDnata() {
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos de Cooperativa a:", data);
+            console.log("Datos recibidos de Gorditas de Nata:", data);
             const contenedorg = document.getElementById("MenuGorditasNata1");
             if (!contenedorg) return;       
             
-            contenedorcooa.innerHTML = ''; 
+            contenedorg.innerHTML = ''; 
             
-            if (!data.bebidas || data.bebidas.length === 0) {
-                contenedorg.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
+            if ((!data.comida || data.comida.length === 0) && 
+                (!data.bebidas || data.bebidas.length === 0) && 
+                (!data.complementos || data.complementos.length === 0)) {
+                contenedorg.innerHTML = '<p>No hay productos disponibles para este lugar.</p>';
                 return;
-            }  
-            data.bebidas.forEach(platillo => {
-                const tarjeta = document.createElement('div');
-                tarjeta.classList.add('tarjeta-platillo');
-                tarjeta.innerHTML = `
-                    <h3>${platillo.nombre}</h3>
-                    <p>${platillo.descripcion || 'Sin descripción'}</p>
-                    <span>$${platillo.precio}</span>
-                `;
-                contenedorg.appendChild(tarjeta);
-            });
-             if (!data.complementos || data.complementos.length === 0) {
-                contenedorg.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
-                return;
-            }  
-            data.complementos.forEach(platillo => {
-                const tarjeta = document.createElement('div');
-                tarjeta.classList.add('tarjeta-platillo');
-                tarjeta.innerHTML = `
-                    <h3>${platillo.nombre}</h3>
-                    <p>${platillo.descripcion || 'Sin descripción'}</p>
-                    <span>$${platillo.precio}</span>
-                `;
-                contenedorg.appendChild(tarjeta);
-            });
+            }
+            
+            if (data.comida && data.comida.length > 0) {
+                data.comida.forEach(platillo => {
+                    const tarjeta = document.createElement('div');
+                    tarjeta.classList.add('tarjeta-platillo');
+                    tarjeta.innerHTML = `
+                        <h3>${platillo.nombre}</h3>
+                        <p>${platillo.descripcion || 'Sin descripción'}</p>
+                        <span>$${platillo.precio}</span>
+                    `;
+                    contenedorg.appendChild(tarjeta);
+                });
+            }
+
+            if (data.bebidas && data.bebidas.length > 0) {
+                data.bebidas.forEach(bebida => {
+                    const tarjeta = document.createElement('div');
+                    tarjeta.classList.add('tarjeta-platillo');
+                    tarjeta.innerHTML = `
+                        <h3>${bebida.nombre}</h3>
+                        <p>${bebida.descripcion || 'Sin descripción'}</p>
+                        <span>$${bebida.precio}</span>
+                    `;
+                    contenedorg.appendChild(tarjeta);
+                });
+            }
+            
+            if (data.complementos && data.complementos.length > 0) {
+                data.complementos.forEach(complemento => {
+                    const tarjeta = document.createElement('div');
+                    tarjeta.classList.add('tarjeta-platillo');
+                    tarjeta.innerHTML = `
+                        <h3>${complemento.nombre}</h3>
+                        <p>${complemento.descripcion || 'Sin descripción'}</p>
+                        <span>$${complemento.precio}</span>
+                    `;
+                    contenedorg.appendChild(tarjeta);
+                });
+            }
         })
         .catch(error => {
             console.error('Error al obtener el menú de Gorditas:', error);
@@ -270,49 +309,68 @@ function laemocha() {
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos de Cooperativa a:", data);
+            console.log("Datos recibidos de Rollitos:", data);
             const contenedor = document.getElementById("MenuRollitos1");
             if (!contenedor) return;       
 
             contenedor.innerHTML = ''; 
             
-            if (!data.bebidas || data.bebidas.length === 0) {
-                contenedor.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
+            if ((!data.comida || data.comida.length === 0) && 
+                (!data.bebidas || data.bebidas.length === 0) && 
+                (!data.complementos || data.complementos.length === 0)) {
+                contenedor.innerHTML = '<p>No hay productos disponibles para este lugar.</p>';
                 return;
-            }  
-            data.bebidas.forEach(platillo => {
-                const tarjeta = document.createElement('div');
-                tarjeta.classList.add('tarjeta-platillo');
-                tarjeta.innerHTML = `
-                    <h3>${platillo.nombre}</h3>
-                    <p>${platillo.descripcion || 'Sin descripción'}</p>
-                    <span>$${platillo.precio}</span>
-                `;
-                contenedor.appendChild(tarjeta);
-            });
-             if (!data.complementos || data.complementos.length === 0) {
-                contenedor.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
-                return;
-            }  
-            data.complementos.forEach(platillo => {
-                const tarjeta = document.createElement('div');
-                tarjeta.classList.add('tarjeta-platillo');
-                tarjeta.innerHTML = `
-                    <h3>${platillo.nombre}</h3>
-                    <p>${platillo.descripcion || 'Sin descripción'}</p>
-                    <span>$${platillo.precio}</span>
-                `;
-                contenedor.appendChild(tarjeta);
-            });
+            }
+            
+            if (data.comida && data.comida.length > 0) {
+                data.comida.forEach(platillo => {
+                    const tarjeta = document.createElement('div');
+                    tarjeta.classList.add('tarjeta-platillo');
+                    tarjeta.innerHTML = `
+                        <h3>${platillo.nombre}</h3>
+                        <p>${platillo.descripcion || 'Sin descripción'}</p>
+                        <span>$${platillo.precio}</span>
+                    `;
+                    contenedor.appendChild(tarjeta);
+                });
+            }
+
+            if (data.bebidas && data.bebidas.length > 0) {
+                data.bebidas.forEach(bebida => {
+                    const tarjeta = document.createElement('div');
+                    tarjeta.classList.add('tarjeta-platillo');
+                    tarjeta.innerHTML = `
+                        <h3>${bebida.nombre}</h3>
+                        <p>${bebida.descripcion || 'Sin descripción'}</p>
+                        <span>$${bebida.precio}</span>
+                    `;
+                    contenedor.appendChild(tarjeta);
+                });
+            }
+            
+            if (data.complementos && data.complementos.length > 0) {
+                data.complementos.forEach(complemento => {
+                    const tarjeta = document.createElement('div');
+                    tarjeta.classList.add('tarjeta-platillo');
+                    tarjeta.innerHTML = `
+                        <h3>${complemento.nombre}</h3>
+                        <p>${complemento.descripcion || 'Sin descripción'}</p>
+                        <span>$${complemento.precio}</span>
+                    `;
+                    contenedor.appendChild(tarjeta);
+                });
+            }
         })
         .catch(error => {
             console.error('Error al obtener el menú de rollitos:', error);
         });
 }
+
 // Ejecutamos la función
-comidachina();
-cooperativaa();
 banderilla();
 GDnata();
 laemocha();
+comidachina();
+cooperativaa();
+
 
