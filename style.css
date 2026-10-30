@@ -10,7 +10,7 @@ a {
     text-decoration: none;
 }
 
-#MenuCooperativa1 {
+#MenuCooperativa1, #MenuCooperativa2 {
     margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
