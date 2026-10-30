@@ -17,6 +17,7 @@ a {
     padding: 20px;
     background-color: #181818a3;
     border-radius: .5cap;
+    flex-shrink: 0;
 }
 
 .slider {
