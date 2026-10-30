@@ -167,10 +167,8 @@ body {
     width: 100%;
     color: black;
     border-radius: .5cap;
-    background-color: #181818a3;
-    padding: 30px;
+    padding: 0px;
     text-align: center;
-    cursor: pointer;
 }
 .gorditas{
     background-image: url("img/gorditas.jpg");
