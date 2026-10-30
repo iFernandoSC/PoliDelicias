@@ -121,7 +121,7 @@ function cooperativaa() {
                 const tarjeta = document.createElement('div');
                 tarjeta.classList.add('tarjeta-platillo');
                 tarjeta.innerHTML = `
-                    <h3>${platillo.nombre_platillo}</h3>
+                    <h3>${platillo.nombre_bebida}</h3>
                     <p>${platillo.descripcion || 'Sin descripción'}</p>
                     <span>$${platillo.precio}</span>
                 `;
@@ -135,7 +135,7 @@ function cooperativaa() {
                 const tarjeta = document.createElement('div');
                 tarjeta.classList.add('tarjeta-platillo');
                 tarjeta.innerHTML = `
-                    <h3>${platillo.nombre_platillo}</h3>
+                    <h3>${platillo.nombre_bebida}</h3>
                     <p>${platillo.descripcion || 'Sin descripción'}</p>
                     <span>$${platillo.precio}</span>
                 `;
@@ -149,7 +149,7 @@ function cooperativaa() {
                 const tarjeta = document.createElement('div');
                 tarjeta.classList.add('tarjeta-platillo');
                 tarjeta.innerHTML = `
-                    <h3>${platillo.nombre_platillo}</h3>
+                    <h3>${platillo.nombre_bebida}</h3>
                     <p>${platillo.descripcion || 'Sin descripción'}</p>
                     <span>$${platillo.precio}</span>
                 `;
