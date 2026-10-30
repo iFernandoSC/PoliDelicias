@@ -29,7 +29,8 @@ a {
 }
 
 .slider {
-    width: 100%;
+    margin-left: 2%;
+    width: 98%;
     overflow-x: auto;
     scrollbar-width: none;
 }
@@ -164,10 +165,15 @@ body {
 .cooperativaa{
     /* background-image: url("img/fondoc.jpg"); */
     background-color: black;
+    color: white;
     background-size: cover;          /* Hace que la imagen cubra todo el área */
     background-position: center;     /* Centra la imagen */
     background-repeat: no-repeat;    /* Evita que se repita como mosaico */
     font-family: 'Times New Roman', Times, serif;          
+}
+
+.cooperativaa h2 {
+    margin-bottom: 0;
 }
 .headercooperativaa{
     color: white;
