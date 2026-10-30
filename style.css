@@ -10,6 +10,11 @@ a {
     text-decoration: none;
 }
 
+.tarjeta-platillo {
+    width: 50%;
+    padding: 20px;
+}
+
 /* Cambios al cuerpo de la página */
 body {
     text-align: center;
