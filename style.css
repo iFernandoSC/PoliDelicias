@@ -87,6 +87,12 @@ body {
     background-color: #004fa4;
 }
 
+#contenedor-copa {
+    width: 100%;
+    margin: 0;
+    
+}
+
 .rollitos{
     background-image: url("img/rollitos.jpg");
     background-size: 100%;          /* Hace que la imagen cubra todo el área */
