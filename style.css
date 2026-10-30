@@ -10,6 +10,13 @@ a {
     text-decoration: none;
 }
 
+#MenuCooperativa1 {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
+    width: max-content;
+}
+
 .tarjeta-platillo {
     margin: 0;
     color: white;
