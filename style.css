@@ -21,7 +21,9 @@
 a {
     text-decoration: none;
 }
-
+main{
+    width: 100%;
+}
 /* Cambios al cuerpo de la página */
 body {
     text-align: center;
@@ -96,8 +98,7 @@ body {
 
 .rollitos{
     background-image: url("img/rollitos.jpg");
-    background-attachment: fixed;
-    background-size: cover;
+    background-size: 100%;          /* Hace que la imagen cubra todo el área */
      background-position: center;     /* Centra la imagen */
     background-repeat: no-repeat;    /* Evita que se repita como mosaico */
     min-height: 100vh; /* Ocupará al menos el 100% de la altura de la pantalla */
@@ -170,7 +171,7 @@ body {
 .articuloca:hover {
     text-decoration: none;
     color: rgb(165, 112, 73);
-    background-color: rgba(255, 166, 0, 0);
+    background-color: rgba(192, 149, 68, 0);
     transition: ease-out .2s;
     transform: scale(1.05);
      }
@@ -439,23 +440,61 @@ label {
 }
 
 /* Sección donde están los recuadros de las tiendas */
+/* Sección contenedora general de los artículos en formato carrusel horizontal */
 .articulos {
-    width: 95%;
-    margin: 10px auto 50px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px 30px;
+    width: 92%;
+    margin: 20px auto 80px;
+    display: flex;
+    overflow-x: auto;          /* Habilita el desplazamiento horizontal */
+    scroll-snap-type: x mandatory; /* Hace que el scroll se ajuste de forma suave por tarjeta */
+    gap: 20px;
+    padding: 15px 5px;
+    scroll-behavior: smooth;   /* Desplazamiento fluido */
 }
 
-/* Estilos de los recuadros de las tiendas */
-.articulo {
-    color: white;
-    border-radius: .5cap;
-    height: 200px;
+/* Ocultar la barra de desplazamiento fea pero mantener la funcionalidad */
+.articulos::-webkit-scrollbar {
+    height: 8px;
+}
+
+.articulos::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.articulos::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 4px;
+}
+
+/* Estilos individuales para cada tarjeta dentro del carrusel */
+.articulos .tarjeta-platillo, 
+.articulos .articuloca {
+    flex: 0 0 calc(33.333% - 14px); /* Fuerza a que entren exactamente 3 tarjetas visibles en pantalla */
+    scroll-snap-align: start;     /* Alinea la tarjeta al inicio al deslizar */
+    box-sizing: border-box;
     background-color: #181818a3;
-    padding: 0px;
+    border-radius: 8px;
+    padding: 20px;
+    color: white;
     text-align: center;
-    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Adaptación para pantallas medianas (se muestran 2 tarjetas) */
+@media (max-width: 900px) {
+    .articulos .tarjeta-platillo, 
+    .articulos .articuloca {
+        flex: 0 0 calc(50% - 10px);
+    }
+}
+
+/* Adaptación para celulares (se muestra 1 tarjeta a la vez ocupando casi todo el ancho) */
+@media (max-width: 550px) {
+    .articulos .tarjeta-platillo, 
+    .articulos .articuloca {
+        flex: 0 0 85%;
+    }
 }
 
 .articulo img {
