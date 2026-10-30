@@ -125,7 +125,7 @@ function cooperativaa() {
                     <p>${platillo.descripcion || 'Sin descripción'}</p>
                     <span>$${platillo.precio}</span>
                 `;
-                contenedorcooa.appendChild(tarjeta);
+                contenedorcoopea.appendChild(tarjeta);
             });
             if (!data.bebidas || data.bebidas.length === 0) {
                 contenedorcooa.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
