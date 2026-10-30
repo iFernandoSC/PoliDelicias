@@ -30,6 +30,12 @@ a {
     display: none;
 }
 
+.contenedorcoopea {
+    display: flex;
+    gap: 15px;
+    width: max-content;
+}
+
 /* Cambios al cuerpo de la página */
 body {
     text-align: center;
