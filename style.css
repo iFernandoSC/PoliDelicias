@@ -148,7 +148,6 @@ body {
     background-size: cover;          /* Hace que la imagen cubra todo el área */
     background-position: center;     /* Centra la imagen */
     background-repeat: no-repeat;    /* Evita que se repita como mosaico */
-     min-height: 200px;
     font-family: 'Times New Roman', Times, serif;          
 }
 .headercooperativaa{
