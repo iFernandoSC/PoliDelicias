@@ -11,9 +11,11 @@ a {
 }
 
 .tarjeta-platillo {
+    color: white;
     width: 150px;
     padding: 20px;
-    
+    background-color: #181818a3;
+    border-radius: .5cap;
 }
 
 /* Cambios al cuerpo de la página */
