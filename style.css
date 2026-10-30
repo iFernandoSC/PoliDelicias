@@ -1,14 +1,3 @@
-/*--evergreen: #132a13ff;
---hunter-green: #31572cff;
---fern: #4f772dff;
---palm-leaf: #90a955ff;
---lime-cream: #ecf39eff;*/
-
-/*--dark-wine: #6f1d1bff;
---camel: #bb9457ff;
---dark-coffee: #432818ff;
---chocolate-brown: #99582aff;
---light-apricot: #ffe6a7ff;*/
 
 /* El valor border-box en el box-sizing hace que el padding y el border pasen a formar parte del cálculo del ancho de la caja y no lo suman posteriormente */
 * {
@@ -21,10 +10,6 @@ a {
     text-decoration: none;
 }
 
-main {
-    width: 100%;
-}
-
 /* Cambios al cuerpo de la página */
 body {
     text-align: center;
@@ -35,147 +20,133 @@ body {
 
 .hero {
     margin: 0;
-    height: 200vh; 
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                      url('https://picsum.photos'); 
-    background-attachment: fixed;
-    background-size: cover;       
-    background-position: center;  
-    background-repeat: no-repeat; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;                 
-    font-family: sans-serif;
-}
+      height: 200vh; 
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                       url('https://picsum.photos'); 
+      background-attachment: fixed;
+      background-size: cover;       
+      background-position: center;  
+      background-repeat: no-repeat; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: white;                 
+      font-family: sans-serif;
+    }
 
-.inicio { 
-    background-image: url(img/imgpoli.jpg);
-    background-attachment: fixed;
-    background-size: cover; 
-    background-position: top center; 
-    background-repeat: no-repeat; 
-    min-height: 100vh;
-    width: 100%; 
-    font-family: 'Times New Roman', Times, serif;    
+.inicio{ 
+  background-image: url(img/imgpoli.jpg);
+  background-attachment: fixed;
+  background-size: cover; /*es mejor que '100%' para cubrir todo sin estirar la imagen */
+  background-position: top center; /*  Fuerza a la imagen a alinearse hasta arriba */
+  background-repeat: no-repeat; 
+  min-height: 100vh;
+  width: 100%; 
+  font-family: 'Times New Roman', Times, serif;    
 }
-
-.lugares { 
-    background-image: url(img/imgpoli3.png); 
-    background-attachment: fixed;
-    top: 0; 
-    background-size: cover; 
-    background-position: top center; 
-    background-repeat: no-repeat; 
-    min-height: 100vh;
-    width: 100%; 
-    font-family: 'Times New Roman', Times, serif;    
+.lugares{ 
+  background-image: url(img/imgpoli3.png); 
+  background-attachment: fixed;
+  top: 0; 
+  background-size: cover; /*es mejor que '100%' para cubrir todo sin estirar la imagen */
+  background-position: top center; /*  Fuerza a la imagen a alinearse hasta arriba */
+  background-repeat: no-repeat; 
+  min-height: 100vh;
+  width: 100%; 
+  font-family: 'Times New Roman', Times, serif;    
 }
-
 /* Estilos de la tienda comida china */
-.comidachina {
+.comidachina{
     background-color: rgb(235, 205, 109);
     font-family: 'Shojumaru', serif !important; 
     font-size: 25px;            
 }
-
-.headerchina {
+.headerchina{
     background-color: rgb(236, 51, 51);
 }
-
-#navchina {
+#navchina{
     background-color: rgb(244, 180, 26);
 }
-
-.imgcorea {
-    float: right;
+.imgcorea{
+   float: right;
     width: 60px;
 }
-
 /* Estilos de la tienda cooperativa canchas */
-.cooperativacanchas {
+.cooperativacanchas{
     background-color: #f4f1ec;
 }
-
-.headercanchas {
+.headercanchas{
     background-color: #e85815d4;
 }
-
-#navcanchas {
+#navcanchas{
     background-color: #004fa4;
 }
 
-.rollitos {
+.rollitos{
     background-image: url("img/rollitos.jpg");
-    background-size: 100%;           
-    background-position: center;     
-    background-repeat: no-repeat;    
-    min-height: 100vh; 
-    width: 100%;       
+    background-size: 100%;          /* Hace que la imagen cubra todo el área */
+     background-position: center;     /* Centra la imagen */
+    background-repeat: no-repeat;    /* Evita que se repita como mosaico */
+    min-height: 100vh; /* Ocupará al menos el 100% de la altura de la pantalla */
+    width: 100%;       /* Ocupará todo el ancho */
     font-family: 'Times New Roman', Times, serif;          
 }
-
-.headerrollitos {
+.headerrollitos{
     color: #92d233;
     background-color: #0000005a;
 }
-
-#navrollo {
+#navrollo{
     background-color: #b8b7b780;
 }
-
-.headertortas {
+.headertortas{
     background-color: #0000005a;
 }
-
-.tortas {
+.tortas{
     background-image: url("img/banderilla.jpg");
-    background-size: 100%;           
-    background-position: center;     
-    background-repeat: no-repeat;    
-    min-height: 100vh; 
-    width: 100%;       
+    background-size: 100%;          /* Hace que la imagen cubra todo el área */
+    background-position: center;     /* Centra la imagen */
+    background-repeat: no-repeat;    /* Evita que se repita como mosaico */
+    min-height: 100vh; /* Ocupará al menos el 100% de la altura de la pantalla */
+    width: 100%;       /* Ocupará todo el ancho */
     font-family: 'Times New Roman', Times, serif;  
 }
-
-#navtortas {
+#navtortas{
     background-color: #0000005a;
 }
-
 .articuloc:hover {
-    color: white;
+    color: black;
     border-radius: .5cap;
+    background-color: #f1f1f1;
     padding: 30px;
     text-align: center;
     cursor: pointer;
     text-decoration: none;
+    color: white;
     background-color: rgba(18, 102, 197, 0.457);
     transition: ease-out .2s;
     transform: scale(1.05);
 }
-
 /* Estilos de la tienda cooperativa modulo a */
-.cooperativaa {
+.cooperativaa{
     background-image: url("img/fondoc.jpg");
     background-color: black;
-    background-size: cover;           
-    background-position: center;     
-    background-repeat: no-repeat;    
-    min-height: 200px;
+    background-size: cover;          /* Hace que la imagen cubra todo el área */
+    background-position: center;     /* Centra la imagen */
+    background-repeat: no-repeat;    /* Evita que se repita como mosaico */
+     min-height: 200px;
     font-family: 'Times New Roman', Times, serif;          
 }
-
-.headercooperativaa {
+.headercooperativaa{
     color: white;
-    background-color: rgba(0, 0, 0, 0);
+    background-color:  rgba(0, 0, 0, 0);
 }
 
-#navcooperativaa {
+#navcooperativaa{
     background-color: #e3c5c5;
     color: #e9e3e3;
 }
-
 .articuloca {
+    width: 100%;
     color: black;
     border-radius: .5cap;
     background-color: #181818a3;
@@ -187,30 +158,27 @@ body {
 .articuloca:hover {
     text-decoration: none;
     color: rgb(165, 112, 73);
-    background-color: rgba(192, 149, 68, 0);
+    background-color: rgba(222, 147, 7, 0);
     transition: ease-out .2s;
     transform: scale(1.05);
-}
-
-.gorditas {
+     }
+.gorditas{
     background-image: url("img/gorditas.jpg");
-    background-size: 100%;           
-    background-position: center;     
-    background-repeat: no-repeat;    
-    min-height: 100vh; 
-    width: 100%;       
+    background-size: 100%;          /* Hace que la imagen cubra todo el área */
+     background-position: center;     /* Centra la imagen */
+    background-repeat: no-repeat;    /* Evita que se repita como mosaico */
+    min-height: 100vh; /* Ocupará al menos el 100% de la altura de la pantalla */
+  width: 100%;       /* Ocupará todo el ancho */
     font-family: 'Times New Roman', Times, serif;          
 }
-
-.headergorditas {
+.headergorditas{
     color: #472904;
     background-color: #c87b44;
 }
 
-#navgorditas {
+#navgorditas{
     background-color: #e3b15a;
 }
-
 /* Estilos del boton volver */
 #botonVolver {
     box-shadow: 0 0 10px rgb(172, 171, 171);
@@ -235,6 +203,11 @@ body {
     background-color: orange;
     box-shadow: 0 0 10px orange; 
     color: white;
+}
+
+/* Hace el texto seleccionado negro */
+span {
+    color: black;
 }
 
 /* Estilos del campo de texto */
@@ -389,7 +362,7 @@ label {
     gap: 15px;
     padding: 15px 10px;
     flex-wrap: wrap;
-    background-color: #181818a3;
+    background-color: #181818a3
 }
 
 /* Estilos de los parrafos de la selección de ingresar presupuesto */
@@ -412,6 +385,11 @@ label {
     border: 2px solid orange;
     padding: 8px;
     width: 190px;
+    
+    .presupuesto {
+        background-color: #f1f1f1cc;
+        transition: ease-out .2s;
+}
 }
 
 /* Estilos de los campos de texto de la selección de ingresar presupuesto al pasar el mouse por encima */
@@ -453,7 +431,6 @@ label {
     width: 95%;
     margin: 10px auto 50px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 18px 30px;
 }
 
@@ -461,7 +438,6 @@ label {
 .articulo {
     color: white;
     border-radius: .5cap;
-    height: 200px;
     background-color: #181818a3;
     padding: 0px;
     text-align: center;
@@ -546,7 +522,6 @@ footer {
 @media (min-width: 800px) {
     .articulos {
         width: 95%;
-        grid-template-columns: 1fr 1fr 1fr;
         gap: 15px;
         margin-top: 10px;
     }
@@ -560,7 +535,6 @@ footer {
 @media (min-width: 1100px) {
     .articulos {
         width: 95%;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 15px;
         margin-top: 10px;
     }
@@ -568,6 +542,7 @@ footer {
 
 /* Cuando la ventana mide maximo 500 pixeles */
 @media (max-width: 500px) {
+
     .presupuesto {
         flex-direction: column;
         gap: 10px;
@@ -588,4 +563,6 @@ footer {
         gap: 15px;
         margin-top: 10px;
     }
+
 }
+
