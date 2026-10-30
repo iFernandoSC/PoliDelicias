@@ -114,7 +114,21 @@ function cooperativaa() {
             if (!contenedorcooa) return;       
             
             contenedorcooa.innerHTML = ''; 
+            if (!data.comida || data.comida.length === 0) {
+                contenedorcooa.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
+                return;
+            }
             
+            data.comida.forEach(platillo => {
+                const tarjeta = document.createElement('div');
+                tarjeta.classList.add('tarjeta-platillo');
+                tarjeta.innerHTML = `
+                    <h3>${platillo.nombre}</h3>
+                    <p>${platillo.descripcion || 'Sin descripción'}</p>
+                    <span>$${platillo.precio}</span>
+                `;
+                contenedorcooa.appendChild(tarjeta);
+            });
             if (!data.bebidas || data.bebidas.length === 0) {
                 contenedorcooa.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
                 return;
