@@ -13,7 +13,7 @@ a {
 #MenuCooperativa1 {
     margin-top: 30px;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 15px;
     width: max-content;
 }
