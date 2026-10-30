@@ -95,10 +95,6 @@ function comidachina() {
         });
 }
 
-// Ejecutamos la función
-comidachina();
-
-
 function cooperativaa() {
     const idLugar = 1; 
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
@@ -111,11 +107,13 @@ function cooperativaa() {
         .then(data => {
             console.log("Datos recibidos de Cooperativa a:", data);
             const contenedorcooa = document.getElementById("MenuCooperativa1");
+            const contenedorcoopea = document.getElementById("MenuCooperativa2");
+
             if (!contenedorcooa) return;       
-            
+            contenedorcoopea.innerHTML='';
             contenedorcooa.innerHTML = ''; 
             if (!data.comida || data.comida.length === 0) {
-                contenedorcooa.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
+                contenedorcoopea.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
                 return;
             }
             
@@ -164,4 +162,3 @@ function cooperativaa() {
 }
 // Ejecutamos la función
 cooperativaa();
-
