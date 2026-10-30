@@ -96,7 +96,8 @@ body {
 
 .rollitos{
     background-image: url("img/rollitos.jpg");
-    background-size: 100%;          /* Hace que la imagen cubra todo el área */
+    background-attachment: fixed;
+    background-size: cover;
      background-position: center;     /* Centra la imagen */
     background-repeat: no-repeat;    /* Evita que se repita como mosaico */
     min-height: 100vh; /* Ocupará al menos el 100% de la altura de la pantalla */
