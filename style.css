@@ -449,12 +449,52 @@ label {
 }
 
 /* Sección donde están los recuadros de las tiendas */
+/* --- CARRUSEL HORIZONTAL PARA EL MENÚ --- */
 .articulos {
     width: 95%;
-    margin: 10px auto 50px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px 30px;
+    margin: 20px auto 60px;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 20px 10px;
+    scroll-behavior: smooth;
+}
+
+/* Estilo para la barra de desplazamiento del carrusel */
+.articulos::-webkit-scrollbar {
+    height: 8px;
+}
+
+.articulos::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.articulos::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 4px;
+}
+
+/* Ajuste para que se muestren exactamente 3 tarjetas en pantalla (Desktop) */
+.articulos .tarjeta-platillo {
+    flex: 0 0 calc(33.333% - 14px);
+    scroll-snap-align: start;
+    box-sizing: border-box;
+}
+
+/* Tablets (2 tarjetas visibles) */
+@media (max-width: 900px) {
+    .articulos .tarjeta-platillo {
+        flex: 0 0 calc(50% - 10px);
+    }
+}
+
+/* Celulares (1 tarjeta visible a la vez) */
+@media (max-width: 550px) {
+    .articulos .tarjeta-platillo {
+        flex: 0 0 85%;
+    }
 }
 
 /* Estilos de los recuadros de las tiendas */
