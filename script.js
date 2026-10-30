@@ -24,6 +24,36 @@ function recomendar(){
     }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Seleccionamos el elemento de carga y el contenedor
+    const loadingDiv = document.getElementById('loading');
+    const selectBebidas = document.getElementById('mostrar'); // O tu contenedor
+
+    // 2. Mostramos la animación de carga antes de hacer la petición
+    loadingDiv.style.display = 'block';
+
+    // 3. Hacemos la petición a tu servidor de Node.js
+    fetch('/api/bebidas')
+        .then(response => response.json())
+        .then(resultados => {
+            // Ocultamos la animación porque los datos ya llegaron
+            loadingDiv.style.display = 'none';
+
+            // Recorremos los datos y los pintamos en el HTML
+            resultados.forEach(bebida => {
+                const option = document.createElement('option');
+                option.value = bebida.id; 
+                option.textContent = bebida.nombre_bebida; 
+                selectBebidas.appendChild(option);
+            });
+        })
+        .catch(error => {
+            // Ocultamos la carga y mostramos el error si algo falla
+            loadingDiv.style.display = 'none';
+            console.error('Error al cargar los datos:', error);
+        });
+});
+
 // Protegemos el evento de la foto para que solo corra si el elemento existe
 if (inputFoto) {
     inputFoto.addEventListener("change", function() {
@@ -149,7 +179,7 @@ function cooperativaa() {
                 const tarjeta = document.createElement('div');
                 tarjeta.classList.add('tarjeta-platillo');
                 tarjeta.innerHTML = `
-                    <h3>${platillo.nombre_bebida}</h3>
+                    <h3>${platillo.nombre}</h3>
                     <p>${platillo.descripcion || 'Sin descripción'}</p>
                     <span>$${platillo.precio}</span>
                 `;
