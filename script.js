@@ -161,4 +161,5 @@ function cooperativaa() {
         });
 }
 // Ejecutamos la función
+comidachina();
 cooperativaa();
