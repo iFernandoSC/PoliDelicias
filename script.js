@@ -121,7 +121,7 @@ function cooperativaa() {
                 const tarjeta = document.createElement('div');
                 tarjeta.classList.add('tarjeta-platillo');
                 tarjeta.innerHTML = `
-                    <h3>${platillo.nombre}</h3>
+                    <h3>${platillo.nombre_platillo}</h3>
                     <p>${platillo.descripcion || 'Sin descripción'}</p>
                     <span>$${platillo.precio}</span>
                 `;
@@ -135,7 +135,7 @@ function cooperativaa() {
                 const tarjeta = document.createElement('div');
                 tarjeta.classList.add('tarjeta-platillo');
                 tarjeta.innerHTML = `
-                    <h3>${platillo.nombre}</h3>
+                    <h3>${platillo.nombre_platillo}</h3>
                     <p>${platillo.descripcion || 'Sin descripción'}</p>
                     <span>$${platillo.precio}</span>
                 `;
@@ -149,7 +149,7 @@ function cooperativaa() {
                 const tarjeta = document.createElement('div');
                 tarjeta.classList.add('tarjeta-platillo');
                 tarjeta.innerHTML = `
-                    <h3>${platillo.nombre}</h3>
+                    <h3>${platillo.nombre_platillo}</h3>
                     <p>${platillo.descripcion || 'Sin descripción'}</p>
                     <span>$${platillo.precio}</span>
                 `;
@@ -191,7 +191,7 @@ function banderilla() {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${platillo.nombre}</h3>
+                        <h3>${platillo.nombre_platillo}</h3>
                         <p>${platillo.descripcion || 'Sin descripción'}</p>
                         <span>$${platillo.precio}</span>
                     `;
@@ -205,7 +205,7 @@ function banderilla() {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${bebida.nombre}</h3>
+                        <h3>${bebida.nombre_platillo}</h3>
                         <p>${bebida.descripcion || 'Sin descripción'}</p>
                         <span>$${bebida.precio}</span>
                     `;
@@ -219,7 +219,7 @@ function banderilla() {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${complemento.nombre}</h3>
+                        <h3>${complemento.nombre_platillo}</h3>
                         <p>${complemento.descripcion || 'Sin descripción'}</p>
                         <span>$${complemento.precio}</span>
                     `;
@@ -260,7 +260,7 @@ function GDnata() {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${platillo.nombre}</h3>
+                        <h3>${platillo.nombre_platillo}</h3>
                         <p>${platillo.descripcion || 'Sin descripción'}</p>
                         <span>$${platillo.precio}</span>
                     `;
@@ -273,7 +273,7 @@ function GDnata() {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${bebida.nombre}</h3>
+                        <h3>${bebida.nombre_platillo}</h3>
                         <p>${bebida.descripcion || 'Sin descripción'}</p>
                         <span>$${bebida.precio}</span>
                     `;
@@ -286,7 +286,7 @@ function GDnata() {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${complemento.nombre}</h3>
+                        <h3>${complemento.nombre_platillo}</h3>
                         <p>${complemento.descripcion || 'Sin descripción'}</p>
                         <span>$${complemento.precio}</span>
                     `;
@@ -327,7 +327,7 @@ function laemocha() {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${platillo.nombre}</h3>
+                        <h3>${platillo.nombre_platillo}</h3>
                         <p>${platillo.descripcion || 'Sin descripción'}</p>
                         <span>$${platillo.precio}</span>
                     `;
@@ -340,7 +340,7 @@ function laemocha() {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${bebida.nombre}</h3>
+                        <h3>${bebida.nombre_platillo}</h3>
                         <p>${bebida.descripcion || 'Sin descripción'}</p>
                         <span>$${bebida.precio}</span>
                     `;
@@ -353,7 +353,7 @@ function laemocha() {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${complemento.nombre}</h3>
+                        <h3>${complemento.nombre_platillo}</h3>
                         <p>${complemento.descripcion || 'Sin descripción'}</p>
                         <span>$${complemento.precio}</span>
                     `;
