@@ -90,6 +90,13 @@ if (presupuesto) {
 // Función de Comida China conectada a Render y Alwaysdata
 function comidachina() {
     const idLugar = 5; 
+    
+    // 1. SELECCIONAMOS EL ELEMENTO DE CARGA EN TU HTML
+    const loadingDiv = document.getElementById('loading');
+    
+    // 2. MOSTRAMOS LA ANIMACIÓN DE CARGA ANTES DE PEDIR LOS DATOS
+    if (loadingDiv) loadingDiv.style.display = 'block';
+
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
             if (!response.ok) {
@@ -99,8 +106,12 @@ function comidachina() {
         })
         .then(data => {
             console.log("Datos recibidos de Comida China:", data);
+            
+            // 3. OCULTAMOS LA CARGA PORQUE LOS DATOS YA LLEGARON
+            if (loadingDiv) loadingDiv.style.display = 'none';
+
             const contenedorcoch = document.getElementById("OfertaComidaChina1");
-            if (!contenedorcoch) return;       
+            if (!contenedorcoch) return;      
             
             contenedorcoch.innerHTML = ''; 
             
@@ -113,7 +124,7 @@ function comidachina() {
                 const tarjeta = document.createElement('div');
                 tarjeta.classList.add('tarjeta-platillo');
                 tarjeta.innerHTML = `
-                    <h3>${platillo.nombre_platillo}</h3>
+                    <h3>${platillo.nombre_platillo || platillo.nombre}</h3>
                     <p>${platillo.descripcion || 'Sin descripción'}</p>
                     <span>$${platillo.precio}</span>
                 `;
@@ -121,12 +132,20 @@ function comidachina() {
             });
         })
         .catch(error => {
+            // 4. SI OCURRE UN ERROR, TAMBIÉN OCULTAMOS LA CARGA PARA QUE NO SE QUEDE GIRANDO ETERNAMENTE
+            if (loadingDiv) loadingDiv.style.display = 'none';
             console.error('Error al obtener el menú de comida china:', error);
         });
 }
 
 function cooperativaa() {
     const idLugar = 1; 
+    // 1. Seleccionamos el elemento de carga
+    const loadingDiv = document.getElementById('loading');
+    
+    // 2. Mostramos la animación de carga antes de hacer la petición
+    if (loadingDiv) loadingDiv.style.display = 'block';
+
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
             if (!response.ok) {
@@ -136,6 +155,8 @@ function cooperativaa() {
         })
         .then(data => {
             console.log("Datos recibidos de Cooperativa a:", data);
+            // 3. Ocultamos la carga porque los datos ya llegaron
+            if (loadingDiv) loadingDiv.style.display = 'none';
             const contenedorcooa = document.getElementById("MenuCooperativa1");
             const contenedorcoopea = document.getElementById("MenuCooperativa2");
 
@@ -151,7 +172,7 @@ function cooperativaa() {
                 const tarjeta = document.createElement('div');
                 tarjeta.classList.add('tarjeta-platillo');
                 tarjeta.innerHTML = `
-                    <h3>${platillo.nombre_bebida}</h3>
+                    <h3>${platillo.nombre_platillo}</h3>
                     <p>${platillo.descripcion || 'Sin descripción'}</p>
                     <span>$${platillo.precio}</span>
                 `;
@@ -235,7 +256,7 @@ function banderilla() {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${bebida.nombre_platillo}</h3>
+                        <h3>${bebida.nombre_bebida}</h3>
                         <p>${bebida.descripcion || 'Sin descripción'}</p>
                         <span>$${bebida.precio}</span>
                     `;
@@ -249,7 +270,7 @@ function banderilla() {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${complemento.nombre_platillo}</h3>
+                        <h3>${complemento.nombre}</h3>
                         <p>${complemento.descripcion || 'Sin descripción'}</p>
                         <span>$${complemento.precio}</span>
                     `;
@@ -303,7 +324,7 @@ function GDnata() {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${bebida.nombre_platillo}</h3>
+                        <h3>${bebida.nombre_bebida}</h3>
                         <p>${bebida.descripcion || 'Sin descripción'}</p>
                         <span>$${bebida.precio}</span>
                     `;
@@ -316,7 +337,7 @@ function GDnata() {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${complemento.nombre_platillo}</h3>
+                        <h3>${complemento.nombre}</h3>
                         <p>${complemento.descripcion || 'Sin descripción'}</p>
                         <span>$${complemento.precio}</span>
                     `;
@@ -370,7 +391,7 @@ function laemocha() {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${bebida.nombre_platillo}</h3>
+                        <h3>${bebida.nombre_bebida}</h3>
                         <p>${bebida.descripcion || 'Sin descripción'}</p>
                         <span>$${bebida.precio}</span>
                     `;
@@ -383,7 +404,7 @@ function laemocha() {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${complemento.nombre_platillo}</h3>
+                        <h3>${complemento.nombre}</h3>
                         <p>${complemento.descripcion || 'Sin descripción'}</p>
                         <span>$${complemento.precio}</span>
                     `;
