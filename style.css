@@ -26,8 +26,16 @@ a {
     background-color: #181818a3;
     border-radius: .5cap;
     flex-shrink: 0;
+    font-size: small;
 }
-
+.tarjeta-platillo:hover{
+    text-decoration: none;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+    background-color: rgba(255, 166, 0, 0.623);
+    transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) .2s;
+    transform: scale(.95);
+}
 .slider {
     margin-left: 2%;
     width: 98%;
