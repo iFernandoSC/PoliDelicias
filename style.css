@@ -1,4 +1,5 @@
 
+
 /* El valor border-box en el box-sizing hace que el padding y el border pasen a formar parte del cálculo del ancho de la caja y no lo suman posteriormente */
 * {
     font-family: arial;
@@ -218,10 +219,9 @@ body {
 }
 /* Estilos del boton volver */
 #botonVolver {
-    box-shadow: 0 0 10px rgb(172, 171, 171);
     cursor: pointer;
     float: left;
-    border-radius: 50%;
+    border-radius: 10px;
     font-size: 30px;
     height: 80%;
     width: 35px;
@@ -354,7 +354,6 @@ header h1 {
     margin: 0;
     text-align: left;
     color: white;
-    font-size: clamp(25px, 4vw, 40px);
 }
 
 /* Estilos de los subtitulos h3 */
