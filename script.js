@@ -33,11 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
     loadingDiv.style.display = 'block';
 
     // 3. Hacemos la petición a tu servidor de Node.js
-    fetch('/api/bebidas')
+    fetch('https://polidelicias-backend.onrender.com/api/bebidas')
         .then(response => response.json())
         .then(resultados => {
-            // Ocultamos la animación porque los datos ya llegaron
-            loadingDiv.style.display = 'none';
 
             // Recorremos los datos y los pintamos en el HTML
             resultados.forEach(bebida => {
