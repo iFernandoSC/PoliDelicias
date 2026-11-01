@@ -63,24 +63,11 @@ body {
     padding: 20px;
 }
 
-.hero {
-    margin: 0;
-      height: 200vh; 
-      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                       url('https://picsum.photos'); 
-      background-attachment: fixed;
-      background-size: cover;       
-      background-position: center;  
-      background-repeat: no-repeat; 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: white;                 
-      font-family: sans-serif;
-    }
-
 .inicio{ 
-  background-image: url(img/imgpoli.jpg);
+color: white;
+  background-image:
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+  url(img/imgpoli.jpg);
   background-attachment: fixed;
   background-size: cover; /*es mejor que '100%' para cubrir todo sin estirar la imagen */
   background-position: top center; /*  Fuerza a la imagen a alinearse hasta arriba */
@@ -90,7 +77,10 @@ body {
   font-family: 'Times New Roman', Times, serif;    
 }
 .lugares{ 
-  background-image: url(img/imgpoli3.png); 
+    color: white;
+  background-image:
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+  url(img/imgpoli3.png); 
   background-attachment: fixed;
   top: 0; 
   background-size: cover; /*es mejor que '100%' para cubrir todo sin estirar la imagen */
@@ -482,7 +472,7 @@ label {
     color: white;
     border-radius: .5cap;
     background-color: #181818a3;
-    padding: 10px;
+    padding: 80px;
     text-align: center;
     cursor: pointer;
 }
@@ -501,7 +491,6 @@ label {
     border-bottom: 2px solid orange;
     background-color: #181818a3;
     transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) .2s;
-    transform: scale(.98);
 }
 
 /* Estilos de la parte más baja de la página */
