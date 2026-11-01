@@ -2,17 +2,47 @@ const inputFoto = document.getElementById("foto");
 const perfil = document.getElementById("perfil");
 const presupuesto = document.getElementById("presupuesto");
 
+let ultimaPosicion = 0;
+
+window.addEventListener("scroll", () => {
+    const posicionActual = window.scrollY;
+    
+    // Elementos
+    const header = document.getElementById("header");
+    const menu = document.getElementById("menu");
+
+    // Lógica de dirección del scroll
+    const scrollerHaciaAbajo = posicionActual > ultimaPosicion && posicionActual > 0;
+
+    // Aplicar al Header
+    if (header) {
+        if (scrollerHaciaAbajo) {
+            header.classList.add("oculto");
+        } else {
+            header.classList.remove("oculto");
+        }
+    }
+
+    // Aplicar al Menú
+    if (menu) {
+        if (scrollerHaciaAbajo) {
+            menu.classList.add("oculto");
+        } else {
+            menu.classList.remove("oculto");
+        }
+    }
+
+    ultimaPosicion = posicionActual;
+});
+
 function recomendar(){
     let inputPres = document.getElementById("inputPres");
-    let alert = document.getElementById("alert");
     if (!inputPres) return;
     
     let presupuestoVal = Number(inputPres.value);
     
     if (presupuestoVal <= 0 || isNaN(presupuestoVal)) {
-        alert.textContent = "Ingresa un presupuesto valido.";
-        alert.style.border = "2px solid red";
-        alert.style.padding = "10px";
+        alert("Ingresa un presupuesto valido.");
         inputPres.focus();
         return;
     } else if (presupuestoVal <= 50) {

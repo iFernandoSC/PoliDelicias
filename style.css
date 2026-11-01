@@ -306,6 +306,16 @@ span {
     color: white;
 }
 
+#menu {
+    transition: transform .3s ease;
+    transform: translateY(0%);
+}
+
+#menu.oculto {
+    transform: translateY(130%);
+    transition: transform .3s ease;
+}
+
 .menu a:hover {
     box-shadow: 0 0 10px orange; 
     transition: ease .2s;
@@ -414,21 +424,21 @@ label {
 
 /* Estilos de los campos de texto de la selección de ingresar presupuesto */
 .presupuesto input {
-    background-color: #181818a3;
+    background-color: orange;
     border: 2px solid orange;
     padding: 8px;
     width: 190px;
-    
-    .presupuesto {
-        background-color: #f1f1f1cc;
-        transition: ease-out .2s;
-}
+    COLOR: white;
 }
 
 /* Estilos de los campos de texto de la selección de ingresar presupuesto al pasar el mouse por encima */
 .presupuesto input:hover {
     box-shadow: 0 0 10px orange; 
     transition: ease .2s;
+}
+
+.presupuesto input::placeholder {
+    color: white;
 }
 
 /* Estilos de los campos de texto de la selección de ingresar presupuesto al darles click */

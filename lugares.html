@@ -38,33 +38,12 @@
         CONTACTO
     </footer>
 
-        <section class="menu">
+        <section class="menu" id="menu">
             <a href="index.html">Inicio</a>
             <a href="lugares.html" class="actual">Lugares</a>
         </section>
     
-    </main>
-
-
-    <!-- Script para ocultar la cabecera al hacer scroll hacia abajo -->
-        <script>
-            let ultimaPosicion = 0;
-
-            const header = document.getElementById("header");
-
-            window.addEventListener("scroll", () => {
-            const posicionActual = window.scrollY;
-
-            if (posicionActual > ultimaPosicion && posicionActual > 100) {
-                header.classList.add("oculto");
-            } else {
-                header.classList.remove("oculto");
-            }
-
-            ultimaPosicion = posicionActual;
-        });
-        </script>
-        
+    </main>   
 
 </body>
 </html>
