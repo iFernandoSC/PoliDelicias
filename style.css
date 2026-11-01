@@ -12,7 +12,6 @@ a {
 }
 
 #MenuCooperativa1, #MenuCooperativa2, #OfertaCooperativa1, #OfertaCooperativa2, #MenuComidaChina1, #MenuComidaChina2, #OfertaComidaChina1, #OfertaComidaChina2 {
-    margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
@@ -33,7 +32,7 @@ a {
     text-decoration: none;
     border-right: 2px solid white;
     border-bottom: 2px solid white;
-    background-color: rgba(255, 166, 0, 0.623);
+    background-color: #4e4c4ca3;
     transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) .2s;
     transform: scale(1.05);
 }
@@ -42,7 +41,7 @@ a {
     width: 98%;
     overflow-x: auto;
     scrollbar-width: none;
-    padding-bottom: 10px;
+    padding: 10px;
     box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.5);
 }
 
@@ -62,7 +61,6 @@ body {
     display: none;
     text-align: center;
     padding: 20px;
-    background-color: red;
 }
 
 .hero {
@@ -484,7 +482,7 @@ label {
     color: white;
     border-radius: .5cap;
     background-color: #181818a3;
-    padding: 0px;
+    padding: 10px;
     text-align: center;
     cursor: pointer;
 }
@@ -503,7 +501,7 @@ label {
     border-bottom: 2px solid orange;
     background-color: #181818a3;
     transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) .2s;
-    transform: scale(.95);
+    transform: scale(.98);
 }
 
 /* Estilos de la parte más baja de la página */
