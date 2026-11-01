@@ -24,44 +24,37 @@ function recomendar(){
     }
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
     const loadingDiv = document.getElementById('loading');
     const selectBebidas = document.getElementById('mostrar');
 
-    // 1. Activamos el mensaje de carga
+    console.log("1. Página cargada, mostrando el indicador de carga...");
     loadingDiv.style.display = 'block';
 
-    // OBLIGATORIO: Forzamos al navegador a pintar el texto en la pantalla antes de continuar
-    await new Promise(resolve => requestAnimationFrame(resolve));
+    fetch('https://polidelicias-backend.onrender.com/api/bebidas')
+        .then(response => {
+            console.log("2. ¡El servidor de Render respondió!", response.status);
+            return response.json();
+        })
+        .then(resultados => {
+            console.log("3. Datos recibidos con éxito:", resultados);
+            
+            resultados.forEach(bebida => {
+                const option = document.createElement('option');
+                option.value = bebida.id;
+                option.textContent = bebida.nombre_bebida;
+                selectBebidas.appendChild(option);
+            });
 
-    try {
-        // 2. Hacemos la petición real al servidor de Render
-        const response = await fetch('https://polidelicias-backend.onrender.com/api/bebidas');
-        
-        if (!response.ok) {
-            throw new Error('Error al obtener los datos');
-        }
-
-        const resultados = await response.json();
-
-        // 3. Limpiamos el select por seguridad
-        selectBebidas.innerHTML = '<option value="">Selecciona una bebida</option>';
-
-        // 4. Recorremos y pintamos la información en la pantalla
-        resultados.forEach(bebida => {
-            const option = document.createElement('option');
-            option.value = bebida.id;
-            option.textContent = bebida.nombre_bebida;
-            selectBebidas.appendChild(option);
+            console.log("4. Datos pintados en el select. Ocultando carga.");
+            loadingDiv.style.display = 'none';
+        })
+        .catch(error => {
+            console.error("❌ HUBO UN ERROR:", error);
+            loadingDiv.style.display = 'none'; // Aquí es donde se quita por culpa del error
         });
-
-    } catch (error) {
-        console.error('Error:', error);
-    } finally {
-        // 5. Se quita ÚNICAMENTE cuando la información ya está dibujada y terminada en el HTML
-        loadingDiv.style.display = 'none';
-    }
 });
+
 
 
 // Protegemos el evento de la foto para que solo corra si el elemento existe
