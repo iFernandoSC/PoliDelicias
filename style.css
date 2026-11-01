@@ -62,6 +62,7 @@ body {
     display: none;
     text-align: center;
     padding: 20px;
+    background-color: red;
 }
 
 .hero {
