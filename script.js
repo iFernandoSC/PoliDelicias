@@ -28,23 +28,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     const loadingDiv = document.getElementById('loading');
     const selectBebidas = document.getElementById('mostrar');
 
-    // 1. Mostramos la carga de verdad antes de empezar
+    // 1. Activamos el mensaje de carga
     loadingDiv.style.display = 'block';
 
+    // OBLIGATORIO: Forzamos al navegador a pintar el texto en la pantalla antes de continuar
+    await new Promise(resolve => requestAnimationFrame(resolve));
+
     try {
-        // 2. Esperamos a que el servidor responda (el tiempo que tarde realmente la red y Render)
+        // 2. Hacemos la petición real al servidor de Render
         const response = await fetch('https://polidelicias-backend.onrender.com/api/bebidas');
         
         if (!response.ok) {
-            throw new Error('Hubo un problema al conectar con el servidor');
+            throw new Error('Error al obtener los datos');
         }
 
         const resultados = await response.json();
 
-        // 3. Limpiamos el select para evitar duplicados
+        // 3. Limpiamos el select por seguridad
         selectBebidas.innerHTML = '<option value="">Selecciona una bebida</option>';
 
-        // 4. Pintamos los datos en el HTML
+        // 4. Recorremos y pintamos la información en la pantalla
         resultados.forEach(bebida => {
             const option = document.createElement('option');
             option.value = bebida.id;
@@ -55,9 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (error) {
         console.error('Error:', error);
     } finally {
-        // 5. FIN REAL: El bloque 'finally' se ejecuta obligatoriamente 
-        // en el instante exacto en que todo termina (ya sea con éxito o con error).
-        // Aquí es donde se oculta la carga de forma totalmente verídica.
+        // 5. Se quita ÚNICAMENTE cuando la información ya está dibujada y terminada en el HTML
         loadingDiv.style.display = 'none';
     }
 });
