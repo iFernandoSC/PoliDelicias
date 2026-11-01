@@ -2,7 +2,7 @@
 
 /* El valor border-box en el box-sizing hace que el padding y el border pasen a formar parte del cálculo del ancho de la caja y no lo suman posteriormente */
 * {
-    font-family: arial;
+    font-family: arial, sans-serif;
     box-sizing: border-box;
 }
 
@@ -11,7 +11,7 @@ a {
     text-decoration: none;
 }
 
-#MenuCooperativa1, #MenuCooperativa2 {
+#MenuCooperativa1, #MenuCooperativa2, #OfertaCooperativa1, #OfertaCooperativa2, #MenuComidaChina1, #MenuComidaChina2, #OfertaComidaChina1, #OfertaComidaChina2 {
     margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
@@ -35,13 +35,15 @@ a {
     border-bottom: 2px solid white;
     background-color: rgba(255, 166, 0, 0.623);
     transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) .2s;
-    transform: scale(.95);
+    transform: scale(1.05);
 }
 .slider {
     margin-left: 2%;
     width: 98%;
     overflow-x: auto;
     scrollbar-width: none;
+    padding-bottom: 10px;
+    box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.5);
 }
 
 .slider::-webkkit-scrollbar {
@@ -54,6 +56,12 @@ body {
     margin: 0;
     font-family: arial;
     background-color: white;
+}
+
+#loading {
+    display: none;
+    text-align: center;
+    padding: 20px;
 }
 
 .hero {
