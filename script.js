@@ -24,33 +24,44 @@ function recomendar(){
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. Seleccionamos el elemento de carga y el contenedor
+document.addEventListener("DOMContentLoaded", async () => {
     const loadingDiv = document.getElementById('loading');
-    const selectBebidas = document.getElementById('mostrar'); // O tu contenedor
+    const selectBebidas = document.getElementById('mostrar');
 
-    // 2. Mostramos la animación de carga antes de hacer la petición
+    // 1. Mostramos la carga de verdad antes de empezar
     loadingDiv.style.display = 'block';
 
-    // 3. Hacemos la petición a tu servidor de Node.js
-    fetch('https://polidelicias-backend.onrender.com/api/bebidas')
-        .then(response => response.json())
-        .then(resultados => {
+    try {
+        // 2. Esperamos a que el servidor responda (el tiempo que tarde realmente la red y Render)
+        const response = await fetch('https://polidelicias-backend.onrender.com/api/bebidas');
+        
+        if (!response.ok) {
+            throw new Error('Hubo un problema al conectar con el servidor');
+        }
 
-            // Recorremos los datos y los pintamos en el HTML
-            resultados.forEach(bebida => {
-                const option = document.createElement('option');
-                option.value = bebida.id; 
-                option.textContent = bebida.nombre_bebida; 
-                selectBebidas.appendChild(option);
-            });
-        })
-        .catch(error => {
-            // Ocultamos la carga y mostramos el error si algo falla
-            loadingDiv.style.display = 'none';
-            console.error('Error al cargar los datos:', error);
+        const resultados = await response.json();
+
+        // 3. Limpiamos el select para evitar duplicados
+        selectBebidas.innerHTML = '<option value="">Selecciona una bebida</option>';
+
+        // 4. Pintamos los datos en el HTML
+        resultados.forEach(bebida => {
+            const option = document.createElement('option');
+            option.value = bebida.id;
+            option.textContent = bebida.nombre_bebida;
+            selectBebidas.appendChild(option);
         });
+
+    } catch (error) {
+        console.error('Error:', error);
+    } finally {
+        // 5. FIN REAL: El bloque 'finally' se ejecuta obligatoriamente 
+        // en el instante exacto en que todo termina (ya sea con éxito o con error).
+        // Aquí es donde se oculta la carga de forma totalmente verídica.
+        loadingDiv.style.display = 'none';
+    }
 });
+
 
 // Protegemos el evento de la foto para que solo corra si el elemento existe
 if (inputFoto) {
