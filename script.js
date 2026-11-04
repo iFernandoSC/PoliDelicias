@@ -57,7 +57,7 @@ function recomendar(){
 const pantalla = document.getElementById("pantalla-carga");
 
 if (sessionStorage.getItem("yaEntro")) {
-    pantalla.style.display = "none";
+    pantalla.style.display = "block";
 } else {
     window.addEventListener("load", function() {
         setTimeout(function() {
