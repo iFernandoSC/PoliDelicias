@@ -511,7 +511,10 @@ label {
     color: white;
     border-radius: .5cap;
     background-color: #181818a3;
-    padding: 80px;
+    flex-direction: column;
+    display: flex;
+    padding: 10px;
+    align-items: center;
     text-align: center;
     cursor: pointer;
 }
@@ -525,11 +528,16 @@ label {
 }
 
 .articulo img {
-    margin: 0;
-    height: 100%;
     width: 100%;
+    max-width: 100%;
+    height: 150px;
     object-fit: cover;
-    border-radius: .5cap;
+}
+
+.articulo h3 {
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
 }
 
 .articulo:hover {
