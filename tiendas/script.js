@@ -1,3 +1,5 @@
+
+let ultimaPosicion = 0;
 //O)OFERTAS M MENU 
 const OCC = document.getElementById("OfertaComidaChina1");
 const OCC2 = document.getElementById("OfertaComidaChina2");
@@ -32,4 +34,35 @@ botonVolver.addEventListener("click", () => {
     } else {
         window.location.href = "../index.html";
     }
+});
+
+window.addEventListener("scroll", () => {
+    const posicionActual = window.scrollY;
+    
+    // Elementos
+    const header = document.getElementById("header");
+    const menu = document.getElementById("menu");
+
+    // Lógica de dirección del scroll
+    const scrollerHaciaAbajo = posicionActual > ultimaPosicion && posicionActual > 0;
+
+    // Aplicar al Header
+    if (header) {
+        if (scrollerHaciaAbajo) {
+            header.classList.add("oculto");
+        } else {
+            header.classList.remove("oculto");
+        }
+    }
+
+    // Aplicar al Menú
+    if (menu) {
+        if (scrollerHaciaAbajo) {
+            menu.classList.add("oculto");
+        } else {
+            menu.classList.remove("oculto");
+        }
+    }
+
+    ultimaPosicion = posicionActual;
 });

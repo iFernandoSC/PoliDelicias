@@ -18,42 +18,23 @@
 
     <!-- Menú de la tienda -->
     <main  class="articulos">
-        <article class="articulo" Id="MenuComidaChina1">MENU 1</article>
-        <article class="articulo" id="MenuComidaChina2">MENU 2</article>
         <div class="slider">
-            <article class="articuloca" id="OfertaComidaChina1">OFERTA 1</article>
+            <h2>COMIDAS</h2>
+            <article class="articuloca" id="OfertaComidaChina1"><h4>Cargando...</h4></article>
         </div>
-        <article class="articulo" id="OfertaComidaChina2">OFERTA 2</article>
         <!-- Barra de navegación -->
-        <section id="navchina" class="menu">
+        <section class="menu" id="menu">
             <a href="../index.html">Inicio</a>
             <a href="../lugares.html">Lugares</a>
         </section>
         
     </main>
+    id="OfertaGorditasNata1"
 
     <!-- Sección de contacto de la página -->
     <footer>
         CONTACTO
     </footer>
 
-            <!-- Script para ocultar la cabecera al hacer scroll hacia abajo -->
-        <script>
-            let ultimaPosicion = 0;
-
-            const header = document.getElementById("header");
-
-            window.addEventListener("scroll", () => {
-            const posicionActual = window.scrollY;
-
-            if (posicionActual > ultimaPosicion && posicionActual > 100) {
-                header.classList.add("oculto");
-            } else {
-                header.classList.remove("oculto");
-            }
-
-            ultimaPosicion = posicionActual;
-        });
-        </script>
 </body>
 </html>

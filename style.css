@@ -11,7 +11,15 @@ a {
     text-decoration: none;
 }
 
-#MenuCooperativa1, #MenuCooperativa2, #OfertaCooperativa1, #OfertaCooperativa2, #MenuComidaChina1, #MenuComidaChina2, #OfertaComidaChina1, #OfertaComidaChina2 {
+#MenuCooperativa1, #MenuCooperativa2, 
+#OfertaCooperativa1, #OfertaCooperativa2, 
+#MenuComidaChina1, #MenuComidaChina2, 
+#OfertaComidaChina1, #OfertaComidaChina2, 
+#OfertaGorditasNata1, #OfertaGorditasNata2, 
+#MenuGorditasNata1, #MenuGorditasNata2, 
+#MenuRollitos1, #MenuRollitos2, #OfertaRollitos1, 
+#OfertaRollitos2, #MenuTortas1, #MenuTortas2, 
+#OfertaTortas1, #OfertaTortas2 {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
@@ -42,7 +50,6 @@ a {
     overflow-x: auto;
     scrollbar-width: none;
     padding: 10px;
-    box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.5);
 }
 
 .slider::-webkkit-scrollbar {
@@ -169,7 +176,7 @@ color: white;
 }
 /* Estilos de la tienda cooperativa modulo a */
 .cooperativaa{
-    /* background-image: url("img/fondoc.jpg"); */
+    background-image: url("img/fondoc.jpg");
     background-color: black;
     color: white;
     background-size: cover;          /* Hace que la imagen cubra todo el área */
@@ -191,6 +198,7 @@ color: white;
     color: #e9e3e3;
 }
 .articuloca {
+    margin: auto;
     width: 100%;
     color: black;
     border-radius: .5cap;
@@ -485,6 +493,13 @@ label {
     padding: 80px;
     text-align: center;
     cursor: pointer;
+}
+
+.articuloca h4 {
+    background-color: white;
+    padding: 10px;
+    margin-left: -10%;
+    border-radius: 1cap;
 }
 
 .articulo img {
