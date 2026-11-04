@@ -54,38 +54,6 @@ function recomendar(){
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const loadingDiv = document.getElementById('loading');
-    const selectBebidas = document.getElementById('mostrar');
-
-    console.log("1. Página cargada, mostrando el indicador de carga...");
-    loadingDiv.style.display = 'block';
-
-    fetch('https://polidelicias-backend.onrender.com/api/bebidas')
-        .then(response => {
-            console.log("2. ¡El servidor de Render respondió!", response.status);
-            return response.json();
-        })
-        .then(resultados => {
-            console.log("3. Datos recibidos con éxito:", resultados);
-            
-            resultados.forEach(bebida => {
-                const option = document.createElement('option');
-                option.value = bebida.id;
-                option.textContent = bebida.nombre_bebida;
-                selectBebidas.appendChild(option);
-            });
-
-            console.log("4. Datos pintados en el select. Ocultando carga.");
-            loadingDiv.style.display = 'none';
-        })
-        .catch(error => {
-            console.error("❌ HUBO UN ERROR:", error);
-            loadingDiv.style.display = 'none'; // Aquí es donde se quita por culpa del error
-        });
-});
-
-
 
 // Protegemos el evento de la foto para que solo corra si el elemento existe
 if (inputFoto) {

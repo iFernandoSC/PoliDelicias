@@ -19,7 +19,8 @@ a {
 #MenuGorditasNata1, #MenuGorditasNata2, 
 #MenuRollitos1, #MenuRollitos2, #OfertaRollitos1, 
 #OfertaRollitos2, #MenuTortas1, #MenuTortas2, 
-#OfertaTortas1, #OfertaTortas2 {
+#OfertaTortas1, #OfertaTortas2, #OfertaTortaSushi1, 
+#OfertaTortaSushi2, #MenuTortaSushi1, #MenuTortaSushi2 {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
@@ -37,6 +38,33 @@ a {
     font-size: small;
     box-shadow: 0 0 10px #0000005a;
 }
+
+
+@keyframes cargar {
+    from {
+        width: 0;
+    }
+    to {
+        width: 20px;
+    }
+}
+
+.puntos {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    width: 0;
+    animation: cargar 1.5s steps(4, end) infinite;
+}
+
+h2 {
+    background-color: #181818a3;
+    padding: 10px;
+    width: 30%;
+    border-radius: 1cap;
+    margin: 20px 35% auto 35%;
+}
+
 .tarjeta-platillo:hover{
     text-decoration: none;
     border-right: 2px solid white;
@@ -165,14 +193,17 @@ color: white;
 }
 .tortas{
     color: white;
-    background-image:
-  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/banderilla.jpg");
-    background-size: 100%;          /* Hace que la imagen cubra todo el área */
-    background-position: center;     /* Centra la imagen */
-    background-repeat: no-repeat;    /* Evita que se repita como mosaico */
-    min-height: 100vh; /* Ocupará al menos el 100% de la altura de la pantalla */
-    width: 100%;       /* Ocupará todo el ancho */
-    font-family: 'Times New Roman', Times, serif;  
+  background-image:
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+  url(img/banderilla.jpg); 
+  background-attachment: fixed;
+  top: 0; 
+  background-size: cover; /*es mejor que '100%' para cubrir todo sin estirar la imagen */
+  background-position: top center; /*  Fuerza a la imagen a alinearse hasta arriba */
+  background-repeat: no-repeat; 
+  min-height: 100vh;
+  width: 100%; 
+  font-family: 'Times New Roman', Times, serif;  
 }
 #navtortas{
     background-color: #0000005a;
