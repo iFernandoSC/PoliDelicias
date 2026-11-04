@@ -20,7 +20,7 @@
         <article class="articulo" id="MenuTortaSushi1">MENU 1</article>
 
         <!-- Barra de navegación -->
-        <section id="navtortas" class="menu">
+        <section id="menu" class="menu">
             <a href="../index.html">Inicio</a>
             <a href="../lugares.html">Lugares</a>
         </section>
@@ -32,23 +32,5 @@
         CONTACTO
     </footer>
 
-        <!-- Script para ocultar la cabecera al hacer scroll hacia abajo -->
-        <script>
-            let ultimaPosicion = 0;
-
-            const header = document.getElementById("header");
-
-            window.addEventListener("scroll", () => {
-            const posicionActual = window.scrollY;
-
-            if (posicionActual > ultimaPosicion && posicionActual > 100) {
-                header.classList.add("oculto");
-            } else {
-                header.classList.remove("oculto");
-            }
-
-            ultimaPosicion = posicionActual;
-        });
-        </script>
 </body>
 </html>

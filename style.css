@@ -35,6 +35,7 @@ a {
     border-radius: .5cap;
     flex-shrink: 0;
     font-size: small;
+    box-shadow: 0 0 10px #0000005a;
 }
 .tarjeta-platillo:hover{
     text-decoration: none;
@@ -99,9 +100,18 @@ color: white;
 }
 /* Estilos de la tienda comida china */
 .comidachina{
-    background-color: rgb(235, 205, 109);
-    font-family: 'Shojumaru', serif !important; 
-    font-size: 25px;            
+    color: white;
+  background-image:
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+  url(img/sakura.jpg); 
+  background-attachment: fixed;
+  top: 0; 
+  background-size: cover; /*es mejor que '100%' para cubrir todo sin estirar la imagen */
+  background-position: top center; /*  Fuerza a la imagen a alinearse hasta arriba */
+  background-repeat: no-repeat; 
+  min-height: 100vh;
+  width: 100%; 
+    font-family: 'Times New Roman', Times, serif;         
 }
 .headerchina{
     background-color: rgb(236, 51, 51);
@@ -131,7 +141,10 @@ color: white;
 }
 
 .rollitos{
-    background-image: url("img/rollitos.jpg");
+    color: white;
+    background-image:
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/rollitos.jpg");
+  background-attachment: fixed;
     background-size: 100%;          /* Hace que la imagen cubra todo el área */
      background-position: center;     /* Centra la imagen */
     background-repeat: no-repeat;    /* Evita que se repita como mosaico */
@@ -150,7 +163,9 @@ color: white;
     background-color: #0000005a;
 }
 .tortas{
-    background-image: url("img/banderilla.jpg");
+    color: white;
+    background-image:
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/banderilla.jpg");
     background-size: 100%;          /* Hace que la imagen cubra todo el área */
     background-position: center;     /* Centra la imagen */
     background-repeat: no-repeat;    /* Evita que se repita como mosaico */
@@ -206,7 +221,9 @@ color: white;
     text-align: center;
 }
 .gorditas{
-    background-image: url("img/gorditas.jpg");
+    color: white;
+    background-image:
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("img/gorditas.jpg");
     background-size: 100%;          /* Hace que la imagen cubra todo el área */
      background-position: center;     /* Centra la imagen */
     background-repeat: no-repeat;    /* Evita que se repita como mosaico */
@@ -496,9 +513,10 @@ label {
 }
 
 .articuloca h4 {
-    background-color: white;
+    color: white;
+    background-color: #181818a3;
     padding: 10px;
-    margin-left: -10%;
+    margin: 0;
     border-radius: 1cap;
 }
 
