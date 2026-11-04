@@ -46,7 +46,7 @@ function recomendar(){
         inputPres.focus();
         return;
     } else {
-        window.location.href = "tiendas/productos200.html";
+        window.location.href = "tiendas/productos200.html" + encodeURLComponent(presupuestoVal);
     }
 }
 
