@@ -46,11 +46,12 @@ a {
     transform: scale(1.05);
 }
 .slider {
-    margin-left: 2%;
-    width: 98%;
+    margin-left: 0;
+    width: 100%;
     overflow-x: auto;
     scrollbar-width: none;
     padding: 10px;
+    scroll-behavior: smooth;
 }
 
 .slider::-webkkit-scrollbar {
@@ -191,7 +192,10 @@ color: white;
 }
 /* Estilos de la tienda cooperativa modulo a */
 .cooperativaa{
-    background-image: url("img/fondoc.jpg");
+    background-image:
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+   url("img/tiendita.jpg");
+   background-attachment: fixed;
     background-color: black;
     color: white;
     background-size: cover;          /* Hace que la imagen cubra todo el área */
