@@ -47,7 +47,32 @@ app.get('/api/info-id/:id', (req, res) => {
         });
     });
 });
+app.get('/api/comida', (req, res) => {
+    const presupuesto = Number(req.query.presupuesto);
 
+    if (!Number.isFinite(presupuesto) || presupuesto <= 0) {
+        return res.status(400).json({
+            error: 'Presupuesto inválido'
+        });
+    }
+
+    db.query(
+        'SELECT * FROM comida WHERE precio <= ?',
+        [presupuesto],
+        (error, resultados) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).json({
+                    error: 'Error al consultar la comida'
+                });
+            }
+
+            res.json({
+                comida: resultados
+            });
+        }
+    );
+});
 app.listen(3000, () => {
     console.log('Servidor corriendo en http://localhost:3000');
     console.log('Conectado exitosamente a la base de datos de PoliDelicias');
