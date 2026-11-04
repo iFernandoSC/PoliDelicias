@@ -39,6 +39,10 @@ a {
     box-shadow: 0 0 10px #0000005a;
 }
 
+.bienvenido {
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
 
 @keyframes cargar {
     from {
