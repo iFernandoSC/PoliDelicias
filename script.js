@@ -56,15 +56,17 @@ function recomendar(){
 
 const pantalla = document.getElementById("pantalla-carga");
 
-if (sessionStorage.getItem("yaEntro")) {
-    pantalla.style.display = "block";
-} else {
+if (pantalla) {
+    if (sessionStorage.getItem("yaEntro")) {
+        pantalla.style.display = "block";
+    } else {
     window.addEventListener("load", function() {
         setTimeout(function() {
             pantalla.classList.add("ocultar");
             sessionStorage.setItem("yaEntro", "true");
         }, 1000);
     });
+}
 }
 
 // Protegemos el evento de la foto para que solo corra si el elemento existe
