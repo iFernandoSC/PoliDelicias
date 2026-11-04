@@ -45,10 +45,6 @@ function recomendar(){
         alert("Ingresa un presupuesto valido.");
         inputPres.focus();
         return;
-    } else if (presupuestoVal <= 50) {
-        window.location.href = "tiendas/productos50.html";
-    } else if (presupuestoVal <= 100) {
-        window.location.href = "tiendas/productos100.html";
     } else {
         window.location.href = "tiendas/productos200.html";
     }
