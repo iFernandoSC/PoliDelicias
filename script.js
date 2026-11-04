@@ -58,7 +58,7 @@ const pantalla = document.getElementById("pantalla-carga");
 
 if (pantalla) {
     if (sessionStorage.getItem("yaEntro")) {
-        pantalla.style.display = "block";
+        pantalla.style.display = "div";
     } else {
     window.addEventListener("load", function() {
         setTimeout(function() {
