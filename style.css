@@ -11,22 +11,6 @@ a {
     text-decoration: none;
 }
 
-#MenuCooperativa1, #MenuCooperativa2, 
-#OfertaCooperativa1, #OfertaCooperativa2, 
-#MenuComidaChina1, #MenuComidaChina2, 
-#OfertaComidaChina1, #OfertaComidaChina2, 
-#OfertaGorditasNata1, #OfertaGorditasNata2, 
-#MenuGorditasNata1, #MenuGorditasNata2, 
-#MenuRollitos1, #MenuRollitos2, #OfertaRollitos1, 
-#OfertaRollitos2, #MenuTortas1, #MenuTortas2, 
-#OfertaTortas1, #OfertaTortas2, #OfertaTortaSushi1, 
-#OfertaTortaSushi2, #MenuTortaSushi1, #MenuTortaSushi2 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    width: max-content;
-}
-
 .tarjeta-platillo {
     margin: 0;
     color: white;
@@ -539,6 +523,25 @@ label {
     width: 190px;
     COLOR: white;
 }
+
+#MenuCooperativa1, #MenuCooperativa2, 
+#OfertaCooperativa1, #OfertaCooperativa2, 
+#MenuComidaChina1, #MenuComidaChina2, 
+#OfertaComidaChina1, #OfertaComidaChina2, 
+#OfertaGorditasNata1, #OfertaGorditasNata2, 
+#MenuGorditasNata1, #MenuGorditasNata2, 
+#MenuRollitos1, #MenuRollitos2, #OfertaRollitos1, 
+#OfertaRollitos2, #MenuTortas1, #MenuTortas2, 
+#OfertaTortas1, #OfertaTortas2, #OfertaTortaSushi1, 
+#OfertaTortaSushi2, #MenuTortaSushi1, #MenuTortaSushi2,
+#MenuCopa1, #MenuCopa2, #OfertaCopa1, #OfertaCopa2,
+#MenuCoopea1, #MenuCoopea2, #OfertaCoopea1, #OfertaCoopea2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: max-content;
+}
+
 
 /* Estilos de los campos de texto de la selección de ingresar presupuesto al pasar el mouse por encima */
 .presupuesto input:hover {
