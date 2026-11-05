@@ -47,7 +47,7 @@ function recomendar(){
         inputPres.focus();
         return;
     } else {
-        // Redirige pasando el presupuesto en la URL hacia la carpeta tiendas
+        // Redirige a la página de resultados dentro de la carpeta tiendas
         window.location.href = `tiendas/productos200.html?presupuesto=${presupuestoVal}`;
     }
 }
