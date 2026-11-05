@@ -305,12 +305,12 @@ function GDnata() {
             
             contenedorg.innerHTML = ''; 
             
-            if (data.comida && data.comida.length > 0) {
-                data.comida.forEach(platillo => {
+            if (data.complementos && data.complementos.length > 0) {
+                data.complementos.forEach(platillo => {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
                     tarjeta.innerHTML = `
-                        <h3>${platillo.nombre_platillo}</h3>
+                        <h3>${platillo.nombre}</h3>
                         <p>${platillo.descripcion || 'Sin descripción'}</p>
                         <span>$${platillo.precio}</span>
                     `;
