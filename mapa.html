@@ -1,169 +1,205 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mapa y Detección de Ubicación</title>
-<script src="script.js" defert></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa y Detección de Ubicación</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <link rel="stylesheet" href="style.css" />
 
-        <!-- Barra de navegación inferior -->
-        <section class="menu" id="menu">
-            <a href="index.html">Inicio</a>
-            <a href="lugares.html">Lugares</a>
-            <a href="mapa.html" class="actual">Mapa</a>
-        </section>
-
-<style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-    html, body, #map { width: 100%; height: 100%; overflow: hidden; }
-    .geo-panel {
-    position: fixed;
-    top: 14px;
-    left: 14px;
-    z-index: 1000;
-    background: #181818b8;
-    border-radius: 12px;
-    padding: 12px;
-    width: 310px;
-    max-width: calc(100vw - 28px);
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    }
-    .geo-btn {
-    border: none;
-    border-radius: 8px;
-    padding: 10px 14px;
-    background: orange;
-    color: #fff;
-    font-size: 13.5px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.15s;
-    }
-    
-    .geo-btn:hover { background: rgb(219, 142, 0); }
-    .geo-btn.active { background: #16a34a; }
-    .geo-status { font-size: 12px; color: white; line-height: 1.35; }
-    .coord-box {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 900;
-    background: rgba(242, 224, 179, 0.94);
-    border-top: 1px solid #b89f65;
-    border-right: 1px solid #b89f65;
-    padding: 4px 10px;
-    font-family: Consolas, monospace;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: #2b2b2b;
-    border-top-right-radius: 6px;
-    pointer-events: none;
-    }
-</style>
+    <style>
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: system-ui, -apple-system, sans-serif; 
+        }
+        html, body, #map { 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
+        }
+        .menu {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .menu a.actual {
+            color: orange;
+        }
+        .geo-panel {
+            position: fixed;
+            top: 60px;
+            left: 14px;
+            z-index: 1000;
+            background: rgba(24, 24, 24, 0.72);
+            border-radius: 12px;
+            padding: 12px;
+            width: 310px;
+            max-width: calc(100vw - 28px);
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .geo-btn {
+            border: none;
+            border-radius: 8px;
+            padding: 10px 14px;
+            background: orange;
+            color: #fff;
+            font-size: 13.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .geo-btn:hover { background: rgb(219, 142, 0); }
+        .geo-btn.active { background: #16a34a; }
+        .geo-status { font-size: 12px; color: white; line-height: 1.35; }
+        .coord-box {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(242, 224, 179, 0.94);
+            border-top: 1px solid #b89f65;
+            border-right: 1px solid #b89f65;
+            padding: 4px 10px;
+            font-family: Consolas, monospace;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #2b2b2b;
+            border-top-right-radius: 6px;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
-<div id="map"></div>
-<div class="geo-panel">
-    <button type="button" class="geo-btn" id="btnLocate"> Usar mi ubicación</button>
-    <p class="geo-status" id="geoStatus">Presiona el botón para pedir permiso y rastrear tu ubicación.</p>
-</div>
-<div class="coord-box" id="coordBox">20.67205, -103.37380</div>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-<script>
-    'use strict';
-    (() => {
-    const map = L.map('map', { center: [20.67205, -103.37380], zoom: 16, zoomControl: false });
-    L.control.zoom({ position: 'bottomright' }).addTo(map);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; OpenStreetMap'
-    }).addTo(map);
 
-    const coordBox = document.getElementById('coordBox');
-    const btnLocate = document.getElementById('btnLocate');
-    const geoStatus = document.getElementById('geoStatus');
-    let userMarker = null;
-    let accuracyCircle = null;
-    let watchId = null;
+    <!-- Navegación dentro del body -->
+    <nav class="menu" id="menu">
+        <a href="index.html">Inicio</a>
+        <a href="lugares.html">Lugares</a>
+        <a href="mapa.html" class="actual">Mapa</a>
+    </nav>
 
-    map.on('mousemove', (e) => {
-        coordBox.textContent = `${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}`;
-    });
+    <div id="map"></div>
 
-    function onLocationDetected(coords) {
-        const pos = [coords.latitude, coords.longitude];
-        if (!userMarker) {
-        userMarker = L.marker(pos).addTo(map).bindPopup(' Mi ubicación actual').openPopup();
-        accuracyCircle = L.circle(pos, { radius: coords.accuracy, color: '#ea580c', fillOpacity: 0.15, weight: 1.5 }).addTo(map);
-        map.flyTo(pos, 17, { duration: 1.0 });
-        } else {
-        userMarker.setLatLng(pos);
-        accuracyCircle.setLatLng(pos).setRadius(coords.accuracy);
-        }
-        coordBox.textContent = `${coords.latitude.toFixed(5)}, ${coords.longitude.toFixed(5)}`;
-        geoStatus.textContent = `Lat: ${coords.latitude.toFixed(5)}, Lng: ${coords.longitude.toFixed(5)} (±${Math.round(coords.accuracy)} m)`;
-    }
+    <div class="geo-panel">
+        <button type="button" class="geo-btn" id="btnLocate">📍 Usar mi ubicación</button>
+        <p class="geo-status" id="geoStatus">Presiona el botón para pedir permiso y rastrear tu ubicación.</p>
+    </div>
 
-    function startTracking(highAccuracy = true, usedFallback = false) {
-        if (!('geolocation' in navigator)) {
-        geoStatus.textContent = 'Tu navegador no soporta geolocalización.';
-        return;
-        }
-        if (watchId !== null) navigator.geolocation.clearWatch(watchId);
-        btnLocate.textContent = ' Solicitando permiso GPS...';
-        watchId = navigator.geolocation.watchPosition(
-        (position) => {
-            btnLocate.classList.add('active');
-            btnLocate.textContent = ' Rastreando ubicación (Detener)';
-            onLocationDetected(position.coords);
-        },
-        (err) => {
-            if (highAccuracy && !usedFallback && (err.code === 2 || err.code === 3)) {
-            startTracking(false, true);
-            return;
-            }
-            stopTracking();
-            const msgs = {
-            1: 'Permiso de ubicación denegado en el navegador.',
-            2: 'Señal de ubicación no disponible.',
-            3: 'Tiempo de espera agotado al buscar GPS.'
-        };
-            geoStatus.textContent = msgs[err.code] || 'Error al obtener ubicación.';
-        },
-        {
-            enableHighAccuracy: highAccuracy,
-            maximumAge: highAccuracy ? 2000 : 15000,
-            timeout: highAccuracy ? 10000 : 20000
-        }
-        );
-        {
+    <div class="coord-box" id="coordBox">20.67205, -103.37380</div>
 
-        }
-    }
+    <!-- JS de Leaflet y script principal -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="script.js"></script>
+    
+    <script>
+        'use strict';
+        (() => {
+            const map = L.map('map', { center: [20.67205, -103.37380], zoom: 16, zoomControl: false });
+            L.control.zoom({ position: 'bottomright' }).addTo(map);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap'
+            }).addTo(map);
 
-    function stopTracking() {
-        if (watchId !== null) {
-        navigator.geolocation.clearWatch(watchId);
-        watchId = null;
-        }
-        btnLocate.classList.remove('active');
-        btnLocate.textContent = ' Usar mi ubicación';
-    }
+            const coordBox = document.getElementById('coordBox');
+            const btnLocate = document.getElementById('btnLocate');
+            const geoStatus = document.getElementById('geoStatus');
+            
+            let userMarker = null;
+            let accuracyCircle = null;
+            let watchId = null;
 
-    btnLocate.addEventListener('click', () => {
-        if (watchId !== null) {
-        stopTracking();
-        geoStatus.textContent = 'Rastreo detenido.';
-        } else {
-        startTracking(true, false);
-        }
-    });
-    })();
-</script>
+            map.on('mousemove', (e) => {
+                coordBox.textContent = `${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}`;
+            });
+
+            function onLocationDetected(coords) {
+                const pos = [coords.latitude, coords.longitude];
+                if (!userMarker) {
+                    userMarker = L.marker(pos).addTo(map).bindPopup('Mi ubicación actual').openPopup();
+                    accuracyCircle = L.circle(pos, { radius: coords.accuracy, color: '#ea580c', fillOpacity: 0.15, weight: 1.5 }).addTo(map);
+                    map.flyTo(pos, 17, { duration: 1.0 });
+                } else {
+                    userMarker.setLatLng(pos);
+                    accuracyCircle.setLatLng(pos).setRadius(coords.accuracy);
+                }
+                coordBox.textContent = `${coords.latitude.toFixed(5)}, ${coords.longitude.toFixed(5)}`;
+                geoStatus.textContent = `Lat: ${coords.latitude.toFixed(5)}, Lng: ${coords.longitude.toFixed(5)} (±${Math.round(coords.accuracy)} m)`;
+            }
+
+            function startTracking(highAccuracy = true, usedFallback = false) {
+                if (!('geolocation' in navigator)) {
+                    geoStatus.textContent = 'Tu navegador no soporta geolocalización.';
+                    return;
+                }
+                
+                if (watchId !== null) navigator.geolocation.clearWatch(watchId);
+                
+                btnLocate.textContent = 'Solicitando permiso GPS...';
+                
+                watchId = navigator.geolocation.watchPosition(
+                    (position) => {
+                        btnLocate.classList.add('active');
+                        btnLocate.textContent = 'Rastreando ubicación (Detener)';
+                        onLocationDetected(position.coords);
+                    },
+                    (err) => {
+                        if (highAccuracy && !usedFallback && (err.code === 2 || err.code === 3)) {
+                            startTracking(false, true);
+                            return;
+                        }
+                        stopTracking();
+                        const msgs = {
+                            1: 'Permiso de ubicación denegado en el navegador.',
+                            2: 'Señal de ubicación no disponible.',
+                            3: 'Tiempo de espera agotado al buscar GPS.'
+                        };
+                        geoStatus.textContent = msgs[err.code] || 'Error al obtener ubicación.';
+                    },
+                    {
+                        enableHighAccuracy: highAccuracy,
+                        maximumAge: highAccuracy ? 2000 : 15000,
+                        timeout: highAccuracy ? 10000 : 20000
+                    }
+                );
+            }
+
+            function stopTracking() {
+                if (watchId !== null) {
+                    navigator.geolocation.clearWatch(watchId);
+                    watchId = null;
+                }
+                btnLocate.classList.remove('active');
+                btnLocate.textContent = 'Usar mi ubicación';
+            }
+
+            btnLocate.addEventListener('click', () => {
+                if (watchId !== null) {
+                    stopTracking();
+                    geoStatus.textContent = 'Rastreo detenido.';
+                } else {
+                    startTracking(true, false);
+                }
+            });
+        })();
+    </script>
 </body>
-</html> 
+</html>
