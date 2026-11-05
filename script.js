@@ -1,52 +1,3 @@
-// Este código solo se activa si la página actual tiene el contenedor 'resultadosPresupuesto'
-document.addEventListener("DOMContentLoaded", () => {
-    const contenedorResultados = document.getElementById("resultadosPresupuesto");
-    if (!contenedorResultados) return; // Si no estamos en productos200.html, no hace nada y evita errores
-
-    const parametros = new URLSearchParams(window.location.search);
-    const presupuestoUrl = Number(parametros.get("presupuesto"));
-
-    if (!presupuestoUrl || isNaN(presupuestoUrl)) {
-        contenedorResultados.innerHTML = "<p>No se especificó un presupuesto válido.</p>";
-        return;
-    }
-
-    contenedorResultados.innerHTML = "<p>Buscando opciones que alcancen con tu presupuesto...</p>";
-
-    // Petición directa a tu backend en Render
-    fetch(`https://polidelicias-backend.onrender.com/api/comida?presupuesto=${presupuestoUrl}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error en la petición: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Datos de comida por presupuesto:", data);
-            contenedorResultados.innerHTML = "";
-
-            if (!data.comida || data.comida.length === 0) {
-                contenedorResultados.innerHTML = `<p>No hay opciones disponibles por $${presupuestoUrl} o menos.</p>`;
-                return;
-            }
-
-            // Creamos las tarjetas dinámicamente en el HTML
-            data.comida.forEach(platillo => {
-                const tarjeta = document.createElement('article');
-                tarjeta.classList.add('articulo');
-                tarjeta.innerHTML = `
-                    <h3>${platillo.nombre_platillo || platillo.nombre}</h3>
-                    <p>${platillo.descripcion || 'Sin descripción'}</p>
-                    <span>$${platillo.precio}</span>
-                `;
-                contenedorResultados.appendChild(tarjeta);
-            });
-        })
-        .catch(error => {
-            console.error('Error al obtener la comida por presupuesto:', error);
-            contenedorResultados.innerHTML = "<p>Hubo un error al cargar las opciones desde el servidor.</p>";
-        });
-});
 const inputFoto = document.getElementById("foto");
 const perfil = document.getElementById("perfil");
 const presupuesto = document.getElementById("presupuesto");
@@ -84,47 +35,38 @@ window.addEventListener("scroll", () => {
     ultimaPosicion = posicionActual;
 });
 
-// 1. NUEVA FUNCIÓN: Captura el input de presupuesto y redirige a la página de resultados
-function recomendar(){
-    const variable = document.getElementById("montoPresupuesto");
-    let inputPres = document.getElementById("inputPres");
-    if (!inputPres) return;
-    
-    let presupuestoVal = Number(inputPres.value);
-    
-    if (presupuestoVal <= 0 || isNaN(presupuestoVal)) {
-        alert("Ingresa un presupuesto válido.");
-        inputPres.focus();
-        return;
-    } else {
-        // Redirige a la página de resultados dentro de la carpeta tiendas
-        window.location.href = `tiendas/productos200.html?presupuesto=${presupuestoVal}`;
-        variable.textContent = presupuestoVal;
-    }
-}
-// 2. NUEVO BLOQUE: Se ejecuta al cargar productos200.html para consultar la DB con el filtro de precio
 document.addEventListener("DOMContentLoaded", () => {
+
+    const contenedorResultados = document.getElementById("resultadosPresupuesto");
+
+    if (!contenedorResultados) return;
+
     const parametros = new URLSearchParams(window.location.search);
     const presupuestoUrl = Number(parametros.get("presupuesto"));
 
-    // Si no hay presupuesto en la URL, esta parte no hace nada (evita errores en el index)
-    if (!presupuestoUrl || isNaN(presupuestoUrl)) return;
+    const monto = document.getElementById("montoPresupuesto");
+    const monto2 = document.getElementById("montoPresupuesto2");
 
-    const contenedorResultados = document.getElementById("resultadosPresupuesto");
-    if (!contenedorResultados) return;
+    if (!presupuestoUrl || isNaN(presupuestoUrl)) {
+        contenedorResultados.innerHTML = "<p>No se especificó un presupuesto válido.</p>";
+        return;
+    }
 
-    contenedorResultados.innerHTML = "<p>Buscando opciones que alcancen con tu presupuesto...</p>";
+    // Mostrar presupuesto en los dos elementos
+    if (monto) monto.textContent = presupuestoUrl;
+    if (monto2) monto2.textContent = presupuestoUrl;
 
-    // Petición a tu backend en Render usando la ruta que filtra por precio menor o igual
+
     fetch(`https://polidelicias-backend.onrender.com/api/comida?presupuesto=${presupuestoUrl}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Error en la petición: ${response.status}`);
+                throw new Error(`Error: ${response.status}`);
             }
+
             return response.json();
         })
         .then(data => {
-            console.log("Opciones filtradas por presupuesto:", data);
+
             contenedorResultados.innerHTML = "";
 
             if (!data.comida || data.comida.length === 0) {
@@ -132,23 +74,46 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // Dibuja los platillos que cumplen con la condición de la base de datos
             data.comida.forEach(platillo => {
-                const tarjeta = document.createElement('article');
-                tarjeta.classList.add('articulo');
+
+                const tarjeta = document.createElement("article");
+                tarjeta.classList.add("articulo");
+
                 tarjeta.innerHTML = `
                     <h3>${platillo.nombre_platillo || platillo.nombre}</h3>
-                    <p>${platillo.descripcion || 'Sin descripción'}</p>
+                    <p>${platillo.descripcion || "Sin descripción"}</p>
                     <span>$${platillo.precio}</span>
                 `;
+
                 contenedorResultados.appendChild(tarjeta);
             });
+
         })
         .catch(error => {
-            console.error('Error al filtrar la comida por presupuesto:', error);
+            console.error("Error al obtener la comida:", error);
             contenedorResultados.innerHTML = "<p>Hubo un error al cargar las opciones.</p>";
         });
+
 });
+
+// 1. Captura el input de presupuesto y redirige a la página de resultados
+function recomendar() {
+
+    const inputPres = document.getElementById("inputPres");
+
+    if (!inputPres) return;
+
+    const presupuestoVal = Number(inputPres.value);
+
+    if (presupuestoVal <= 0 || isNaN(presupuestoVal)) {
+        alert("Ingresa un presupuesto válido.");
+        inputPres.focus();
+        return;
+    }
+
+    window.location.href = `tiendas/productos200.html?presupuesto=${presupuestoVal}`;
+
+}
 
 const pantalla = document.getElementById("pantalla-carga");
 
