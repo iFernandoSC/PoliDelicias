@@ -317,7 +317,8 @@ color: white;
     width: 35px;
     margin-right: 10px;
     border: 0;
-    background-color: white;
+    color: white;
+    background-color: #000000a3;
 }
 
 /* Estilos del boton volver al darle click */
