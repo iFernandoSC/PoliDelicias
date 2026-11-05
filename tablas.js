@@ -1,23 +1,22 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const db = require('./db'); // O como tengas tu conexión
+const db = require('./db'); // Tu archivo de conexión a Alwaysdata
 
 app.use(cors());
 
-// 1. ¡MUY IMPORTANTE! Esto permite que Express sirva tus HTML, CSS e imágenes
+// Permite servir tus archivos estáticos (HTML, CSS, JS)
 app.use(express.static(__dirname));
 
+// Ruta existente para obtener el menú por ID de lugar
 app.get('/api/info-id/:id', (req, res) => {
     const idLugar = req.params.id;
     
-    // Declaramos el objeto donde guardaremos todo el menú para este lugar
     const datosDelMenu = {};
     const consultacomida = 'SELECT * FROM comida WHERE id_lugar = ?';
     const consultabebidas = 'SELECT * FROM bebidas WHERE id_lugar = ?';
     const consultacomplemento = 'SELECT * FROM complementos WHERE id_lugar = ?';
 
-    // 1. Buscamos la comida de ese id_lugar
     db.query(consultacomida, [idLugar], (error, resultadosComida) => {
         if (error) {
             console.error('Error al buscar comida:', error);
@@ -25,7 +24,6 @@ app.get('/api/info-id/:id', (req, res) => {
         }
         datosDelMenu.comida = resultadosComida;
 
-        // 2. Buscamos las bebidas de ese id_lugar
         db.query(consultabebidas, [idLugar], (error, resultadosBebidas) => {
             if (error) {
                 console.error('Error al buscar bebidas:', error);
@@ -33,7 +31,6 @@ app.get('/api/info-id/:id', (req, res) => {
             }
             datosDelMenu.bebidas = resultadosBebidas;
 
-            // 3. Buscamos los complementos de ese id_lugar
             db.query(consultacomplemento, [idLugar], (error, resultadosComplementos) => {
                 if (error) {
                     console.error('Error al buscar complementos:', error);
@@ -41,12 +38,13 @@ app.get('/api/info-id/:id', (req, res) => {
                 }
                 datosDelMenu.complementos = resultadosComplementos;
 
-                // ¡Listo! Mandamos todo en formato JSON
                 res.json(datosDelMenu);
             });
         });
     });
 });
+
+// NUEVA RUTA: Consulta comparativa para filtrar la comida por presupuesto
 app.get('/api/comida', (req, res) => {
     const presupuesto = Number(req.query.presupuesto);
 
@@ -73,7 +71,9 @@ app.get('/api/comida', (req, res) => {
         }
     );
 });
-app.listen(3000, () => {
-    console.log('Servidor corriendo en http://localhost:3000');
-    console.log('Conectado exitosamente a la base de datos de PoliDelicias');
+
+// Puerto dinámico para que funcione tanto en local como en Render
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
