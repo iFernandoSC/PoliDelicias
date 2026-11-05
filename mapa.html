@@ -10,19 +10,27 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            font-family: system-ui, -apple-system, sans-serif; 
+        /* Aseguramos que la página y el cuerpo ocupen toda la pantalla */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: system-ui, -apple-system, sans-serif;
         }
-        html, body, #map { 
-            width: 100%; 
-            height: 100%; 
-            overflow: hidden; 
+
+        /* Contenedor del mapa con altura explícita para que se renderice */
+        #map {
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
         }
         
-        /* 📍 Barra de navegación inferior fija (Arreglada abajo) */
+        /* 📍 Barra de navegación inferior fija */
         .menu {
             position: fixed;
             bottom: 0;
@@ -35,7 +43,6 @@
             justify-content: space-around;
             padding: 12px 0;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
         }
         .menu a {
             color: #bbb;
@@ -47,12 +54,7 @@
         .menu a:hover { color: #fff; }
         .menu a.actual { color: orange; }
 
-        /* Clase para ocultar el menú al hacer scroll (si la usas en tu script.js) */
-        .menu.oculto {
-            transform: translateY(100%);
-        }
-
-        /* Panel flotante de geolocalización (Arriba a la izquierda) */
+        /* Panel flotante de geolocalización */
         .geo-panel {
             position: fixed;
             top: 14px;
@@ -83,7 +85,7 @@
         .geo-btn.active { background: #16a34a; }
         .geo-status { font-size: 12px; color: white; line-height: 1.35; }
 
-        /* Caja de coordenadas situada justo arriba del menú inferior para no encimarse */
+        /* Caja de coordenadas situada justo arriba del menú inferior */
         .coord-box {
             position: fixed;
             bottom: 48px; 
@@ -116,7 +118,7 @@
     <!-- Caja de visualización de coordenadas del cursor -->
     <div class="coord-box" id="coordBox">20.67205, -103.37380</div>
 
-    <!-- 📌 Barra de navegación inferior ubicada correctamente abajo -->
+    <!-- Barra de navegación inferior -->
     <nav class="menu" id="menu">
         <a href="index.html">Inicio</a>
         <a href="lugares.html">Lugares</a>
@@ -126,7 +128,7 @@
     <!-- JS de Leaflet -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     
-    <!-- Script interno específico del mapa (geolocalización + coordenadas + pines de la BD) -->
+    <!-- Script del mapa -->
     <script>
         'use strict';
         (() => {
@@ -246,7 +248,7 @@
         })();
     </script>
 
-    <!-- Tu archivo script.js general del proyecto para las demás funciones -->
+    <!-- Tu archivo script.js general -->
     <script src="script.js"></script>
 </body>
 </html>
