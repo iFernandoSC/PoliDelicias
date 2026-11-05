@@ -99,7 +99,7 @@ function recomendar(){
     } else {
         // Redirige a la página de resultados dentro de la carpeta tiendas
         window.location.href = `tiendas/productos200.html?presupuesto=${presupuestoVal}`;
-        variable.textcontent = presupuestoVal;
+        variable.textContent = presupuestoVal;
     }
 }
 // 2. NUEVO BLOQUE: Se ejecuta al cargar productos200.html para consultar la DB con el filtro de precio
