@@ -1,3 +1,52 @@
+// Este código solo se activa si la página actual tiene el contenedor 'resultadosPresupuesto'
+document.addEventListener("DOMContentLoaded", () => {
+    const contenedorResultados = document.getElementById("resultadosPresupuesto");
+    if (!contenedorResultados) return; // Si no estamos en productos200.html, no hace nada y evita errores
+
+    const parametros = new URLSearchParams(window.location.search);
+    const presupuestoUrl = Number(parametros.get("presupuesto"));
+
+    if (!presupuestoUrl || isNaN(presupuestoUrl)) {
+        contenedorResultados.innerHTML = "<p>No se especificó un presupuesto válido.</p>";
+        return;
+    }
+
+    contenedorResultados.innerHTML = "<p>Buscando opciones que alcancen con tu presupuesto...</p>";
+
+    // Petición directa a tu backend en Render
+    fetch(`https://polidelicias-backend.onrender.com/api/comida?presupuesto=${presupuestoUrl}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error en la petición: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Datos de comida por presupuesto:", data);
+            contenedorResultados.innerHTML = "";
+
+            if (!data.comida || data.comida.length === 0) {
+                contenedorResultados.innerHTML = `<p>No hay opciones disponibles por $${presupuestoUrl} o menos.</p>`;
+                return;
+            }
+
+            // Creamos las tarjetas dinámicamente en el HTML
+            data.comida.forEach(platillo => {
+                const tarjeta = document.createElement('article');
+                tarjeta.classList.add('articulo');
+                tarjeta.innerHTML = `
+                    <h3>${platillo.nombre_platillo || platillo.nombre}</h3>
+                    <p>${platillo.descripcion || 'Sin descripción'}</p>
+                    <span>$${platillo.precio}</span>
+                `;
+                contenedorResultados.appendChild(tarjeta);
+            });
+        })
+        .catch(error => {
+            console.error('Error al obtener la comida por presupuesto:', error);
+            contenedorResultados.innerHTML = "<p>Hubo un error al cargar las opciones desde el servidor.</p>";
+        });
+});
 const inputFoto = document.getElementById("foto");
 const perfil = document.getElementById("perfil");
 const presupuesto = document.getElementById("presupuesto");
