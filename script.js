@@ -86,7 +86,7 @@ window.addEventListener("scroll", () => {
 
 // 1. NUEVA FUNCIÓN: Captura el input de presupuesto y redirige a la página de resultados
 function recomendar(){
-    const variable = document.getElementById("");
+    const variable = document.getElementById("montoPresupuesto");
     let inputPres = document.getElementById("inputPres");
     if (!inputPres) return;
     
@@ -99,6 +99,7 @@ function recomendar(){
     } else {
         // Redirige a la página de resultados dentro de la carpeta tiendas
         window.location.href = `tiendas/productos200.html?presupuesto=${presupuestoVal}`;
+        variable.textcontent = presupuestoVal;
     }
 }
 // 2. NUEVO BLOQUE: Se ejecuta al cargar productos200.html para consultar la DB con el filtro de precio
