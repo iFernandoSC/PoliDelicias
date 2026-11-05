@@ -357,54 +357,44 @@ function laemocha() {
 }
 
 // --- 🗺️ FUNCIÓN PARA CARGAR LOS RESTAURANTES EN EL MAPA ---
+// --- 🗺️ FUNCIÓN PARA CARGAR LOS RESTAURANTES EN EL MAPA USANDO LA BD ---
 function cargarRestaurantesMapa() {
     // Verificamos si existe el contenedor del mapa en la página actual para evitar errores
     const mapElement = document.getElementById('map');
     if (!mapElement) return;
 
-    // Hacemos el fetch a tu backend para obtener todos los restaurantes
-    fetch('https://polidelicias-backend.onrender.com/api/restaurantes') // O el endpoint que devuelva la lista de la tabla restaurante
+    // Hacemos el fetch a tu backend para obtener todos los restaurantes con sus coordenadas
+    fetch('https://polidelicias-backend.onrender.com/api/restaurantes')
         .then(response => {
             if (!response.ok) throw new Error(`Error: ${response.status}`);
             return response.json();
         })
         .then(data => {
-            // Asumiendo que tu API regresa un arreglo de restaurantes o la propiedad .restaurantes
             const listaRestaurantes = data.restaurantes || data;
 
             if (!listaRestaurantes || listaRestaurantes.length === 0) return;
 
-            listaRestaurantes.forEach((lugar, index) => {
-                // Tomamos el domicilio de tu base de datos y le añadimos la ciudad para mayor precisión
-                const direccionCompleta = (lugar.domicilio || lugar.direccion) + ", Guadalajara, Jalisco";
-                const urlGeo = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(direccionCompleta)}`;
+            listaRestaurantes.forEach(lugar => {
+                // Validamos que el restaurante tenga latitud y longitud guardadas
+                if (lugar.latitud && lugar.longitud) {
+                    const lat = parseFloat(lugar.latitud);
+                    const lon = parseFloat(lugar.longitud);
 
-                // Retraso escalonado (600ms) para cumplir con las políticas de la API gratuita de mapas
-                setTimeout(() => {
-                    fetch(urlGeo)
-                        .then(res => res.json())
-                        .then(geoData => {
-                            if (geoData && geoData.length > 0) {
-                                const lat = parseFloat(geoData[0].lat);
-                                const lon = parseFloat(geoData[0].lon);
-
-                                // Si ya tienes inicializado tu objeto 'map' en tu vista de mapa:
-                                if (typeof map !== 'undefined' && map) {
-                                    L.marker([lat, lon])
-                                        .addTo(map)
-                                        .bindPopup(`
-                                            <div style="font-family: sans-serif;">
-                                                <b style="font-size: 14px; color: #ea580c;">${lugar.nombre}</b><br>
-                                                <p style="margin: 4px 0; font-size: 12px; color: #333;">🍽️ <b>Tipo:</b> ${lugar.tipo_comida || 'General'}</p>
-                                                <p style="margin: 4px 0; font-size: 12px; color: #555;">📍 ${lugar.domicilio || lugar.direccion}</p>
-                                                <p style="margin: 4px 0; font-size: 11px; color: #666;">⏰ ${lugar.horario || 'No especificado'}</p>
-                                            </div>
-                                        `);
-                                }
-                            }
-                        })
-                        .catch(err => console.error('Error al geocodificar dirección:', err));
-                }, index * 600);
+                    // Verificamos que el objeto 'map' del mapa de Leaflet esté disponible
+                    if (typeof map !== 'undefined' && map) {
+                        L.marker([lat, lon])
+                            .addTo(map)
+                            .bindPopup(`
+                                <div style="font-family: sans-serif; padding: 4px;">
+                                    <b style="font-size: 14px; color: #ea580c;">${lugar.nombre}</b><br>
+                                    <p style="margin: 4px 0; font-size: 12px; color: #333;">🍽️ <b>Tipo:</b> ${lugar.tipo_comida || 'General'}</p>
+                                    <p style="margin: 4px 0; font-size: 12px; color: #555;">📍 ${lugar.domicilio}</p>
+                                    <p style="margin: 4px 0; font-size: 11px; color: #666;">📞 <b>Contacto:</b> ${lugar.contacto || 'No registrado'}</p>
+                                    <p style="margin: 4px 0; font-size: 11px; color: #666;">⏰ <b>Horario:</b> ${lugar.horario || 'No especificado'}</p>
+                                </div>
+                            `);
+                    }
+                }
             });
         })
         .catch(error => console.error('Error al obtener los restaurantes para el mapa:', error));
