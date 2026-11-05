@@ -86,6 +86,7 @@ window.addEventListener("scroll", () => {
 
 // 1. NUEVA FUNCIÓN: Captura el input de presupuesto y redirige a la página de resultados
 function recomendar(){
+    const variable = document.getElementById("");
     let inputPres = document.getElementById("inputPres");
     if (!inputPres) return;
     
