@@ -54,7 +54,6 @@ app.get('/api/comida', (req, res) => {
         });
     }
 
-    // Forzamos la comparación numérica exacta en MySQL con CAST
     db.query(
         'SELECT * FROM comida WHERE CAST(precio AS DECIMAL(10,2)) <= ?',
         [presupuesto],
@@ -71,6 +70,22 @@ app.get('/api/comida', (req, res) => {
             });
         }
     );
+});
+
+// NUEVA RUTA: Para obtener todos los restaurantes (con nombre, domicilio, latitud y longitud)
+app.get('/api/restaurantes', (req, res) => {
+    const consultaRestaurantes = 'SELECT * FROM restaurante';
+
+    db.query(consultaRestaurantes, (error, resultadosRestaurantes) => {
+        if (error) {
+            console.error('Error al buscar restaurantes:', error);
+            return res.status(500).json({ error: 'Error en el servidor' });
+        }
+
+        res.json({
+            restaurantes: resultadosRestaurantes
+        });
+    });
 });
 
 // Puerto dinámico para que funcione tanto en local como en Render
