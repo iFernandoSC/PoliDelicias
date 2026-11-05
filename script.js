@@ -300,7 +300,7 @@ function GDnata() {
             return response.json();
         })
         .then(data => {
-            const contenedorg = document.getElementById("MenuGorditasNata1");
+            const contenedorg = document.getElementById("OfertaGorditasNata1");
             if (!contenedorg) return;      
             
             contenedorg.innerHTML = ''; 
