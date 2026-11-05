@@ -10,22 +10,23 @@
 <body class="inicio">
     <header id="header">
         <button id="botonVolver"><</button>
-        <h1 id="montoPresupuesto"> <span>o MÁS</span></h1>
+        <h1>$<span id="montoPresupuesto">0</span> O MENOS</h1>
     </header>
 
-    <!-- AQUÍ ESTÁ EL CAMBIO: El span con id="montoPresupuesto" mostrará el número -->
+    <!-- El span con id="montoPresupuesto" mostrará el número -->
     <section class="presupuesto">
-        <span>OPCIONES DE $<span id="montoPresupuesto"></span> O MENOS</span>
+        <span>OPCIONES DE $<span id="montoPresupuesto2">0</span> O MENOS</span>
     </section>
 
     <!-- Contenedor donde se inyectan los platillos -->
     <main class="articulos" id="resultadosPresupuesto">
-        <!-- El JS llenará esto automáticamente -->
+        <h4>Cargando<span class="puntos">...</span></h4>
     </main>
 
     <section class="menu">
         <a href="../index.html">Inicio</a>
         <a href="../lugares.html">Lugares</a>
+        <a href="../mapa.html">Mapa</a>
     </section>
 
     <footer>
