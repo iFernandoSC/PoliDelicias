@@ -35,27 +35,67 @@ window.addEventListener("scroll", () => {
     ultimaPosicion = posicionActual;
 });
 
-function recomendar(){
+// 1. Función recomendar corregida para mandar el presupuesto en la URL
+function recomendar() {
     let inputPres = document.getElementById("inputPres");
     if (!inputPres) return;
     
     let presupuestoVal = Number(inputPres.value);
     
     if (presupuestoVal <= 0 || isNaN(presupuestoVal)) {
-        alert("Ingresa un presupuesto valido.");
+        alert("Ingresa un presupuesto válido.");
         inputPres.focus();
         return;
     } else {
-        window.location.href = "tiendas/productos200.html";
+        // Redirige a la página de resultados pasando el presupuesto por la URL
+        window.location.href = `tiendas/productos200.html?presupuesto=${presupuestoVal}`;
     }
-    const parametros = new URLSearchParams(window.location.search);
-const presupuesto = Number(parametros.get("presupuesto"));
-fetch(/api/comida?presupuesto=${presupuesto})
-.then(res => res.json())
-.then(data => {
-  console.log(data);
-});
 }
+
+// 2. Función que se ejecuta al cargar productos200.html para consultar la DB con el presupuesto
+document.addEventListener("DOMContentLoaded", () => {
+    const parametros = new URLSearchParams(window.location.search);
+    const presupuestoUrl = Number(parametros.get("presupuesto"));
+
+    // Si la URL no trae un presupuesto, no hacemos esta petición (evita errores en otras páginas)
+    if (!presupuestoUrl || isNaN(presupuestoUrl)) return;
+
+    const contenedorResultados = document.getElementById("resultadosPresupuesto"); // Asegúrate de tener este ID en tu HTML
+    if (!contenedorResultados) return;
+
+    contenedorResultados.innerHTML = "<p>Buscando opciones que alcancen con tu presupuesto...</p>";
+
+    // Petición a tu backend en Render pasando el presupuesto filtrado por la base de datos
+    fetch(`https://polidelicias-backend.onrender.com/api/comida?presupuesto=${presupuestoUrl}`)
+        .then(response => {
+            if (!response.ok) throw new Error(`Error en la petición: ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            console.log("Opciones filtradas por presupuesto:", data);
+            contenedorResultados.innerHTML = "";
+
+            if (!data.comida || data.comida.length === 0) {
+                contenedorResultados.innerHTML = `<p>No hay opciones disponibles por $${presupuestoUrl} o menos.</p>`;
+                return;
+            }
+
+            data.comida.forEach(platillo => {
+                const tarjeta = document.createElement('div');
+                tarjeta.classList.add('tarjeta-platillo');
+                tarjeta.innerHTML = `
+                    <h3>${platillo.nombre_platillo || platillo.nombre}</h3>
+                    <p>${platillo.descripcion || 'Sin descripción'}</p>
+                    <span>$${platillo.precio}</span>
+                `;
+                contenedorResultados.appendChild(tarjeta);
+            });
+        })
+        .catch(error => {
+            console.error('Error al obtener la comida por presupuesto:', error);
+            contenedorResultados.innerHTML = "<p>Hubo un error al cargar las opciones.</p>";
+        });
+});
 
 const pantalla = document.getElementById("pantalla-carga");
 
@@ -63,16 +103,16 @@ if (pantalla) {
     if (sessionStorage.getItem("yaEntro")) {
         pantalla.style.display = "none";
     } else {
-    window.addEventListener("load", function() {
-        setTimeout(function() {
-            pantalla.classList.add("ocultar");
-            sessionStorage.setItem("yaEntro", "true");
-        }, 1000);
-    });
-}
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                pantalla.classList.add("ocultar");
+                sessionStorage.setItem("yaEntro", "true");
+            }, 1000);
+        });
+    }
 }
 
-// Protegemos el evento de la foto para que solo corra si el elemento existe
+// Protegemos el evento de la foto
 if (inputFoto) {
     inputFoto.addEventListener("change", function() {
         const archivo = inputFoto.files[0];
@@ -94,7 +134,6 @@ if (volver) {
     });
 }
 
-// Protegemos el evento de presupuesto
 function presu() {
     let inputPres = document.getElementById("inputPres");
     if (inputPres) inputPres.focus();
@@ -104,33 +143,21 @@ if (presupuesto) {
     presupuesto.addEventListener("click", presu);
 }
 
-
-// Función de Comida China conectada a Render y Alwaysdata
+// Funciones existentes de los lugares...
 function comidachina() {
     const idLugar = 5; 
-    
-    // 1. SELECCIONAMOS EL ELEMENTO DE CARGA EN TU HTML
     const loadingDiv = document.getElementById('loading');
-    
-    // 2. MOSTRAMOS LA ANIMACIÓN DE CARGA ANTES DE PEDIR LOS DATOS
     if (loadingDiv) loadingDiv.style.display = 'block';
 
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error en la petición: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`Error en la petición: ${response.status}`);
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos de Comida China:", data);
-            
-            // 3. OCULTAMOS LA CARGA PORQUE LOS DATOS YA LLEGARON
             if (loadingDiv) loadingDiv.style.display = 'none';
-
             const contenedorcoch = document.getElementById("OfertaComidaChina1");
             if (!contenedorcoch) return;      
-            
             contenedorcoch.innerHTML = ''; 
             
             if (!data.comida || data.comida.length === 0) {
@@ -150,7 +177,6 @@ function comidachina() {
             });
         })
         .catch(error => {
-            // 4. SI OCURRE UN ERROR, TAMBIÉN OCULTAMOS LA CARGA PARA QUE NO SE QUEDE GIRANDO ETERNAMENTE
             if (loadingDiv) loadingDiv.style.display = 'none';
             console.error('Error al obtener el menú de comida china:', error);
         });
@@ -158,74 +184,51 @@ function comidachina() {
 
 function cooperativaa() {
     const idLugar = 1; 
-    // 1. Seleccionamos el elemento de carga
     const loadingDiv = document.getElementById('loading');
-    
-    // 2. Mostramos la animación de carga antes de hacer la petición
     if (loadingDiv) loadingDiv.style.display = 'block';
 
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error en la petición: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`Error en la petición: ${response.status}`);
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos de Cooperativa a:", data);
-            // 3. Ocultamos la carga porque los datos ya llegaron
             if (loadingDiv) loadingDiv.style.display = 'none';
             const contenedorcooa = document.getElementById("MenuCooperativa1");
             const contenedorcoopea = document.getElementById("MenuCooperativa2");
 
-            if (!contenedorcooa) return;       
-            contenedorcoopea.innerHTML='';
+            if (!contenedorcooa) return;      
+            if (contenedorcoopea) contenedorcoopea.innerHTML = '';
             contenedorcooa.innerHTML = ''; 
-            if (!data.comida || data.comida.length === 0) {
-                contenedorcoopea.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
-                return;
+            
+            if (data.comida && data.comida.length > 0 && contenedorcoopea) {
+                data.comida.forEach(platillo => {
+                    const tarjeta = document.createElement('div');
+                    tarjeta.classList.add('tarjeta-platillo');
+                    tarjeta.innerHTML = `
+                        <h3>${platillo.nombre_platillo}</h3>
+                        <p>${platillo.descripcion || 'Sin descripción'}</p>
+                        <span>$${platillo.precio}</span>
+                    `;
+                    contenedorcoopea.appendChild(tarjeta);
+                });
             }
             
-            data.comida.forEach(platillo => {
-                const tarjeta = document.createElement('div');
-                tarjeta.classList.add('tarjeta-platillo');
-                tarjeta.innerHTML = `
-                    <h3>${platillo.nombre_platillo}</h3>
-                    <p>${platillo.descripcion || 'Sin descripción'}</p>
-                    <span>$${platillo.precio}</span>
-                `;
-                contenedorcoopea.appendChild(tarjeta);
-            });
-            if (!data.bebidas || data.bebidas.length === 0) {
-                contenedorcooa.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
-                return;
-            }  
-            data.bebidas.forEach(platillo => {
-                const tarjeta = document.createElement('div');
-                tarjeta.classList.add('tarjeta-platillo');
-                tarjeta.innerHTML = `
-                    <h3>${platillo.nombre_bebida}</h3>
-                    <p>${platillo.descripcion || 'Sin descripción'}</p>
-                    <span>$${platillo.precio}</span>
-                `;
-                contenedorcooa.appendChild(tarjeta);
-            });
-             if (!data.complementos || data.complementos.length === 0) {
-                contenedorcooa.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
-                return;
-            }  
-            data.complementos.forEach(platillo => {
-                const tarjeta = document.createElement('div');
-                tarjeta.classList.add('tarjeta-platillo');
-                tarjeta.innerHTML = `
-                    <h3>${platillo.nombre}</h3>
-                    <p>${platillo.descripcion || 'Sin descripción'}</p>
-                    <span>$${platillo.precio}</span>
-                `;
-                contenedorcoch.appendChild(tarjeta);
-            });
+            if (data.bebidas && data.bebidas.length > 0) {
+                data.bebidas.forEach(platillo => {
+                    const tarjeta = document.createElement('div');
+                    tarjeta.classList.add('tarjeta-platillo');
+                    tarjeta.innerHTML = `
+                        <h3>${platillo.nombre_bebida}</h3>
+                        <p>${platillo.descripcion || 'Sin descripción'}</p>
+                        <span>$${platillo.precio}</span>
+                    `;
+                    contenedorcooa.appendChild(tarjeta);
+                });
+            }
         })
         .catch(error => {
+            if (loadingDiv) loadingDiv.style.display = 'none';
             console.error('Error al obtener el menú de cooperativaa:', error);
         });
 }
@@ -234,28 +237,15 @@ function banderilla() {
     const idLugar = 2; 
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error en la petición: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`Error en la petición: ${response.status}`);
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos de Tortas y Sushi:", data);
             const contenedorts = document.getElementById("MenuTortaSushi1");
-            if (!contenedorts) return;       
-            
+            if (!contenedorts) return;      
             contenedorts.innerHTML = ''; 
             
-            // Validar si todo está vacío
-            if ((!data.comida || data.comida.length === 0) && 
-                (!data.bebidas || data.bebidas.length === 0) && 
-                (!data.complementos || data.complementos.length === 0)) {
-                contenedorts.innerHTML = '<p>No hay productos disponibles para este lugar.</p>';
-                return;
-            }
-            
-            // 1. Comida
-            if (data.comida && data.comida.length > 0) {
+            if (data.comida) {
                 data.comida.forEach(platillo => {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
@@ -267,64 +257,23 @@ function banderilla() {
                     contenedorts.appendChild(tarjeta);
                 });
             }
-
-            // 2. Bebidas
-            if (data.bebidas && data.bebidas.length > 0) {
-                data.bebidas.forEach(bebida => {
-                    const tarjeta = document.createElement('div');
-                    tarjeta.classList.add('tarjeta-platillo');
-                    tarjeta.innerHTML = `
-                        <h3>${bebida.nombre_bebida}</h3>
-                        <p>${bebida.descripcion || 'Sin descripción'}</p>
-                        <span>$${bebida.precio}</span>
-                    `;
-                    contenedorts.appendChild(tarjeta);
-                });
-            }
-            
-            // 3. Complementos
-            if (data.complementos && data.complementos.length > 0) {
-                data.complementos.forEach(complemento => {
-                    const tarjeta = document.createElement('div');
-                    tarjeta.classList.add('tarjeta-platillo');
-                    tarjeta.innerHTML = `
-                        <h3>${complemento.nombre}</h3>
-                        <p>${complemento.descripcion || 'Sin descripción'}</p>
-                        <span>$${complemento.precio}</span>
-                    `;
-                    contenedorts.appendChild(tarjeta);
-                });
-            }
         })
-        .catch(error => {
-            console.error('Error al obtener el menú de Tortas y Sushi:', error);
-        });
+        .catch(error => console.error('Error al obtener el menú de Tortas y Sushi:', error));
 }
 
 function GDnata() {
     const idLugar = 3; 
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error en la petición: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`Error en la petición: ${response.status}`);
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos de Gorditas de Nata:", data);
             const contenedorg = document.getElementById("MenuGorditasNata1");
-            if (!contenedorg) return;       
-            
+            if (!contenedorg) return;      
             contenedorg.innerHTML = ''; 
             
-            if ((!data.comida || data.comida.length === 0) && 
-                (!data.bebidas || data.bebidas.length === 0) && 
-                (!data.complementos || data.complementos.length === 0)) {
-                contenedorg.innerHTML = '<p>No hay productos disponibles para este lugar.</p>';
-                return;
-            }
-            
-            if (data.comida && data.comida.length > 0) {
+            if (data.comida) {
                 data.comida.forEach(platillo => {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
@@ -336,62 +285,23 @@ function GDnata() {
                     contenedorg.appendChild(tarjeta);
                 });
             }
-
-            if (data.bebidas && data.bebidas.length > 0) {
-                data.bebidas.forEach(bebida => {
-                    const tarjeta = document.createElement('div');
-                    tarjeta.classList.add('tarjeta-platillo');
-                    tarjeta.innerHTML = `
-                        <h3>${bebida.nombre_bebida}</h3>
-                        <p>${bebida.descripcion || 'Sin descripción'}</p>
-                        <span>$${bebida.precio}</span>
-                    `;
-                    contenedorg.appendChild(tarjeta);
-                });
-            }
-            
-            if (data.complementos && data.complementos.length > 0) {
-                data.complementos.forEach(complemento => {
-                    const tarjeta = document.createElement('div');
-                    tarjeta.classList.add('tarjeta-platillo');
-                    tarjeta.innerHTML = `
-                        <h3>${complemento.nombre}</h3>
-                        <p>${complemento.descripcion || 'Sin descripción'}</p>
-                        <span>$${complemento.precio}</span>
-                    `;
-                    contenedorg.appendChild(tarjeta);
-                });
-            }
         })
-        .catch(error => {
-            console.error('Error al obtener el menú de Gorditas:', error);
-        });
+        .catch(error => console.error('Error al obtener el menú de Gorditas:', error));
 }
 
 function laemocha() {
     const idLugar = 4; 
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error en la petición: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`Error en la petición: ${response.status}`);
             return response.json();
         })
         .then(data => {
-            console.log("Datos recibidos de Rollitos:", data);
             const contenedor = document.getElementById("MenuRollitos1");
-            if (!contenedor) return;       
-
+            if (!contenedor) return;      
             contenedor.innerHTML = ''; 
             
-            if ((!data.comida || data.comida.length === 0) && 
-                (!data.bebidas || data.bebidas.length === 0) && 
-                (!data.complementos || data.complementos.length === 0)) {
-                contenedor.innerHTML = '<p>No hay productos disponibles para este lugar.</p>';
-                return;
-            }
-            
-            if (data.comida && data.comida.length > 0) {
+            if (data.comida) {
                 data.comida.forEach(platillo => {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
@@ -403,43 +313,14 @@ function laemocha() {
                     contenedor.appendChild(tarjeta);
                 });
             }
-
-            if (data.bebidas && data.bebidas.length > 0) {
-                data.bebidas.forEach(bebida => {
-                    const tarjeta = document.createElement('div');
-                    tarjeta.classList.add('tarjeta-platillo');
-                    tarjeta.innerHTML = `
-                        <h3>${bebida.nombre_bebida}</h3>
-                        <p>${bebida.descripcion || 'Sin descripción'}</p>
-                        <span>$${bebida.precio}</span>
-                    `;
-                    contenedor.appendChild(tarjeta);
-                });
-            }
-            
-            if (data.complementos && data.complementos.length > 0) {
-                data.complementos.forEach(complemento => {
-                    const tarjeta = document.createElement('div');
-                    tarjeta.classList.add('tarjeta-platillo');
-                    tarjeta.innerHTML = `
-                        <h3>${complemento.nombre}</h3>
-                        <p>${complemento.descripcion || 'Sin descripción'}</p>
-                        <span>$${complemento.precio}</span>
-                    `;
-                    contenedor.appendChild(tarjeta);
-                });
-            }
         })
-        .catch(error => {
-            console.error('Error al obtener el menú de rollitos:', error);
-        });
+        .catch(error => console.error('Error al obtener el menú de rollitos:', error));
 }
 
-// Ejecutamos la función
+// Ejecutamos las funciones de carga general
 banderilla();
 GDnata();
 laemocha();
 comidachina();
 cooperativaa();
-
 
