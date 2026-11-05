@@ -291,7 +291,7 @@ function banderilla() {
 }
 
 function GDnata() {
-    const idLugar = 3; 
+    const idLugar = 3;  
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
             if (!response.ok) {
@@ -303,8 +303,9 @@ function GDnata() {
             const contenedorg = document.getElementById("OfertaGorditasNata1");
             if (!contenedorg) return;      
             
-            contenedorg.innerHTML = ''; 
+            contenedorg.innerHTML = '';  
             
+            // Cambiamos data.comida por data.complementos porque ahí están guardadas las gorditas
             if (data.complementos && data.complementos.length > 0) {
                 data.complementos.forEach(platillo => {
                     const tarjeta = document.createElement('div');
@@ -316,10 +317,14 @@ function GDnata() {
                     `;
                     contenedorg.appendChild(tarjeta);
                 });
+            } else {
+                contenedorg.innerHTML = '<p>No hay gorditas disponibles para este lugar.</p>';
             }
         })
         .catch(error => {
             console.error('Error al obtener el menú de Gorditas:', error);
+            const contenedorg = document.getElementById("OfertaGorditasNata1");
+            if (contenedorg) contenedorg.innerHTML = '<p>Error al cargar el menú.</p>';
         });
 }
 
