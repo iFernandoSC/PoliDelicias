@@ -51,7 +51,6 @@ function recomendar(){
         window.location.href = `tiendas/productos200.html?presupuesto=${presupuestoVal}`;
     }
 }
-}
 // 2. NUEVO BLOQUE: Se ejecuta al cargar productos200.html para consultar la DB con el filtro de precio
 document.addEventListener("DOMContentLoaded", () => {
     const parametros = new URLSearchParams(window.location.search);
