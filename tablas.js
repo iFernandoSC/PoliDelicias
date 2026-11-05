@@ -44,7 +44,7 @@ app.get('/api/info-id/:id', (req, res) => {
     });
 });
 
-// NUEVA RUTA: Consulta comparativa para filtrar la comida por presupuesto
+// RUTA DE PRESUPUESTO: Con CAST para asegurar que compare correctamente los números
 app.get('/api/comida', (req, res) => {
     const presupuesto = Number(req.query.presupuesto);
 
@@ -54,8 +54,9 @@ app.get('/api/comida', (req, res) => {
         });
     }
 
+    // Forzamos la comparación numérica exacta en MySQL con CAST
     db.query(
-        'SELECT * FROM comida WHERE precio <= ?',
+        'SELECT * FROM comida WHERE CAST(precio AS DECIMAL(10,2)) <= ?',
         [presupuesto],
         (error, resultados) => {
             if (error) {
