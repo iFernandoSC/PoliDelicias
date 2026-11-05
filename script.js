@@ -35,8 +35,8 @@ window.addEventListener("scroll", () => {
     ultimaPosicion = posicionActual;
 });
 
-// 1. Función recomendar corregida para mandar el presupuesto en la URL
-function recomendar() {
+// 1. NUEVA FUNCIÓN: Captura el input de presupuesto y redirige a la página de resultados
+function recomendar(){
     let inputPres = document.getElementById("inputPres");
     if (!inputPres) return;
     
@@ -47,28 +47,30 @@ function recomendar() {
         inputPres.focus();
         return;
     } else {
-        // Redirige a la página de resultados pasando el presupuesto por la URL
+        // Redirige pasando el presupuesto en la URL hacia la carpeta tiendas
         window.location.href = `tiendas/productos200.html?presupuesto=${presupuestoVal}`;
     }
 }
-}
-// 2. Función que se ejecuta al cargar productos200.html para consultar la DB con el presupuesto
+
+// 2. NUEVO BLOQUE: Se ejecuta al cargar productos200.html para consultar la DB con el filtro de precio
 document.addEventListener("DOMContentLoaded", () => {
     const parametros = new URLSearchParams(window.location.search);
     const presupuestoUrl = Number(parametros.get("presupuesto"));
 
-    // Si la URL no trae un presupuesto, no hacemos esta petición (evita errores en otras páginas)
+    // Si no hay presupuesto en la URL, esta parte no hace nada (evita errores en el index)
     if (!presupuestoUrl || isNaN(presupuestoUrl)) return;
 
-    const contenedorResultados = document.getElementById("resultadosPresupuesto"); // Asegúrate de tener este ID en tu HTML
+    const contenedorResultados = document.getElementById("resultadosPresupuesto");
     if (!contenedorResultados) return;
 
     contenedorResultados.innerHTML = "<p>Buscando opciones que alcancen con tu presupuesto...</p>";
 
-    // Petición a tu backend en Render pasando el presupuesto filtrado por la base de datos
+    // Petición a tu backend en Render usando la ruta que filtra por precio menor o igual
     fetch(`https://polidelicias-backend.onrender.com/api/comida?presupuesto=${presupuestoUrl}`)
         .then(response => {
-            if (!response.ok) throw new Error(`Error en la petición: ${response.status}`);
+            if (!response.ok) {
+                throw new Error(`Error en la petición: ${response.status}`);
+            }
             return response.json();
         })
         .then(data => {
@@ -80,9 +82,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
+            // Dibuja los platillos que cumplen con la condición de la base de datos
             data.comida.forEach(platillo => {
-                const tarjeta = document.createElement('div');
-                tarjeta.classList.add('tarjeta-platillo');
+                const tarjeta = document.createElement('article');
+                tarjeta.classList.add('articulo');
                 tarjeta.innerHTML = `
                     <h3>${platillo.nombre_platillo || platillo.nombre}</h3>
                     <p>${platillo.descripcion || 'Sin descripción'}</p>
@@ -92,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         })
         .catch(error => {
-            console.error('Error al obtener la comida por presupuesto:', error);
+            console.error('Error al filtrar la comida por presupuesto:', error);
             contenedorResultados.innerHTML = "<p>Hubo un error al cargar las opciones.</p>";
         });
 });
@@ -112,7 +115,7 @@ if (pantalla) {
     }
 }
 
-// Protegemos el evento de la foto
+// Protegemos el evento de la foto para que solo corra si el elemento existe
 if (inputFoto) {
     inputFoto.addEventListener("change", function() {
         const archivo = inputFoto.files[0];
@@ -129,11 +132,12 @@ if (volver) {
         if (window.history.length > 1) {
             window.history.back();
         } else {
-            window.location.href = "index.html";
+            window.location.href = "../index.html";
         }
     });
 }
 
+// Protegemos el evento de presupuesto
 function presu() {
     let inputPres = document.getElementById("inputPres");
     if (inputPres) inputPres.focus();
@@ -143,7 +147,8 @@ if (presupuesto) {
     presupuesto.addEventListener("click", presu);
 }
 
-// Funciones existentes de los lugares...
+
+// Función de Comida China conectada a Render y Alwaysdata
 function comidachina() {
     const idLugar = 5; 
     const loadingDiv = document.getElementById('loading');
@@ -151,13 +156,16 @@ function comidachina() {
 
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
-            if (!response.ok) throw new Error(`Error en la petición: ${response.status}`);
+            if (!response.ok) {
+                throw new Error(`Error en la petición: ${response.status}`);
+            }
             return response.json();
         })
         .then(data => {
             if (loadingDiv) loadingDiv.style.display = 'none';
             const contenedorcoch = document.getElementById("OfertaComidaChina1");
             if (!contenedorcoch) return;      
+            
             contenedorcoch.innerHTML = ''; 
             
             if (!data.comida || data.comida.length === 0) {
@@ -189,7 +197,9 @@ function cooperativaa() {
 
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
-            if (!response.ok) throw new Error(`Error en la petición: ${response.status}`);
+            if (!response.ok) {
+                throw new Error(`Error en la petición: ${response.status}`);
+            }
             return response.json();
         })
         .then(data => {
@@ -198,7 +208,7 @@ function cooperativaa() {
             const contenedorcoopea = document.getElementById("MenuCooperativa2");
 
             if (!contenedorcooa) return;      
-            if (contenedorcoopea) contenedorcoopea.innerHTML = '';
+            if (contenedorcoopea) contenedorcoopea.innerHTML='';
             contenedorcooa.innerHTML = ''; 
             
             if (data.comida && data.comida.length > 0 && contenedorcoopea) {
@@ -228,7 +238,6 @@ function cooperativaa() {
             }
         })
         .catch(error => {
-            if (loadingDiv) loadingDiv.style.display = 'none';
             console.error('Error al obtener el menú de cooperativaa:', error);
         });
 }
@@ -237,15 +246,18 @@ function banderilla() {
     const idLugar = 2; 
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
-            if (!response.ok) throw new Error(`Error en la petición: ${response.status}`);
+            if (!response.ok) {
+                throw new Error(`Error en la petición: ${response.status}`);
+            }
             return response.json();
         })
         .then(data => {
             const contenedorts = document.getElementById("MenuTortaSushi1");
             if (!contenedorts) return;      
+            
             contenedorts.innerHTML = ''; 
             
-            if (data.comida) {
+            if (data.comida && data.comida.length > 0) {
                 data.comida.forEach(platillo => {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
@@ -258,22 +270,27 @@ function banderilla() {
                 });
             }
         })
-        .catch(error => console.error('Error al obtener el menú de Tortas y Sushi:', error));
+        .catch(error => {
+            console.error('Error al obtener el menú de Tortas y Sushi:', error);
+        });
 }
 
 function GDnata() {
     const idLugar = 3; 
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
-            if (!response.ok) throw new Error(`Error en la petición: ${response.status}`);
+            if (!response.ok) {
+                throw new Error(`Error en la petición: ${response.status}`);
+            }
             return response.json();
         })
         .then(data => {
             const contenedorg = document.getElementById("MenuGorditasNata1");
             if (!contenedorg) return;      
+            
             contenedorg.innerHTML = ''; 
             
-            if (data.comida) {
+            if (data.comida && data.comida.length > 0) {
                 data.comida.forEach(platillo => {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
@@ -286,22 +303,27 @@ function GDnata() {
                 });
             }
         })
-        .catch(error => console.error('Error al obtener el menú de Gorditas:', error));
+        .catch(error => {
+            console.error('Error al obtener el menú de Gorditas:', error);
+        });
 }
 
 function laemocha() {
     const idLugar = 4; 
     fetch(`https://polidelicias-backend.onrender.com/api/info-id/${idLugar}`)
         .then(response => {
-            if (!response.ok) throw new Error(`Error en la petición: ${response.status}`);
+            if (!response.ok) {
+                throw new Error(`Error en la petición: ${response.status}`);
+            }
             return response.json();
         })
         .then(data => {
             const contenedor = document.getElementById("MenuRollitos1");
             if (!contenedor) return;      
+
             contenedor.innerHTML = ''; 
             
-            if (data.comida) {
+            if (data.comida && data.comida.length > 0) {
                 data.comida.forEach(platillo => {
                     const tarjeta = document.createElement('div');
                     tarjeta.classList.add('tarjeta-platillo');
@@ -314,13 +336,14 @@ function laemocha() {
                 });
             }
         })
-        .catch(error => console.error('Error al obtener el menú de rollitos:', error));
+        .catch(error => {
+            console.error('Error al obtener el menú de rollitos:', error);
+        });
 }
 
-// Ejecutamos las funciones de carga general
+// Ejecutamos las funciones de carga en las vistas que correspondan
 banderilla();
 GDnata();
 laemocha();
 comidachina();
 cooperativaa();
-
