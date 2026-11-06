@@ -73,17 +73,17 @@ app.get('/api/comida', (req, res) => {
 });
 
 // NUEVA RUTA: Para obtener todos los restaurantes (con nombre, domicilio, latitud y longitud)
-app.get('/api/restaurantes', (req, res) => {
+app.get('/api/restaurante', (req, res) => {
     const consultaRestaurantes = 'SELECT * FROM restaurante';
 
     db.query(consultaRestaurantes, (error, resultadosRestaurantes) => {
         if (error) {
-            console.error('Error al buscar restaurantes:', error);
+            console.error('Error al buscar restaurante:', error);
             return res.status(500).json({ error: 'Error en el servidor' });
         }
 
         res.json({
-            restaurantes: resultadosRestaurantes
+            restaurante: resultadosRestaurantes
         });
     });
 });
