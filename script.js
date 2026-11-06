@@ -458,41 +458,42 @@ document.addEventListener("DOMContentLoaded", () => {
                 tarjeta.style.cursor = "pointer"; // Indica visualmente que se puede hacer clic
 
                 const nombrePlatillo = platillo.nombre_platillo || platillo.nombre;
-                const nombreRestaurante = platillo.nombre_restaurante || platillo.restaurante || 'Polidelicias';
-                const domicilio = platillo.domicilio || 'Dirección no especificada';
-                const horario = platillo.horario || 'Horario no especificado';
+                
+                // Buscamos con varias opciones por si el backend usa nombres distintos en las columnas de la BD
+                const nombreRestaurante = platillo.nombre_restaurante || platillo.restaurante || platillo.nombre_lugar || 'Polidelicias';
+                const domicilio = platillo.domicilio || platillo.direccion || 'Dirección no especificada';
+                const horario = platillo.horario || platillo.hora || 'Horario no especificado';
+
+                const lat = platillo.latitud || platillo.lat;
+                const lng = platillo.longitud || platillo.lng;
 
                 tarjeta.innerHTML = `
                     <h3>${nombrePlatillo}</h3>
                     <p>${platillo.descripcion || "Sin descripción"}</p>
                     <span class="precio">$${platillo.precio}</span>
                     
-                    <!-- Información ampliada que aparece al hacer clic en la tarjeta -->
+                    <!-- Información ampliada que aparece al hacer clic -->
                     <div class="detalles-ampliados" style="display: none; margin-top: 15px; padding-top: 10px; border-top: 1px solid #ddd;">
                         <p style="margin: 4px 0; font-size: 13px; color: #333;">📍 <b>Restaurante:</b> ${nombreRestaurante}</p>
                         <p style="margin: 4px 0; font-size: 13px; color: #333;">🏠 <b>Dirección:</b> ${domicilio}</p>
                         <p style="margin: 4px 0; font-size: 13px; color: #333;">⏰ <b>Horario:</b> ${horario}</p>
 
-                        ${platillo.latitud && platillo.longitud ? `
-                            <a href="../mapa.html?lat=${platillo.latitud}&lng=${platillo.longitud}&nombre=${encodeURIComponent(nombreRestaurante)}" class="btn-ir-mapa" style="display: inline-block; margin-top: 10px; background-color: #ea580c; color: white; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; text-decoration: none;">
-                                Ir al mapa / Ver ubicación
-                            </a>
-                        ` : ''}
+                        <!-- El botón ahora siempre se muestra -->
+                        <a href="../mapa.html${lat && lng ? `?lat=${lat}&lng=${lng}&nombre=${encodeURIComponent(nombreRestaurante)}` : ''}" class="btn-ir-mapa" style="display: inline-block; margin-top: 10px; background-color: #ea580c; color: white; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; text-decoration: none;">
+                            Ir al mapa / Ver ubicación
+                        </a>
                     </div>
                 `;
 
-                // Evento para expandir o contraer la tarjeta al dar clic
+                // Evento para expandir o contraer la tarjeta SIN alterar su color de fondo original
                 tarjeta.addEventListener("click", (e) => {
-                    // Si el usuario hace clic directo en el botón del mapa, no expandimos/cerramos la tarjeta, dejamos que actúe el enlace
-                    if (e.target.tagName === 'A') return; 
+                    if (e.target.tagName === 'A') return; // Evita conflictos si hacen clic directo en el botón
 
                     const detalles = tarjeta.querySelector(".detalles-ampliados");
                     if (detalles.style.display === "none") {
                         detalles.style.display = "block";
-                        tarjeta.style.background = "#fff9f5"; // Cambio de tono sutil al abrirse
                     } else {
                         detalles.style.display = "none";
-                        tarjeta.style.background = ""; 
                     }
                 });
 
