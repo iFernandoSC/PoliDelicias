@@ -113,7 +113,7 @@ app.get('/api/comida', (req, res) => {
             restaurante.latitud, 
             restaurante.longitud 
         FROM comida 
-        JOIN restaurante ON comida.id_lugar = restaurante.id_lugar 
+        JOIN restaurante ON comida.id_lugar = restaurante.id
         WHERE CAST(comida.precio AS DECIMAL(10,2)) <= ?
     `;
 
