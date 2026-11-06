@@ -474,9 +474,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     
                     <!-- Información ampliada que aparece al hacer clic -->
                     <div class="detalles-ampliados" style="display: none; margin-top: 15px; padding-top: 10px; border-top: 1px solid #ddd;">
-                        <p style="margin: 4px 0; font-size: 13px; color: #333;">📍 <b>Restaurante:</b> ${nombreRestaurante}</p>
-                        <p style="margin: 4px 0; font-size: 13px; color: #333;">🏠 <b>Dirección:</b> ${domicilio}</p>
-                        <p style="margin: 4px 0; font-size: 13px; color: #333;">⏰ <b>Horario:</b> ${horario}</p>
+                        <p style="margin: 4px 0; font-size: 13px; color: white;">📍 <b>Restaurante:</b> ${nombreRestaurante}</p>
+                        <p style="margin: 4px 0; font-size: 13px; color: white;">🏠 <b>Dirección:</b> ${domicilio}</p>
+                        <p style="margin: 4px 0; font-size: 13px; color: white;">⏰ <b>Horario:</b> ${horario}</p>
 
                         <!-- El botón ahora siempre se muestra -->
                         <a href="../mapa.html${lat && lng ? `?lat=${lat}&lng=${lng}&nombre=${encodeURIComponent(nombreRestaurante)}` : ''}" class="btn-ir-mapa" style="display: inline-block; margin-top: 10px; background-color: #ea580c; color: white; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; text-decoration: none;">
