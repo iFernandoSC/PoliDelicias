@@ -106,8 +106,8 @@ app.get('/api/comida', (req, res) => {
     // Hacemos el JOIN con la tabla 'restaurante' usando el id_lugar
     const consultaPresupuesto = `
         SELECT 
-            comida.*, 
-            restaurante.nombre AS nombre_restaurante, 
+            restarante.*, 
+            restaurante.nombre, 
             restaurante.domicilio, 
             restaurante.horario, 
             restaurante.latitud, 
