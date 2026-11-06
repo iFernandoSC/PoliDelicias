@@ -8,7 +8,7 @@ app.use(cors());
 // Permite servir tus archivos estáticos (HTML, CSS, JS)
 app.use(express.static(__dirname));
 
-// Ruta existente para obtener el menú por ID de lugar
+// 1. RUTA PARA OBTENER EL MENÚ COMPLETO POR ID DE LUGAR (Comida, Bebidas y Complementos)
 app.get('/api/info-id/:id', (req, res) => {
     const idLugar = req.params.id;
     
@@ -44,7 +44,7 @@ app.get('/api/info-id/:id', (req, res) => {
     });
 });
 
-// RUTA DE PRESUPUESTO: Con LEFT JOIN para unir la comida con su respectivo restaurante usando id_lugar
+// 2. RUTA DE PRESUPUESTO: Con LEFT JOIN para unir la comida con su respectivo restaurante usando id_lugar
 app.get('/api/comida', (req, res) => {
     const presupuesto = Number(req.query.presupuesto);
 
@@ -54,7 +54,6 @@ app.get('/api/comida', (req, res) => {
         });
     }
 
-    // Consulta SQL con el JOIN para vincular las dos tablas que tienes relacionadas
     const consultaPresupuesto = `
         SELECT 
             comida.*, 
@@ -86,7 +85,7 @@ app.get('/api/comida', (req, res) => {
     );
 });
 
-// NUEVA RUTA: Para obtener todos los restaurantes
+// 3. RUTA: Para obtener todos los restaurantes
 app.get('/api/restaurantes', (req, res) => {
     const consultaRestaurantes = 'SELECT * FROM restaurante';
 
