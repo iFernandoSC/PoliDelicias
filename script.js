@@ -414,3 +414,75 @@ GDnata();
 laemocha();
 comidachina();
 cooperativaa();
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const contenedorResultados = document.getElementById("resultadosPresupuesto");
+
+    if (!contenedorResultados) return;
+
+    const parametros = new URLSearchParams(window.location.search);
+    const presupuestoUrl = Number(parametros.get("presupuesto"));
+
+    const monto = document.getElementById("montoPresupuesto");
+    const monto2 = document.getElementById("montoPresupuesto2");
+
+    if (!presupuestoUrl || isNaN(presupuestoUrl)) {
+        contenedorResultados.innerHTML = "<p>No se especificó un presupuesto válido.</p>";
+        return;
+    }
+
+    // Mostrar presupuesto en los dos elementos
+    if (monto) monto.textContent = presupuestoUrl;
+    if (monto2) monto2.textContent = presupuestoUrl;
+
+    fetch(`https://polidelicias-backend.onrender.com/api/comida?presupuesto=${presupuestoUrl}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+
+            contenedorResultados.innerHTML = "";
+
+            if (!data.comida || data.comida.length === 0) {
+                contenedorResultados.innerHTML = `<p>No hay opciones disponibles por $${presupuestoUrl} o menos.</p>`;
+                return;
+            }
+
+            data.comida.forEach(platillo => {
+
+                const tarjeta = document.createElement("article");
+                tarjeta.classList.add("articulo");
+
+                // Aquí creamos la tarjeta con nombre, precio, descripción, datos del local y botón al mapa
+                tarjeta.innerHTML = `
+                    <h3>${platillo.nombre_platillo || platillo.nombre}</h3>
+                    <p>${platillo.descripcion || "Sin descripción"}</p>
+                    <span class="precio">$${platillo.precio}</span>
+                    
+                    <div class="info-local-resultado" style="margin-top: 8px; font-size: 13px; color: #444;">
+                        <p style="margin: 2px 0;">📍 <b>Lugar:</b> ${platillo.nombre_restaurante || 'Polidelicias'}</p>
+                        <p style="margin: 2px 0;">🏠 <b>Dirección:</b> ${platillo.domicilio || 'No especificada'}</p>
+                        <p style="margin: 2px 0;">⏰ <b>Horario:</b> ${platillo.horario || 'No especificado'}</p>
+                    </div>
+
+                    ${platillo.latitud && platillo.longitud ? `
+                        <a href="mapa.html?lat=${platillo.latitud}&lng=${platillo.longitud}" class="btn-mapa-item" style="display: inline-block; margin-top: 8px; font-size: 12px; color: #ea580c; font-weight: bold; text-decoration: none;">
+                            🗺️ Ver este punto en el mapa
+                        </a>
+                    ` : ''}
+                `;
+
+                contenedorResultados.appendChild(tarjeta);
+            });
+
+        })
+        .catch(error => {
+            console.error("Error al obtener la comida:", error);
+            contenedorResultados.innerHTML = "<p>Hubo un error al cargar las opciones.</p>";
+        });
+
+});
