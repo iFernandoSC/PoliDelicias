@@ -280,10 +280,11 @@ function cargarRestaurantesMapa() {
                             .addTo(map)
                             .bindPopup(`
                                 <div style="font-family: sans-serif; padding: 4px;">
-                                    <p style="margin: 4px 0; font-size: 13px; color: white !important;">📍 <b>Restaurante:</b> ${nombreRestaurante}</p>
-                                    <p style="margin: 4px 0; font-size: 13px; color: white !important;">🏠 <b>Dirección:</b> ${domicilio}</p>
-                                    <p style="margin: 4px 0; font-size: 13px; color: white !important;">⏰ <b>Horario:</b> ${horario}</p>
-                                </div>
+                                    <b style="font-size: 14px; color: #ea580c;">${lugar.nombre}</b><br>
+                                    <p style="margin: 4px 0; font-size: 12px; color: white !important;;">🍽️ <b>Tipo:</b> ${lugar.tipo_comida || 'General'}</p>
+                                    <p style="margin: 4px 0; font-size: 12px; color:white !important;;">📍 ${lugar.domicilio}</p>
+                                    <p style="margin: 4px 0; font-size: 11px; color: white !important;;">⏰ <b>Horario:</b> ${lugar.horario || 'No especificado'}</p>
+                                     </div>
                             `);
                     }
                 }
@@ -352,9 +353,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span class="precio">$${platillo.precio}</span>
                     
                     <div class="detalles-ampliados" style="display: none; margin-top: 15px; padding-top: 10px; border-top: 1px solid #ddd;">
-                        <p style="margin: 4px 0; font-size: 13px; color: white !important;">📍 <b>Restaurante:</b> ${nombreRestaurante}</p>
-                        <p style="margin: 4px 0; font-size: 13px; color: white !important;">🏠 <b>Dirección:</b> ${domicilio}</p>
-                        <p style="margin: 4px 0; font-size: 13px; color: white !important;">⏰ <b>Horario:</b> ${horario}</p>
+                        <b style="font-size: 14px; color: #ea580c;">${lugar.nombre}</b><br>
+                                    <p style="margin: 4px 0; font-size: 12px; color:white !important;;">📍 ${lugar.domicilio}</p>
+                                    <p style="margin: 4px 0; font-size: 11px; color: white !important;;">⏰ <b>Horario:</b> ${lugar.horario || 'No especificado'}</p>
+                                     
 
                         <a href="../mapa.html${lat && lng ? `?lat=${lat}&lng=${lng}&nombre=${encodeURIComponent(nombreRestaurante)}` : ''}" class="btn-ir-mapa" style="display: inline-block; margin-top: 10px; background-color: #ea580c; color: white; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; text-decoration: none;">
                             Ir al mapa / Ver ubicación
