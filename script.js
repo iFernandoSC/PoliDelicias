@@ -2,6 +2,7 @@ const inputFoto = document.getElementById("foto");
 const perfil = document.getElementById("perfil");
 const presupuesto = document.getElementById("presupuesto");
 
+
 let ultimaPosicion = 0;
 
 window.addEventListener("scroll", () => {
