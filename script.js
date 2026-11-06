@@ -280,11 +280,9 @@ function cargarRestaurantesMapa() {
                             .addTo(map)
                             .bindPopup(`
                                 <div style="font-family: sans-serif; padding: 4px;">
-                                    <b style="font-size: 14px; color: #ea580c;">${lugar.nombre}</b><br>
-                                    <p style="margin: 4px 0; font-size: 12px; color: #333;">🍽️ <b>Tipo:</b> ${lugar.tipo_comida || 'General'}</p>
-                                    <p style="margin: 4px 0; font-size: 12px; color: #555;">📍 ${lugar.domicilio}</p>
-                                    <p style="margin: 4px 0; font-size: 11px; color: #666;">📞 <b>Contacto:</b> ${lugar.contacto || 'No registrado'}</p>
-                                    <p style="margin: 4px 0; font-size: 11px; color: #666;">⏰ <b>Horario:</b> ${lugar.horario || 'No especificado'}</p>
+                                    <p style="margin: 4px 0; font-size: 13px; color: white !important;">📍 <b>Restaurante:</b> ${nombreRestaurante}</p>
+                                    <p style="margin: 4px 0; font-size: 13px; color: white !important;">🏠 <b>Dirección:</b> ${domicilio}</p>
+                                    <p style="margin: 4px 0; font-size: 13px; color: white !important;">⏰ <b>Horario:</b> ${horario}</p>
                                 </div>
                             `);
                     }
