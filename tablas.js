@@ -44,7 +44,7 @@ app.get('/api/info-id/:id', (req, res) => {
     });
 });
 
-// RUTA DE PRESUPUESTO: Con LEFT JOIN para unir la comida con su restaurante correspondiente
+// RUTA DE PRESUPUESTO: Con LEFT JOIN para unir la comida con su respectivo restaurante usando id_lugar
 app.get('/api/comida', (req, res) => {
     const presupuesto = Number(req.query.presupuesto);
 
@@ -54,6 +54,7 @@ app.get('/api/comida', (req, res) => {
         });
     }
 
+    // Consulta SQL con el JOIN para vincular las dos tablas que tienes relacionadas
     const consultaPresupuesto = `
         SELECT 
             comida.*, 
