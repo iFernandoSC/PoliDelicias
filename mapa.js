@@ -122,3 +122,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+// --- 📍 LÓGICA PARA RECIBIR Y MOSTRAR EL PUNTO ESPECÍFICO DESDE LOS RESULTADOS ---
+const parametrosMapa = new URLSearchParams(window.location.search);
+const latParam = parametrosMapa.get('lat');
+const lngParam = parametrosMapa.get('lng');
+const nombreParam = parametrosMapa.get('nombre');
+
+if (latParam && lngParam && typeof map !== 'undefined') {
+    const lat = parseFloat(latParam);
+    const lng = parseFloat(lngParam);
+    
+    // Centramos el mapa en el restaurante seleccionado con un zoom cercano
+    map.setView([lat, lng], 17);
+
+    // Opcional: Creamos y abrimos un marcador automático con el nombre del lugar
+    L.marker([lat, lng])
+        .addTo(map)
+        .bindPopup(`
+            <div style="font-family: sans-serif; padding: 4px;">
+                <b style="font-size: 14px; color: #ea580c;">${decodeURIComponent(nombreParam || 'Restaurante')}</b><br>
+                <p style="margin: 4px 0; font-size: 12px; color: #333;">¡Aquí está la opción que seleccionaste!</p>
+            </div>
+        `)
+        .openPopup();
+}
