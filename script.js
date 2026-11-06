@@ -7,7 +7,7 @@ let ultimaPosicion = 0;
 // Efecto de scroll para header y menú
 window.addEventListener("scroll", () => {
     const posicionActual = window.scrollY;
-    
+
     const header = document.getElementById("header");
     const menu = document.getElementById("menu");
 
@@ -109,14 +109,14 @@ function comidachina() {
             if (loadingDiv) loadingDiv.style.display = 'none';
             const contenedorcoch = document.getElementById("OfertaComidaChina1");
             if (!contenedorcoch) return;      
-            
+
             contenedorcoch.innerHTML = '';      
-            
+
             if (!data.comida || data.comida.length === 0) {
                 contenedorcoch.innerHTML = '<p>No hay comida disponible para este lugar.</p>';
                 return;
             }
-            
+
             data.comida.forEach(platillo => {
                 const tarjeta = document.createElement('div');
                 tarjeta.classList.add('tarjeta-platillo');
@@ -152,7 +152,7 @@ function cooperativaa() {
             if (!contenedorcooa) return;      
             if (contenedorcoopea) contenedorcoopea.innerHTML = '';
             contenedorcooa.innerHTML = '';      
-            
+
             if (data.comida && data.comida.length > 0 && contenedorcoopea) {
                 data.comida.forEach(platillo => {
                     const tarjeta = document.createElement('div');
@@ -165,7 +165,7 @@ function cooperativaa() {
                     contenedorcoopea.appendChild(tarjeta);
                 });
             }
-            
+
             if (data.bebidas && data.bebidas.length > 0) {
                 data.bebidas.forEach(platillo => {
                     const tarjeta = document.createElement('div');
@@ -190,7 +190,7 @@ function banderilla() {
             const contenedorts = document.getElementById("MenuTortaSushi1");
             if (!contenedorts) return;      
             contenedorts.innerHTML = '';      
-            
+
             if (data.comida && data.comida.length > 0) {
                 data.comida.forEach(platillo => {
                     const tarjeta = document.createElement('div');
@@ -215,7 +215,7 @@ function GDnata() {
             const contenedorg = document.getElementById("OfertaGorditasNata1");
             if (!contenedorg) return;      
             contenedorg.innerHTML = '';  
-            
+
             if (data.complementos && data.complementos.length > 0) {
                 data.complementos.forEach(platillo => {
                     const tarjeta = document.createElement('div');
@@ -242,7 +242,7 @@ function laemocha() {
             const contenedor = document.getElementById("MenuRollitos1");
             if (!contenedor) return;      
             contenedor.innerHTML = '';      
-            
+
             if (data.comida && data.comida.length > 0) {
                 data.comida.forEach(platillo => {
                     const tarjeta = document.createElement('div');
@@ -281,10 +281,14 @@ function cargarRestaurantesMapa() {
                             .bindPopup(`
                                 <div style="font-family: sans-serif; padding: 4px;">
                                     <b style="font-size: 14px; color: #ea580c;">${lugar.nombre}</b><br>
-                                    <p style="margin: 4px 0; font-size: 12px; color: white !important;;">🍽️ <b>Tipo:</b> ${lugar.tipo_comida || 'General'}</p>
-                                    <p style="margin: 4px 0; font-size: 12px; color:white !important;;">📍 ${lugar.domicilio}</p>
-                                    <p style="margin: 4px 0; font-size: 11px; color: white !important;;">⏰ <b>Horario:</b> ${lugar.horario || 'No especificado'}</p>
-                                     </div>
+                                    <p style="margin: 4px 0; font-size: 12px; color: #333;">🍽️ <b>Tipo:</b> ${lugar.tipo_comida || 'General'}</p>
+                                    <p style="margin: 4px 0; font-size: 12px; color: #555;">📍 ${lugar.domicilio}</p>
+                                    <p style="margin: 4px 0; font-size: 11px; color: #666;">📞 <b>Contacto:</b> ${lugar.contacto || 'No registrado'}</p>
+                                    <p style="margin: 4px 0; font-size: 11px; color: #666;">⏰ <b>Horario:</b> ${lugar.horario || 'No especificado'}</p>
+                                    <p style="margin: 4px 0; font-size: 13px; color: white !important;">📍 <b>Restaurante:</b> ${nombreRestaurante}</p>
+                                    <p style="margin: 4px 0; font-size: 13px; color: white !important;">🏠 <b>Dirección:</b> ${domicilio}</p>
+                                    <p style="margin: 4px 0; font-size: 13px; color: white !important;">⏰ <b>Horario:</b> ${horario}</p>
+                                </div>
                             `);
                     }
                 }
@@ -353,10 +357,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span class="precio">$${platillo.precio}</span>
                     
                     <div class="detalles-ampliados" style="display: none; margin-top: 15px; padding-top: 10px; border-top: 1px solid #ddd;">
-                        <b style="font-size: 14px; color: #ea580c;">${lugar.nombre}</b><br>
-                                    <p style="margin: 4px 0; font-size: 12px; color:white !important;;">📍 ${lugar.domicilio}</p>
-                                    <p style="margin: 4px 0; font-size: 11px; color: white !important;;">⏰ <b>Horario:</b> ${lugar.horario || 'No especificado'}</p>
-                                     
+                        <p style="margin: 4px 0; font-size: 13px; color: white !important;">📍 <b>Restaurante:</b> ${nombreRestaurante}</p>
+                        <p style="margin: 4px 0; font-size: 13px; color: white !important;">🏠 <b>Dirección:</b> ${domicilio}</p>
+                        <p style="margin: 4px 0; font-size: 13px; color: white !important;">⏰ <b>Horario:</b> ${horario}</p>
 
                         <a href="../mapa.html${lat && lng ? `?lat=${lat}&lng=${lng}&nombre=${encodeURIComponent(nombreRestaurante)}` : ''}" class="btn-ir-mapa" style="display: inline-block; margin-top: 10px; background-color: #ea580c; color: white; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; text-decoration: none;">
                             Ir al mapa / Ver ubicación
