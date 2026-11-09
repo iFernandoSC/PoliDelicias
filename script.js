@@ -347,9 +347,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 tarjeta.style.cursor = "pointer";
 
                 const nombrePlatillo = platillo.nombre_platillo || platillo.nombre;
-                const nombreRestaurante = platillo.nombre_restaurante || platillo.restaurante || platillo.nombre_lugar || 'Polidelicias';
-                const domicilio = platillo.domicilio || platillo.direccion || 'Dirección no especificada';
-                const horario = platillo.horario || platillo.hora || 'Horario no especificado';
+                const nombreRestaurante = platillo.nombre_restaurante || platillo.restaurante || platillo.nombre_lugar;
+                const domicilio = platillo.domicilio || platillo.direccion;
+                const horario = platillo.horario || platillo.hora;
 
                 const lat = platillo.latitud || platillo.lat;
                 const lng = platillo.longitud || platillo.lng;
