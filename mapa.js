@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!mapElement) return;
 
     // Inicializamos el mapa
-    const map = L.map('map', { center: [20.65936, -103.32838], zoom: 16, zoomControl: false });
+    const map = L.map('map', { center: [20.65953, -103.32449], zoom: 18, zoomControl: false });
     L.control.zoom({ position: 'bottomright' }).addTo(map);
     
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
