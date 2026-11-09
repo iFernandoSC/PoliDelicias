@@ -32,6 +32,13 @@ window.addEventListener("scroll", () => {
     ultimaPosicion = posicionActual;
 });
 
+document.querySelectorAll("footer").forEach(footer => {
+    footer.innerHTML = `
+        <p>© 2026 PoliDelicias</p>
+        <p>soportepolidelicias777@gmail.com</p>
+    `;
+});
+
 // Captura el input de presupuesto y redirige
 function recomendar() {
     const inputPres = document.getElementById("inputPres");
