@@ -592,6 +592,8 @@ label {
 
 /* Estilos de los recuadros de las tiendas */
 .articulo {
+    width: 330px;
+    height: 200px;
     color: white;
     border-radius: .5cap;
     background-color: #181818a3;
