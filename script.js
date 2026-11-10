@@ -1,3 +1,4 @@
+
 const inputFoto = document.getElementById("foto");
 const perfil = document.getElementById("perfil");
 const presupuesto = document.getElementById("presupuesto");
@@ -342,20 +343,23 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
           data.comida.forEach(platillo => {
-                const nombreRestaurante = platillo.nombre_restaurante || data.restaurante.nombre || 'Polidelicias';
-                const domicilio = platillo.domicilio || data.restaurante.domicilio || 'Dirección no especificada';
-                const horario = platillo.horario || data.restaurante.horario || 'Horario no especificado';
-                const lat = platillo.latitud || data.restaurante.latitud;
-                const lng = platillo.longitud || data.restaurante.longitud;
-               
                 const tarjeta = document.createElement("article");
                 tarjeta.classList.add("articulo");
                 tarjeta.style.cursor = "pointer";
+
+                const nombrePlatillo = platillo.nombre_platillo || platillo.nombre;
+                const nombreRestaurante = platillo.nombre_restaurante || platillo.restaurante || platillo.nombre_lugar || 'Polidelicias';
+                const domicilio = platillo.domicilio || platillo.direccion || 'Dirección no especificada';
+                const horario = platillo.horario || platillo.hora || 'Horario no especificado';
+               
+                const lat = platillo.latitud || platillo.lat;
+                const lng = platillo.longitud || platillo.lng;
+
                 tarjeta.innerHTML = `
                     <h3>${nombrePlatillo}</h3>
                     <p>${platillo.descripcion || "Sin descripción"}</p>
                     <span class= "precio">$${platillo.precio}</span>
-                    
+                   
                     <div class="detalles-ampliados" style="display: none; margin-top: 15px; padding-top: 10px; border-top: 1px solid #ddd;">
                         <p style="margin: 4px 0; font-size: 13px; color: white !important;">📍 <b>Restaurante:</b> ${nombreRestaurante}</p>
                         <p style="margin: 4px 0; font-size: 13px; color: white !important;">🏠 <b>Dirección:</b> ${domicilio}</p>
@@ -387,3 +391,5 @@ document.addEventListener("DOMContentLoaded", () => {
             contenedorResultados.innerHTML = "<p>Hubo un error al cargar las opciones.</p>";
         });
 });
+
+
