@@ -598,7 +598,7 @@ label {
     border-radius: .5cap;
     background-color: #181818a3;
     flex-direction: column;
-    display: flex;
+    
     padding: 10px;
     align-items: center;
     text-align: center;
