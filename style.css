@@ -587,6 +587,7 @@ label {
     width: 95%;
     margin: 10px auto 50px;
     display: grid;
+grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
     gap: 18px 30px;
 }
 
