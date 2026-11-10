@@ -13,32 +13,35 @@ app.get('/api/info-id/:id', (req, res) => {
     const idLugar = req.params.id;
 
     const datosDelMenu = {};
+    const consultarestaurante = 'SELECT * FROM restaurante WHERE id = ?';
     const consultacomida = 'SELECT * FROM comida WHERE id_lugar = ?';
     const consultabebidas = 'SELECT * FROM bebidas WHERE id_lugar = ?';
     const consultacomplemento = 'SELECT * FROM complementos WHERE id_lugar = ?';
 
-    db.query(consultacomida, [idLugar], (error, resultadosComida) => {
-        if (error) {
-            console.error('Error al buscar comida:', error);
-            return res.status(500).send('Error en el servidor');
-        }
-        datosDelMenu.comida = resultadosComida;
 
-        db.query(consultabebidas, [idLugar], (error, resultadosBebidas) => {
-            if (error) {
-                console.error('Error al buscar bebidas:', error);
-                return res.status(500).send('Error en el servidor');
-            }
-            datosDelMenu.bebidas = resultadosBebidas;
+    // 1. Buscamos primero los datos del restaurante
+    db.query(consultarestaurante, [idLugar], (error, resultadoRestaurante) => {
+        if (error) return res.status(500).send('Error en el servidor');
+        datosDelMenu.restaurante = resultadoRestaurante[0] || {};
 
-            db.query(consultacomplemento, [idLugar], (error, resultadosComplementos) => {
-                if (error) {
-                    console.error('Error al buscar complementos:', error);
-                    return res.status(500).send('Error en el servidor');
-                }
-                datosDelMenu.complementos = resultadosComplementos;
+        // 2. Buscamos la comida
+        db.query(consultacomida, [idLugar], (error, resultadosComida) => {
+            if (error) return res.status(500).send('Error en el servidor');
+            datosDelMenu.comida = resultadosComida;
 
-                res.json(datosDelMenu);
+            // 3. Buscamos las bebidas
+            db.query(consultabebidas, [idLugar], (error, resultadosBebidas) => {
+                if (error) return res.status(500).send('Error en el servidor');
+                datosDelMenu.bebidas = resultadosBebidas;
+
+                // 4. Buscamos los complementos
+                db.query(consultacomplemento, [idLugar], (error, resultadosComplementos) => {
+                    if (error) return res.status(500).send('Error en el servidor');
+                    datosDelMenu.complementos = resultadosComplementos;
+
+                    // ¡Mandamos todo empaquetado incluyendo el restaurante!
+                    res.json(datosDelMenu);
+                });
             });
         });
     });
@@ -104,10 +107,10 @@ app.get('/api/comida', (req, res) => {
     }
 
     // Hacemos el JOIN con la tabla 'restaurante' usando el id_lugar
-    const consultaPresupuesto = `
+   const consultaPresupuesto = `
         SELECT 
-            restarante.*, 
-            restaurante.nombre, 
+            comida.*, 
+            restaurante.nombre AS nombre_restaurante, 
             restaurante.domicilio, 
             restaurante.horario, 
             restaurante.latitud, 
@@ -117,20 +120,11 @@ app.get('/api/comida', (req, res) => {
         WHERE CAST(comida.precio AS DECIMAL(10,2)) <= ?
     `;
 
-    db.query(
-        consultaPresupuesto,
-        [presupuesto],
-        (error, resultados) => {
+    db.query( consultaPresupuesto, [presupuesto], (error, resultados) => {
             if (error) {
                 console.error(error);
-                return res.status(500).json({
-                    error: 'Error al consultar la comida'
-                });
+                return res.status(500).json({ error: 'Error al consultar la comida' });
             }
-
-            res.json({
-                comida: resultados
-            });
-        }
-    );
+            res.json({  comida: resultados});
+        });
 });
