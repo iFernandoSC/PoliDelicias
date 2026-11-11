@@ -69,6 +69,10 @@ html, body {
     flex-direction: column;
 }
 
+#botonVolver {
+    margin: 0;
+}
+
 .geo-btn {
     border: none;
     border-radius: 8px;
