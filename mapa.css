@@ -70,6 +70,9 @@ html, body {
 }
 
 #botonVolver {
+    width: 1.2 em;
+    height: 1.2 em;
+    background: rgba(24, 24, 24, 0.0);
     margin: 0;
 }
 
