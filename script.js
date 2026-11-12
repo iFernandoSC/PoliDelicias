@@ -342,7 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-          data.comida.forEach(platillo => {
+          data.comida && data.restaurante.forEach(platillo => {
                 const tarjeta = document.createElement("article");
                 tarjeta.classList.add("articulo");
                 tarjeta.style.cursor = "pointer";
