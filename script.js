@@ -371,18 +371,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 `;
 
-                // Evento para desplegar o contraer los detalles al hacer clic
-                tarjeta.addEventListener("click", (e) => {
-                    if (e.target.tagName === 'A') return;
-
-                    const detalles = tarjeta.querySelector(".detalles-ampliados");
-                    if (detalles.style.display === "none") {
-                        detalles.style.display = "block";
-                    } else {
-                        detalles.style.display = "none";
-                    }
-                });
-
                 contenedorResultados.appendChild(tarjeta);
             });
         })
