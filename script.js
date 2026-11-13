@@ -370,7 +370,7 @@ document.addEventListener("DOMContentLoaded", () => {
                    
                    
 
-                        <a href="../mapa.html${lat && lng ? `?lat=${lat}&lng=${lng}&nombre=${encodeURIComponent(nombreRestaurante)}` : ''}" class="btn-ir-mapa" style="display: inline-block; margin-top: 10px; background-color: #ea580c; color: white; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; text-decoration: none;">
+                        <a href="../mapa.html${lat && lng ? `?lat=${lat}&lng=${lng}&nombre=${encodeURIComponent(nombreRestaurante)}` : ''}" class="btn-ir-mapa" style="display: inline-block; margin-top: 10px; background-color: green; color: white; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; text-decoration: none;">
                             Ir al mapa / Ver ubicación
                         </a>
                     </div>
