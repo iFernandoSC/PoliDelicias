@@ -56,6 +56,12 @@ function recomendar() {
     window.location.href = `tiendas/productos200.html?presupuesto=${presupuestoVal}`;
 }
 
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        recomendar();
+    }
+});
+
 // Pantalla de carga inicial
 const pantalla = document.getElementById("pantalla-carga");
 if (pantalla) {
