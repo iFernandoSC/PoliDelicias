@@ -357,7 +357,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 tarjeta.innerHTML = `
                     <h3>${nombrePlatillo}</h3>
                     <p>${platillo.descripcion || "Sin descripción"}</p>
-                     <p>${platillo.id_lugar || "Sin descripción"}</p>
                     <span class= "precio">$${platillo.precio}</span>
                    
                    
