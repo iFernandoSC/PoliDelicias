@@ -341,35 +341,44 @@ document.addEventListener("DOMContentLoaded", () => {
                 contenedorResultados.innerHTML = `<p>No hay opciones disponibles por $${presupuestoUrl} o menos.</p>`;
                 return;
             }
-
+         data.comida.sort((a, b) => Number(b.precio) - Number(a.precio));
           data.comida.forEach (platillo => {
+                const idlugares= platillo.id_lugar;
                 const tarjeta = document.createElement("article");
                 tarjeta.classList.add("articulo");
                 tarjeta.style.cursor = "pointer";
 
                 const nombrePlatillo = platillo.nombre_platillo || platillo.nombre;
                 const nombreRestaurante = platillo.nombre_restaurante || platillo.restaurante || platillo.nombre_lugar || 'Polidelicias';
-                const domicilio = platillo.domicilio || platillo.direccion || 'Dirección no especificada';
-                const horario = platillo.horario || platillo.hora || 'Horario no especificado';
-               
+
                 const lat = platillo.latitud || platillo.lat;
                 const lng = platillo.longitud || platillo.lng;
 
                 tarjeta.innerHTML = `
                     <h3>${nombrePlatillo}</h3>
                     <p>${platillo.descripcion || "Sin descripción"}</p>
+                     <p>${platillo.id_lugar || "Sin descripción"}</p>
                     <span class= "precio">$${platillo.precio}</span>
                    
-                    <div class="detalles-ampliados" style="display: none; margin-top: 15px; padding-top: 10px; border-top: 1px solid #ddd;">
-                        <p style="margin: 4px 0; font-size: 13px; color: white !important;">📍 <b>Restaurante:</b> ${nombreRestaurante}</p>
-                        <p style="margin: 4px 0; font-size: 13px; color: white !important;">🏠 <b>Dirección:</b> ${domicilio}</p>
-                        <p style="margin: 4px 0; font-size: 13px; color: white !important;">⏰ <b>Horario:</b> ${horario}</p>
+                   
 
                         <a href="../mapa.html${lat && lng ? `?lat=${lat}&lng=${lng}&nombre=${encodeURIComponent(nombreRestaurante)}` : ''}" class="btn-ir-mapa" style="display: inline-block; margin-top: 10px; background-color: #ea580c; color: white; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; text-decoration: none;">
                             Ir al mapa / Ver ubicación
                         </a>
                     </div>
                 `;
+
+                // Evento para desplegar o contraer los detalles al hacer clic
+                tarjeta.addEventListener("click", (e) => {
+                    if (e.target.tagName === 'A') return;
+
+                    const detalles = tarjeta.querySelector(".detalles-ampliados");
+                    if (detalles.style.display === "none") {
+                        detalles.style.display = "block";
+                    } else {
+                        detalles.style.display = "none";
+                    }
+                });
 
                 contenedorResultados.appendChild(tarjeta);
             });
@@ -379,5 +388,4 @@ document.addEventListener("DOMContentLoaded", () => {
             contenedorResultados.innerHTML = "<p>Hubo un error al cargar las opciones.</p>";
         });
 });
-
 
