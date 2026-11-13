@@ -341,20 +341,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 contenedorResultados.innerHTML = `<p>No hay opciones disponibles por $${presupuestoUrl} o menos.</p>`;
                 return;
             }
-         data.comida.sort((a, b) => Number(b.precio) - Number(a.precio));
+        data.comida.sort((a, b) => Number(b.precio) - Number(a.precio));
           data.comida.forEach (platillo => {
                 const idlugares= platillo.id_lugar;
                 const tarjeta = document.createElement("article");
                 tarjeta.classList.add("articulo");
                 tarjeta.style.cursor = "pointer";
+                const nombresLugares = {
+                    1: "EL FRENCH",
+                    2: "BANDERILLAS SUSHI",
+                    3: "GORDITAS PATRIA",
+                    5: "PRONTO FOODS"
+                }
 
                 const nombrePlatillo = platillo.nombre_platillo || platillo.nombre;
-                const nombreRestaurante = platillo.nombre_restaurante || platillo.restaurante || platillo.nombre_lugar || 'Polidelicias';
+                const nombreRestaurante = nombresLugares[idlugares] || platillo.nombre_restaurante || platillo.nombre_lugar || 'Polidelicias';
 
                 const lat = platillo.latitud || platillo.lat;
                 const lng = platillo.longitud || platillo.lng;
-
+                if (idlugares ==1) {    
+                 nombreres= "EL FRENCH";
+                }
                 tarjeta.innerHTML = `
+                     <p>${nombreRestaurante || "Sin descripción"}</p>
                     <h3>${nombrePlatillo}</h3>
                     <p>${platillo.descripcion || "Sin descripción"}</p>
                     <span class= "precio">$${platillo.precio}</span>
@@ -387,4 +396,3 @@ document.addEventListener("DOMContentLoaded", () => {
             contenedorResultados.innerHTML = "<p>Hubo un error al cargar las opciones.</p>";
         });
 });
-
