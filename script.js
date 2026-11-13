@@ -286,14 +286,14 @@ function cargarRestaurantesMapa() {
                     if (typeof map !== 'undefined' && map) {
                         L.marker([lat, lon])
                             .addTo(map)
-                            .bindPopup(
+                           bindPopup(`
                                 <div style="font-family: sans-serif; padding: 4px;">
                                     <b style="font-size: 14px; color: #ea580c;">${lugar.nombre}</b><br>
                                     <p style="margin: 4px 0; font-size: 12px; color: #333;">🍽️ <b>Tipo:</b> ${lugar.tipo_comida || 'General'}</p>
                                     <p style="margin: 4px 0; font-size: 12px; color: #555;">📍 ${lugar.domicilio}</p>
                                     <p style="margin: 4px 0; font-size: 11px; color: #666;">⏰ <b>Horario:</b> ${lugar.horario || 'No especificado'}</p>
                                 </div>
-                            );
+                            `);
                     }
                 }
             });
